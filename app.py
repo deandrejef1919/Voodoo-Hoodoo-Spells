@@ -13,17 +13,24 @@ st.set_page_config(
 )
 
 # =========================
-# THEME & STYLES (RED / BLACK / GREEN)
+# THEME & STYLES (Times New Roman, bigger, shield buttons)
 # =========================
 
 APP_CSS = """
 <style>
 body, .stApp {
-    background-color: #050404;
-    color: #f7f7f7;
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    background-color: #080808;
+    color: #f3eee5;
+    font-family: "Times New Roman", Times, serif;
+    font-size: 16px;
+    line-height: 1.6;
 }
-.block-container { padding-top: 1.5rem; }
+
+/* Slightly narrower content so long passages are easier to read */
+.block-container {
+    padding-top: 1.5rem;
+    max-width: 1100px;
+}
 
 /* Header */
 .vh-header {
@@ -31,26 +38,26 @@ body, .stApp {
     padding: 0.75rem 0 0.25rem 0;
 }
 .vh-logo {
-    font-size: 3.4rem;
+    font-size: 3.6rem;
 }
 .vh-title {
-    font-size: 2rem;
+    font-size: 2.3rem;
     font-weight: 800;
     letter-spacing: 0.18em;
     text-transform: uppercase;
-    color: #e53935;
+    color: #f44336;
     text-shadow:
-        0 0 8px rgba(229,57,53,0.9),
+        0 0 10px rgba(244,67,54,0.9),
         0 0 16px rgba(0,0,0,0.9);
 }
 .vh-subtitle {
-    font-size: 0.95rem;
-    opacity: 0.9;
+    font-size: 1rem;
+    opacity: 0.95;
 }
 
 /* Sidebar */
 section[data-testid="stSidebar"] {
-    background: radial-gradient(circle at top, #2b0000 0%, #050404 55%, #000000 100%);
+    background: radial-gradient(circle at top, #2f0202 0%, #080808 55%, #000000 100%);
 }
 .sidebar-logo {
     text-align:center;
@@ -61,74 +68,114 @@ section[data-testid="stSidebar"] {
     text-transform: uppercase;
     padding: 0.6rem 0.4rem;
     border-radius: 14px;
-    background: radial-gradient(circle at 30% 0%, #3b0000 0%, #050404 55%, #000 100%);
-    border: 1px solid rgba(229,57,53,0.7);
+    background: radial-gradient(circle at 30% 0%, #3b0000 0%, #080808 55%, #000 100%);
+    border: 1px solid rgba(244,67,54,0.7);
     box-shadow:
-        0 0 10px rgba(229,57,53,0.6),
+        0 0 10px rgba(244,67,54,0.6),
         0 0 18px rgba(0,0,0,0.9),
         inset 0 0 6px rgba(0,0,0,0.7);
 }
 
 /* Cards */
 .vh-card {
-    border-radius: 14px;
-    border: 1px solid rgba(229,57,53,0.75);
-    padding: 1.1rem 1.35rem;
-    margin-bottom: 0.9rem;
-    background: radial-gradient(circle at top, #151111 0%, #050404 55%, #000000 100%);
+    border-radius: 16px;
+    border: 1px solid rgba(244,67,54,0.75);
+    padding: 1.2rem 1.45rem;
+    margin-bottom: 1.1rem;
+    background: radial-gradient(circle at top, #191313 0%, #090808 55%, #010101 100%);
     box-shadow:
-        0 0 10px rgba(229,57,53,0.4),
-        0 0 22px rgba(0,0,0,0.95);
+        0 0 12px rgba(244,67,54,0.45),
+        0 0 26px rgba(0,0,0,0.98);
 }
 .vh-card h3 {
     margin-top: 0;
 }
 
-/* Buttons styled like Zulu shields */
+/* Typography tweaks for readability */
+.vh-card p,
+p, li {
+    font-size: 16px;
+    line-height: 1.7;
+}
+h2, h3, h4 {
+    font-family: "Times New Roman", Times, serif;
+}
+
+/* Shield glow animation */
+@keyframes shieldGlow {
+    0% {
+        box-shadow:
+            0 0 10px rgba(244,67,54,0.9),
+            0 0 18px rgba(76,175,80,0.7),
+            0 0 0 rgba(0,0,0,0.8);
+    }
+    100% {
+        box-shadow:
+            0 0 18px rgba(244,67,54,1.0),
+            0 0 28px rgba(76,175,80,0.9),
+            0 0 12px rgba(0,0,0,0.9);
+    }
+}
+
+/* Buttons styled like glowing Zulu shields with spear motif */
 div.stButton > button {
-    border-radius: 999px;
+    border-radius: 999px / 70px;  /* tall oval like a shield */
     border-width: 2px;
     border-style: solid;
     border-color: #1b5e20;
-    padding: 0.4rem 1.6rem;
+    padding: 0.45rem 1.9rem;
     font-weight: 700;
     text-transform: uppercase;
-    letter-spacing: 0.08em;
-    background: radial-gradient(circle at 30% 15%, #e53935 0%, #1b5e20 40%, #000000 85%);
-    color: #fbe9e7;
-    box-shadow:
-        0 0 10px rgba(229,57,53,0.9),
-        0 0 18px rgba(27,94,32,0.9);
+    letter-spacing: 0.09em;
+    font-family: "Times New Roman", Times, serif;
+    font-size: 15px;
+
+    background-image:
+        linear-gradient(135deg, #f44336 0%, #000000 40%, #1b5e20 100%),
+        radial-gradient(circle at 12% 0%, rgba(255,255,255,0.25) 0%, transparent 60%);
+    background-blend-mode: overlay;
+
+    color: #fff7ec;
+    animation: shieldGlow 2.4s ease-in-out infinite alternate;
+    transform: translateY(0);
 }
+
+/* Add a subtle spear-like bar at the left using a pseudo-element trick */
+div.stButton > button::before {
+    content: "⚔️";
+    margin-right: 0.35rem;
+    text-shadow:
+        0 0 6px rgba(244,67,54,0.9),
+        0 0 10px rgba(0,0,0,0.7);
+}
+
+/* Hover: stronger glow, tiny lift */
 div.stButton > button:hover {
-    box-shadow:
-        0 0 16px rgba(229,57,53,1.0),
-        0 0 26px rgba(27,94,32,1.0);
-    transform: translateY(-1px);
-    border-color: #e53935;
+    border-color: #f44336;
+    transform: translateY(-2px);
 }
 
 /* Footer */
 .vh-footer {
     text-align:center;
-    font-size: 0.8rem;
-    color: #b0b0b0;
+    font-size: 0.9rem;
+    color: #c0bbb2;
     margin-top: 2.8rem;
-    padding-top: 0.75rem;
+    padding-top: 0.9rem;
     border-top: 1px solid rgba(76,175,80,0.7);
-    opacity: 0.9;
+    opacity: 0.95;
 }
 
-/* Accents */
+/* Accent pill */
 .vh-pill {
     display:inline-block;
-    padding: 0.15rem 0.5rem;
+    padding: 0.18rem 0.6rem;
     border-radius: 999px;
-    font-size: 0.72rem;
+    font-size: 0.78rem;
     text-transform: uppercase;
     letter-spacing: 0.12em;
-    border: 1px solid rgba(76,175,80,0.8);
-    color: #c8e6c9;
+    border: 1px solid rgba(76,175,80,0.9);
+    color: #e0f2f1;
 }
 </style>
 """
@@ -278,11 +325,16 @@ def init_db():
 
 
 # =========================
-# Seed data
+# Seed data – richer descriptions
 # =========================
 
 def seed_spirits(cur):
+    """
+    Seed spirits including West African Vodun beings, Haitian Vodou lwa, and ancestors.
+    This is educational only – no ritual instructions.
+    """
     spirits_data = [
+        # West African Vodun beings
         (
             "Nana Buluku",
             "Fon / West African Vodun",
@@ -290,7 +342,11 @@ def seed_spirits(cur):
             "creation, cosmic order, origin",
             "white, deep blue, night-sky tones",
             "cosmic egg, night sky, stars",
-            "Nana Buluku is honored in some West African Vodun lineages as a primordial creator figure. In many tellings, Nana Buluku precedes or gives birth to twin forces such as Mawu and Lisa. Different lineages describe this being with different genders or as beyond gender. This app begins with Nana Buluku to honor the deep West African root beneath later Vodou, Voodoo, and Hoodoo."
+            "Nana Buluku is honored in some West African Vodun lineages as a primordial creator figure. "
+            "In many tellings, Nana Buluku precedes or gives birth to twin forces such as Mawu and Lisa. "
+            "Different houses describe this being with different genders or as beyond gender, which reminds us that "
+            "divine origin cannot be locked into one narrow image. Beginning your path with Nana Buluku centers the deep "
+            "African root beneath later Vodou, Voodoo, and Hoodoo expressions."
         ),
         (
             "Mawu-Lisa",
@@ -299,52 +355,141 @@ def seed_spirits(cur):
             "balance, moon and sun, coolness and heat",
             "white, gold, silver",
             "sun and moon together",
-            "Mawu-Lisa is a twin divinity concept in some Vodun traditions, sometimes understood as complementary principles like moon/sun or cool/heat. This reflects balance and the idea that creation holds multiple forces in relationship."
+            "Mawu-Lisa is a twin divinity concept in some Vodun traditions. Mawu is often associated with the coolness of the moon, "
+            "night, and rest; Lisa with the heat of the sun, day, and work. Together they embody a living balance: softness and strength, "
+            "darkness and light, stillness and motion. They show that harmony comes from relationship, not from one-sided power."
         ),
+
+        # Haitian Vodou lwa (Loas)
         (
-            "Legba",
-            "Haitian Vodou / Related Gatekeeper Spirits",
-            "Gatekeeper / Messenger",
-            "crossroads, communication, access, new beginnings",
+            "Papa Legba",
+            "Haitian Vodou – Lwa",
+            "Gatekeeper at the Crossroads",
+            "thresholds, messages, beginnings, communication",
             "red, black, sometimes yellow",
-            "crossroads, cane, keys",
-            "Legba (or related spirits in other traditions) is often honored as a gatekeeper at the spiritual crossroads. Many lineages say that one should greet the gatekeeper before asking for help from other spirits. This entry is educational only and does not include specific ritual instructions."
-        ),
-        (
-            "Ancestors",
-            "Many traditions",
-            "Collective Dead / Ancestors",
-            "memory, guidance, protection, lineage",
-            "white, candlelight colors",
-            "glass of water, photos, names",
-            "Ancestor veneration is central to many African and Diaspora traditions. The ancestors are the beloved dead of our bloodlines and of our chosen spiritual families. Many people keep a glass of water, a candle, and photos or names to honor them. This app encourages respectful remembrance, not attempts to control the dead."
+            "crossroads, cane, keys, old man at the gate",
+            "Papa Legba is one of the most widely known lwa (often spelled 'loa' in older sources). He stands at the crossroads, opening "
+            "and closing the way between humans and the spirit world. In many houses he is greeted first, because without the key, the "
+            "door does not open. He can embody the wisdom of age, the humor of a trickster, and the responsibility of carrying messages. "
+            "Every lineage has its own songs, offerings, and ways of serving him; this profile is for orientation only, not instruction."
         ),
         (
             "Damballa",
-            "Haitian Vodou",
+            "Haitian Vodou – Lwa",
             "Serpent Creator Spirit",
             "purity, blessing, creation, rivers",
             "white, pale blue, silver",
             "serpent, water, sky arch",
-            "Damballa in Haitian Vodou is often associated with serpents, purity, and creative forces. Many depictions show a serpent bridging earth and sky. Here we include a brief educational mention only."
+            "Damballa is often envisioned as a great serpent that arches across sky and earth. His presence is linked with purity, blessing, "
+            "and the quiet power of creation. In many houses, Damballa is approached softly: cool water, white cloth, silence or gentle song. "
+            "Children and new beginnings are often associated with his blessings. Here we honor those themes without exposing house-specific ritual secrets."
         ),
         (
-            "Ezili (Erzulie) – General",
-            "Haitian Vodou",
-            "Lwa Family (Love, Protection)",
-            "love, care, protection, passion, justice",
-            "pink, red, blue (varies by aspect)",
-            "heart, veils, tears",
-            "The Ezili family of spirits in Haitian Vodou includes multiple aspects related to love, protection, and fierce justice in defense of children and the vulnerable. Different houses relate to these lwa in their own ways."
+            "Ayida Wedo",
+            "Haitian Vodou – Lwa",
+            "Rainbow Serpent",
+            "rainbow, harmony, balance, union of forces",
+            "rainbow colors, white, blue",
+            "rainbow serpent, arch of light",
+            "Ayida Wedo is sometimes paired with Damballa as the rainbow serpent, streaming color and movement through creation. "
+            "She can symbolize harmony between forces that appear opposite: rain and sun, earth and sky, body and spirit. Many practitioners experience her "
+            "as a principle of beauty, order, and relational balance."
         ),
         (
-            "Ogou / Ogun-type Figure",
-            "Haitian Vodou / Yoruba-influenced traditions",
-            "Warrior / Iron / Work",
-            "tools, iron, strength, clearing obstacles",
-            "red, dark blue, metallic colors",
-            "iron tools, machete, anvil",
-            "Ogou-like spirits represent iron, tools, and the fire of work and struggle. They are associated with courage, discipline, and the ability to cut through obstacles."
+            "Marassa (Divine Twins)",
+            "Haitian Vodou – Lwa",
+            "Sacred Twins",
+            "mystery, balance, paradox, children",
+            "white, pastel colors (varies)",
+            "twins, paired symbols, double offerings",
+            "The Marassa are divine twins – and in some teachings, more-than-two – representing mystery and paradox. They are often served with paired offerings, "
+            "reminding people that spirit can appear as both one and many at the same time. They are closely connected with children and with the sacredness of the child-mind."
+        ),
+        (
+            "Ezili Freda",
+            "Haitian Vodou – Lwa",
+            "Lwa of Refined Love & Desire",
+            "romantic love, elegance, beauty, longing",
+            "pink, white, light blue, gold",
+            "hearts, perfumes, fine cloth, mirrors",
+            "Ezili Freda is associated with romance, luxury, delicate feelings, and the ache of longing. She loves beauty, fine things, and heartfelt emotion. "
+            "But her path also teaches that fantasies often clash with reality; the tears of Freda remind devotees that idealized love can wound when it meets human limitation."
+        ),
+        (
+            "Ezili Dantò",
+            "Haitian Vodou – Lwa",
+            "Protective Mother & Warrior",
+            "mothers, fierce protection, justice, the marginalized",
+            "red, blue, sometimes dark colors",
+            "icon of Black Madonna, scars, knives, heart",
+            "Ezili Dantò is a fierce, scarred mother who fights for children, working people, and those pushed to the edges of society. "
+            "She is associated with rage against injustice and with the toughness required to survive violence and poverty. "
+            "Her energy is nurturing, but not soft: she holds a knife as well as a child."
+        ),
+        (
+            "Ogou (Ogou Feray and related)",
+            "Haitian Vodou – Lwa",
+            "Warrior & Iron Lwa",
+            "iron, war, work, tools, discipline, struggle",
+            "red, blue, metallic tones",
+            "iron tools, machetes, flags",
+            "The family of Ogou lwa is linked with iron, tools, soldiers, blacksmiths, and the fire of struggle. Ogou energy can feel like sharp focus, discipline, "
+            "and a willingness to fight for integrity. In the Haitian Revolution, warrior lwa like Ogou are remembered in songs and stories about resistance."
+        ),
+        (
+            "Baron Samedi",
+            "Haitian Vodou – Lwa",
+            "Lwa of the Cemetery & Crossing",
+            "ancestors, death, boundary between worlds, irreverent humor",
+            "black, purple, white, sometimes top-hat imagery",
+            "top hat, cane, sunglasses, cross, cemetery symbols",
+            "Baron Samedi stands at the gate of the cemetery. He watches over the dead and the moment of crossing between life and death. "
+            "He is famous for raw humor, sexual jokes, and a style that shocks the polite. Underneath the theatrics, he reminds people that death is certain, "
+            "so they should truly live and not waste their time on earth."
+        ),
+        (
+            "Gede (Family of Spirits)",
+            "Haitian Vodou – Lwa",
+            "Spirits of the Dead & Raw Truth",
+            "ancestors, sex and death, laughter, healing through honesty",
+            "black, purple, white",
+            "sunglasses, skulls, cigarettes, hot peppers",
+            "The Gede are a wild, loving family of spirits connected with the dead and with the truths we are afraid to say. "
+            "They use laughter, obscenity, and shock to break denial and bring healing where secrets have rotted. "
+            "Their season in Haiti around All Saints / All Souls is full of vivid altars, dance, and graveyard visits."
+        ),
+        (
+            "Loko",
+            "Haitian Vodou – Lwa",
+            "Lwa of Trees & Priesthood",
+            "sacred trees, initiation, order in ritual",
+            "green, white",
+            "staff, trees, leaves",
+            "Loko is linked with sacred trees, the stability of priesthood, and the structure of ritual life. In some houses he is understood as a guardian of how things are properly done: "
+            "the rules, the boundaries, the lines that keep a temple coherent over generations."
+        ),
+        (
+            "Ayizan",
+            "Haitian Vodou – Lwa",
+            "Market & Initiation Lwa",
+            "markets, initiation, sacred veiling, thresholds",
+            "white, gold",
+            "palm fronds, veils, marketplaces",
+            "Ayizan is connected with marketplaces, trade, and the veiling of sacred mysteries. She protects initiatory knowledge and the process of 'going behind the veil' "
+            "for those who are truly called and properly prepared."
+        ),
+
+        # Ancestors (general)
+        (
+            "Ancestors",
+            "Many Traditions",
+            "Collective Dead / Ancestors",
+            "memory, guidance, protection, lineage",
+            "white, candlelight colors",
+            "glass of water, photos, names",
+            "Ancestor veneration is central to many African and Diaspora traditions. The ancestors are the beloved dead of our bloodlines and of our chosen spiritual families. "
+            "Many people keep a glass of water, a candle, and photos or names to honor them, tell their stories, and ask for guidance. "
+            "This app encourages respectful remembrance and healing for the lineage, not attempts to control the dead."
         ),
     ]
     cur.executemany(
@@ -362,17 +507,20 @@ def seed_workings(cur):
             "Cleansing Bath Template",
             "Cleansing",
             "Hoodoo / General Diaspora",
-            "Gently cleanse heavy or stagnant energy and invite calm.",
-            "Water is used as a symbol of renewal and flow. Salt is often used as a purifier. Safe herbs like rosemary or basil can be used symbolically as helpers for clarity and freshness. The focus is on release, not on attacking any person.",
+            "Gently cleanse heavy or stagnant energy and invite calm and clarity back into your body and mind.",
+            "Water is used as a symbol of renewal and flow. Salt is often used as a purifier. Safe kitchen herbs like rosemary, basil, or chamomile can be used symbolically as helpers for clarity and peace. "
+            "In many Diaspora traditions, baths are prayers in motion: as water runs off the skin, the old stories and burdens are invited to run off too.",
             "As this water touches me, I release what is heavy and no longer needed. May I be clean in mind, heart, and path. May what is truly mine remain, and what is not for me gently fall away.",
-            "Do not use unknown herbs internally or on sensitive skin. This template is symbolic and should not replace medical or mental-health care. It is intended for gentle cleansing of the self, not for blaming others or sending harm."
+            "Do not use unknown herbs internally or on sensitive skin. This template is symbolic and should not replace medical or mental-health care. "
+            "It is intended for gentle cleansing of the self, not for blaming others or sending harm."
         ),
         (
             "Protection Candle Template",
             "Protection",
             "Hoodoo / Vodou-inspired",
-            "Create a sense of spiritual protection and safety around yourself or your space.",
-            "Candles can be treated as a small standing light of protection. A circle drawn around the candle or imagined in the mind can represent a boundary. White candles are often used as all-purpose lights when specific colors are not available.",
+            "Create a sense of spiritual protection and safety around yourself or your space while keeping your ethics clean.",
+            "Candles can be treated as a small standing light of protection. A circle drawn around the candle or imagined in the mind can represent a boundary. "
+            "White candles are often used as all-purpose lights when specific colors are not available. In many traditions, protection work is paired with common sense: locking doors, choosing good company, and saying no.",
             "Let this flame stand as a small guardian for me and those I love. May harm be turned away, and may what is safe, honest, and good be welcomed. I ask for protection that does not require anyone else to be hurt.",
             "This working is focused on protective boundaries and safety. It is not meant as a weapon. Fire is dangerous in the physical world, so never leave candles unattended or near flammable items."
         ),
@@ -380,44 +528,55 @@ def seed_workings(cur):
             "Road Opening / Opportunity Template",
             "Road Opening",
             "Vodou-inspired / Crossroads Symbolism",
-            "Ask for supportive openings in work, study, or other life paths while you also take practical steps.",
-            "Crossroads and keys are often used to symbolize decisions and opportunities. In many traditions, crossroads spirits are petitioned to open good roads. In this app, we focus on asking for right opportunities while you commit to real-world effort.",
-            "May good roads open before me in the area of my life I am working on now. May paths that are truly mine become clearer, and paths that would harm me close gently. Guide my steps so that I meet honest chances and do my part with courage.",
+            "Ask for supportive openings in work, study, relationships, or housing while you also take practical steps.",
+            "Crossroads and keys are often used to symbolize decisions and opportunities. In many traditions, crossroads spirits are petitioned to open good roads. "
+            "In this template we focus on asking for right opportunities while you commit to real-world effort: applications, trainings, conversations, and wise risks.",
+            "May good roads open before me in the area of my life I am working on now. May paths that are truly mine become clearer, and paths that would harm me close gently. "
+            "Guide my steps so that I meet honest chances and do my part with courage.",
             "This template is meant to work together with concrete actions: applying for jobs, practicing skills, having honest conversations. It is not a guarantee of specific outcomes and is not meant to override anyone else's free will."
         ),
         (
             "Prosperity & Work Blessing Template",
             "Prosperity",
             "Hoodoo / General",
-            "Bless your honest work, study, and planning around money, inviting stability and wise choices.",
-            "Green, gold, seeds, and coins are common prosperity symbols. In Hoodoo and related traditions, money-drawing work is often paired with very practical steps like budgeting, studying, or job searching. The focus is on fair, honest prosperity.",
-            "Bless the work of my hands and the plans I build. May opportunities to earn honestly and fairly come into my life. May I use what I receive with wisdom, care, and generosity, and remember that money is a tool, not my master.",
+            "Bless your honest work, study, and planning around money, inviting stability, wise choices, and fair exchange.",
+            "Green, gold, seeds, and coins are common prosperity symbols. In Hoodoo and related traditions, money-drawing work is often paired with very practical steps: budgeting, saving, debt repair, and skill-building. "
+            "The focus is on fair, honest prosperity rather than quick schemes.",
+            "Bless the work of my hands and the plans I build. May opportunities to earn honestly and fairly come into my life. "
+            "May I use what I receive with wisdom, care, and generosity, and remember that money is a tool, not my master.",
             "This template does not promise riches. It supports steady effort, learning, and wiser choices. Do not use it to excuse risky financial behavior or to avoid asking for real-world help from advisors when needed."
         ),
         (
             "Self-Love & Confidence Working",
             "Self-Love",
             "Diaspora / General",
-            "Nurture a kinder relationship with yourself and strengthen your sense of worth.",
-            "Mirrors, gentle colors, and sweet scents are often used to represent self-love. Many traditions emphasize the importance of speaking kindly to oneself and honoring the body and spirit as worthy of care.",
-            "I release the story that I am unworthy of love and respect. Little by little, may I see myself with clearer, kinder eyes. May I walk with more confidence in who I truly am, while staying humble and open to growth.",
-            "This working is about inner kindness, not arrogance. It may be helpful alongside therapy, self-help work, or support groups. If self-hatred or despair feels overwhelming, please seek professional support."
+            "Nurture a kinder relationship with yourself and strengthen your sense of worth, especially if old messages tried to crush you.",
+            "Mirrors, gentle colors, and sweet scents are often used to represent self-love. Many Diaspora traditions emphasize that each person carries ancestors and spirit with them; "
+            "to hate yourself is to insult those who walked before you. Self-love work is therefore not vanity but a way of honoring the life you were given.",
+            "I release the story that I am unworthy of love and respect. Little by little, may I see myself with clearer, kinder eyes. "
+            "May I walk with more confidence in who I truly am, while staying humble and open to growth.",
+            "This working is about inner kindness, not arrogance. It may be helpful alongside therapy, self-help work, or support groups. "
+            "If self-hatred or despair feels overwhelming, please seek professional support."
         ),
         (
             "Ancestor Connection Time",
             "Ancestor",
             "Vodun / Vodou / Hoodoo",
-            "Set aside quiet time to remember and honor your ancestors or beloved dead.",
-            "A glass of water, a candle, and photos or written names are common elements of ancestor remembrance. In many cultures, the dead are honored with food, song, and stories. This template focuses on thanks and connection, not on controlling the dead.",
-            "To the ancestors who walked before me, known and unknown, I thank you for the life that reaches me through you. May I live in a way that honors your strength and wisdom. Where there was harm or trauma, may healing move through the lineage.",
-            "Ancestor work can bring up grief and complex family history. Go gently, and seek support if difficult memories arise. This template is for remembrance and gratitude, not for summoning or commanding spirits."
+            "Set aside quiet time to remember and honor your ancestors or beloved dead and to notice how their stories live in you.",
+            "A glass of water, a candle, and photos or written names are common elements of ancestor remembrance. In many cultures, the dead are honored with food, song, and stories. "
+            "This template focuses on thanks, listening, and healing, not on controlling or forcing the dead to act.",
+            "To the ancestors who walked before me, known and unknown, I thank you for the life that reaches me through you. "
+            "May I live in a way that honors your strength and wisdom. Where there was harm or trauma, may healing move through the lineage.",
+            "Ancestor work can bring up grief and complex family history. Go gently, and seek support if difficult memories arise. "
+            "This template is for remembrance and gratitude, not for summoning or commanding spirits."
         ),
         (
             "Clarity & Signs Journal Prompt",
             "Clarity",
             "General / Introspective",
-            "Create a space to notice patterns, dreams, and subtle signs over time.",
-            "Many spiritual paths pay attention to repeating symbols, dreams, or feelings as possible messages. Journaling helps organize these impressions without jumping to fear or fantasy.",
+            "Create a space to notice patterns, dreams, and subtle signs over time without falling into fear or obsession.",
+            "Many spiritual paths pay attention to repeating symbols, dreams, or feelings as possible messages. Journaling helps organize these impressions and keeps your feet on the ground. "
+            "You can review your notes later and see what was meaningful and what was just noise.",
             "Over the coming days, may I notice what repeats or stands out, without forcing a meaning. May I be guided toward clarity step by step, and may I check my insights against common sense and wise counsel.",
             "This template encourages reflection, not obsession. If you feel overwhelmed or frightened by signs or dreams, you may want to talk with a trusted person or professional rather than interpret everything alone."
         ),
@@ -441,7 +600,7 @@ def seed_resources(cur):
             "West African Vodun",
             "Intro",
             "",
-            "Look for works by scholars who specialize in West African religions or by initiates writing about their own traditions. Avoid sensationalized or overly exoticized material that treats Vodun as horror."
+            "Look for works by scholars or initiates writing about Vodun in Benin, Togo, and Ghana. Collections like the Soul of Africa museum's Vodun material can help you see actual shrines and objects instead of horror clichés."
         ),
         (
             "Documentaries on Haitian Vodou (Practitioner-Focused)",
@@ -449,7 +608,7 @@ def seed_resources(cur):
             "Haitian Vodou",
             "Intro",
             "",
-            "Seek out documentaries that interview real Houngans, Mambos, and community members, rather than horror films. Look for material produced with Haitian voices centered."
+            "Seek out documentaries where Houngans, Mambos, and community members speak for themselves, rather than films that turn Vodou into a monster story. Look for work focusing on theology, history, and everyday practice."
         ),
         (
             "Books by African American Rootworkers",
@@ -457,7 +616,7 @@ def seed_resources(cur):
             "Hoodoo / Rootwork",
             "Intro",
             "",
-            "Many classic and modern texts on Hoodoo are written by Black practitioners from the US South. These can offer more grounded perspectives than generic spellbooks."
+            "Classic and modern texts written by Black practitioners of Hoodoo/rootwork tend to be more grounded and less sensational than generic 'voodoo spell' books. They also situate the practice inside Black history."
         ),
         (
             "Local Botanicas & Curio Shops",
@@ -465,7 +624,7 @@ def seed_resources(cur):
             "Mixed",
             "Intro",
             "",
-            "Spending time respectfully in local botanicas, herb shops, and curio stores can teach you a lot about real-world practice. Support Black and Diaspora-owned businesses where possible."
+            "Visiting real botanicas, herb shops, and curio stores (respectfully) teaches you a lot about what people actually use: oils, baths, candles, colognes, roots, and church supplies. Support Black and Diaspora-owned shops when you can."
         ),
     ]
     cur.executemany(
@@ -654,7 +813,7 @@ def render_header():
             <div class="vh-logo">🕯️</div>
             <div class="vh-title">VOODOO & HOODOO SPELLS</div>
             <div class="vh-subtitle">
-                A respectful guide to Vodun, Vodou, Voodoo, Hoodoo, and your own spiritual work.
+                A respectful path through Vodun, Vodou, Voodoo, Hoodoo, lwa and ancestors.
             </div>
         </div>
         """,
@@ -668,8 +827,8 @@ def render_footer():
         """
         <div class="vh-footer">
             This app is for educational and reflective purposes only and does not replace clergy,
-            mental-health care, or professional advice. Use it to support healing, protection,
-            justice, and growth — never harm.
+            mental-health care, or professional advice. Walk gently, and use it to support healing,
+            protection, justice, and growth — never harm.
         </div>
         """,
         unsafe_allow_html=True,
@@ -688,65 +847,69 @@ def page_nana_buluku():
         st.markdown(
             """
             <div class="vh-card">
-                <h3>Beginning with Nana Buluku</h3>
+                <h3>Beginning with Nana Buluku – Root Before Branch</h3>
                 <p>
                     In some West African Vodun lineages, <strong>Nana Buluku</strong> is honored as a primordial
-                    creator figure — an ancient source from which other forces of creation emerge. Stories differ
-                    from house to house: sometimes Nana Buluku is spoken of as mother, sometimes as beyond gender,
-                    sometimes as the one who births twin forces such as Mawu and Lisa.
+                    creator figure – the dark, deep, original presence from which other forces of creation emerge.
+                    Depending on the house, Nana Buluku may be spoken of as mother, as beyond gender, or in ways that
+                    cannot be mapped to European ideas of “god” at all. This reminds us that we are stepping into
+                    a spiritual universe with its own language and logic.
                 </p>
                 <p>
-                    This app begins here to honor the deep <strong>West African root</strong> beneath later
-                    Haitian Vodou, Louisiana Voodoo, and African American Hoodoo. The goal is not to speak
-                    for every lineage, but to offer a gentle, respectful introduction.
+                    By starting your app with Nana Buluku, you are making a clear statement:
+                    this path does not begin in Hollywood horror. It begins in <strong>Africa</strong>, with
+                    a cosmology that survived kidnapping, ships, sugar plantations, and centuries of disrespect.
                 </p>
                 <p>
-                    Use this space as a <strong>study and reflection journal</strong> — not a toy, not a horror
-                    story, and not a shortcut to real initiation. Real traditions belong to living communities,
-                    elders, and lineages.
+                    From this root, different branches grow:
                 </p>
+                <ul>
+                    <li><strong>West African Vodun</strong> in Benin, Togo, Ghana and beyond.</li>
+                    <li><strong>Haitian Vodou</strong>, braided with Catholic and Indigenous elements, forged in revolution.</li>
+                    <li><strong>Louisiana Voodoo</strong>, carrying Creole history and figures like Marie Laveau.</li>
+                    <li><strong>Hoodoo / Rootwork</strong> in the US South, focused on survival, justice, and everyday life.</li>
+                </ul>
                 <p>
                     <span class="vh-pill">intention</span>
-                    This app focuses on non-harmful work: cleansing, protection, uncrossing, justice,
-                    prosperity, and self-healing. Historical mention of more aggressive forms of work will
-                    be educational only, not instructional.
+                    This app is a companion for your study and practice, not a replacement for elders, temples,
+                    or churches. It leans toward <em>cleansing, protection, uncrossing, justice, prosperity, self-healing,
+                    and ancestor remembrance</em>. Harmful work is discussed only as history, not as how-to.
                 </p>
             </div>
             """,
             unsafe_allow_html=True,
         )
 
-        # Optional visual section for Nana Buluku (user can configure image/video URLs)
         nana_img_url = st.secrets.get("NANA_BULUKU_IMAGE_URL", "")
         nana_vid_url = st.secrets.get("NANA_BULUKU_VIDEO_URL", "")
         if nana_img_url or nana_vid_url:
-            with st.expander("Nana Buluku – Visuals (configure in secrets)"):
+            with st.expander("Nana Buluku – Visuals (configure in secrets.toml)"):
                 if nana_img_url:
-                    st.image(nana_img_url, caption="Nana Buluku inspired art", use_column_width=True)
+                    st.image(nana_img_url, caption="Nana Buluku inspired art / shrine", use_column_width=True)
                 if nana_vid_url:
                     st.video(nana_vid_url)
         else:
             st.info(
                 "Tip: add NANA_BULUKU_IMAGE_URL and NANA_BULUKU_VIDEO_URL to your Streamlit secrets "
-                "to show art or video here and make the app feel more alive."
+                "to show authentic art or video here and make this opening feel alive."
             )
 
     with col2:
         st.markdown(
             """
             <div class="vh-card">
-                <h3>A Short Opening</h3>
+                <h3>Opening Intention for Your Work</h3>
                 <p>
-                    You may use the words below as a quiet opening intention when you sit down with this app:
+                    You can adapt the words below as a quiet opening whenever you start a session with this app:
                 </p>
                 <blockquote>
-                    May I remember the ancestors who carried these traditions through terror and survival.<br/>
-                    May I approach these ways with respect, humility, and care.<br/>
-                    May any work I do be aligned with healing, protection, justice, and growth — never harm.<br/>
-                    May I be guided away from fantasy and toward what is true and helpful.
+                    May I remember the ancestors and nations whose blood, language, and music carried these ways. <br/>
+                    May I step carefully, with respect and humility, not hunger and ego. <br/>
+                    May any work I do be aligned with healing, protection, just truth, and growth — never harm. <br/>
+                    May I be kept from fantasy and delusion, and brought closer to what is real and helpful.
                 </blockquote>
                 <p>
-                    When you are ready, choose where to go next:
+                    When you are ready, choose where to go next in your path:
                 </p>
             </div>
             """,
@@ -760,7 +923,7 @@ def page_nana_buluku():
                 st.session_state["vh_page"] = "Origins & History"
                 safe_rerun()
         with col_b:
-            if st.button("📓 Open Journal"):
+            if st.button("📓 Journal & Signs"):
                 st.session_state["vh_page"] = "Journal & Signs"
                 safe_rerun()
 
@@ -769,96 +932,143 @@ def page_nana_buluku():
 
 def page_history():
     render_header()
-    st.subheader("Origins & History – Vodun, Vodou, Voodoo, Hoodoo")
+    st.subheader("Origins & History – From Vodun to Vodou, Voodoo & Hoodoo")
 
     st.markdown(
         """
-        ### West African Vodun / Vodún
-        West African Vodun (also spelled Vodún or Vodun) refers to a family of religions practiced among
-        Fon, Ewe, and related peoples in areas that are now Benin, Togo, Ghana, and parts of Nigeria.
-        These traditions honor a creator or high god, a rich community of spirits, and the ancestors.
-        Rituals often involve drumming, song, dance, divination, herbal medicine, and spirit possession.
-
-        The traditions are diverse. What one community calls a particular spirit, another may know by a
-        different name or attribute. There is no single book that defines Vodun; it lives in ceremony
-        and community.
+        ### West African Vodun / Vodún – The Root in the Soil
+        West African Vodun is not one single, frozen religion. It is a family of living traditions practiced
+        among Fon, Ewe, and related peoples in what is now Benin, Togo, Ghana, and parts of Nigeria. These
+        traditions honor:
+        """
+    )
+    st.markdown(
+        """
+        - a creator or high god (such as Nana Buluku, Mawu-Lisa, or related principles),  
+        - a rich community of <strong>spirits</strong>,  
+        - and the <strong>ancestors</strong>.
+        """
+    )
+    st.markdown(
+        """
+        Ritual life includes drumming, singing, dance, divination, trance, masks, carved figures, and shrines.
+        Different villages and families may serve the same spirit in different ways: there is no single book
+        that defines Vodun. It is carried by elders, drums, and community memory.
         """
     )
 
     st.markdown(
         """
-        ### From Vodun to Haitian Vodou – 1791 and the Road to Revolution
-        During the transatlantic slave trade, millions of Africans were taken by force to the Caribbean
-        and the Americas. On the island of Kiskeya/Ayiti (later called Saint-Domingue under French rule,
-        then Haiti after independence), people from many nations were enslaved together. Their spiritual
-        traditions mixed with each other, with elements of Catholicism, and with Indigenous Caribbean
-        influences.
-
-        In 1791, a famous Vodou ceremony — often remembered at Bois Caïman — is said to have helped ignite
-        the Haitian uprising that led into years of war against French colonial power. Over roughly twelve
-        years of struggle, Haitians fought France and other European forces and ultimately created the first
-        Black republic of the modern era. Haitian Vodou and the Haitian Revolution are deeply intertwined
-        in memory and history.
+        ### 1791 – Ceremony and the Haitian Revolution
+        During the transatlantic slave trade, Africans from many nations were taken by force to the Caribbean
+        and the Americas. On the island of Kiskeya/Ayiti (later called Saint-Domingue under French rule),
+        people speaking different languages and carrying different gods were enslaved together. Their spiritual
+        technologies – including Vodun – met Catholic saints and Indigenous Caribbean practices and braided
+        into what we now call <strong>Haitian Vodou</strong>.
+        """
+    )
+    st.markdown(
+        """
+        In 1791, a powerful ceremony remembered at <strong>Bois Caïman</strong> is said to have helped ignite
+        the uprising that became the Haitian Revolution. For roughly twelve years, enslaved and free Black
+        people fought against French colonial power and then against other European forces, eventually
+        defeating them and founding the first Black republic of the modern era.
+        """
+    )
+    st.markdown(
+        """
+        Vodou was not a side detail in this struggle. Drum, possession, and oath-making gave courage and
+        connection to people who had been treated as property. The lwa of war, justice, and liberation walked
+        with those fighters in memory and song.
         """
     )
 
-    # Optional Haitian visuals
     haitian_img = st.secrets.get("HAITI_VODOU_IMAGE_URL", "")
     haitian_vid = st.secrets.get("HAITI_VODOU_VIDEO_URL", "")
     if haitian_img or haitian_vid:
-        with st.expander("Haitian Vodou – Visuals (configure in secrets)"):
+        with st.expander("Haitian Vodou – Visuals (configure in secrets.toml)"):
             if haitian_img:
-                st.image(haitian_img, caption="Haitian Vodou ceremony or altar (respectful image)", use_column_width=True)
+                st.image(haitian_img, caption="Haitian Vodou altar or ceremony (respectful image)", use_column_width=True)
             if haitian_vid:
                 st.video(haitian_vid)
 
     st.markdown(
         """
-        ### Louisiana / New Orleans Voodoo – Marie Laveau, the Voodoo Queen
-        In what is now Louisiana, African, Caribbean, Indigenous, and European traditions met under French
-        and Spanish colonial rule. New Orleans became famous for its spiritual workers, and none is more
-        legendary than <strong>Marie Laveau</strong>, often called the “Voodoo Queen of New Orleans.”
-
-        Marie Laveau lived in the 19th century and was known as a powerful spiritual leader, hairdresser,
-        and community figure. Stories about her mix documented history with folklore. Under her name and
-        influence, New Orleans Voodoo involved <em>gris-gris</em> bags, saints and psalms, candles, roots,
-        charms, and petitions for protection, love, luck, and justice.
+        ### New Orleans & Louisiana Voodoo – Marie Laveau, the Voodoo Queen
+        In what is now Louisiana, French and Spanish colonial histories, enslaved Africans, free people of color,
+        Indigenous nations, and European settlers all collided. New Orleans became known for a distinctive
+        spiritual culture shaped by Catholicism, African traditions, and local folk magic.
         """
     )
-
     st.markdown(
         """
-        ### Hoodoo / Rootwork / Conjure
-        Hoodoo (also called rootwork or conjure) is an African American folk-magic system that developed
-        primarily in the US South. It draws heavily on African spiritual technologies — roots, crossroads,
-        ancestors, spirit negotiation — and also integrates Native American plant knowledge and European
-        folk practices like using psalms and talismans.
-
-        Hoodoo is not a formal religion with a single priesthood. Many rootworkers are Christian and use
-        the Bible in their work. The focus is practical: protection, cleansing, luck, court cases, love,
-        and justice. Historically, there have been both helpful and harmful forms of work. This app will
-        only provide templates for helpful forms: cleansing, protection, uncrossing, justice framed as
-        truth and fair resolution, prosperity, and self-healing.
+        At the center of many stories stands <strong>Marie Catherine Laveau</strong> (1801–1881), often called
+        the <strong>Voodoo Queen of New Orleans</strong>. She was a Creole woman, a hairdresser, and a spiritual
+        worker. Some accounts call her a midwife and healer. Her name drew the rich and poor alike for help with:
+        """
+    )
+    st.markdown(
+        """
+        - love and fidelity,  
+        - court cases and protection,  
+        - business luck and social power.
+        """
+    )
+    st.markdown(
+        """
+        Under her name and influence, New Orleans Voodoo involved <em>gris-gris</em> (charm bags), saints and
+        psalms, candles, roots, charms, and public ceremonies at Congo Square. Over time, white fascination and
+        fear twisted these practices into tourist shows and horror stereotypes, but underneath the drama is a real
+        Creole spiritual tradition centered on community life and survival.
         """
     )
 
-    # Optional New Orleans visuals
     nola_img = st.secrets.get("NEW_ORLEANS_IMAGE_URL", "")
     nola_vid = st.secrets.get("NEW_ORLEANS_VIDEO_URL", "")
     if nola_img or nola_vid:
-        with st.expander("New Orleans Voodoo – Visuals (configure in secrets)"):
+        with st.expander("New Orleans Voodoo – Visuals (configure in secrets.toml)"):
             if nola_img:
-                st.image(nola_img, caption="New Orleans Voodoo altar or historical imagery", use_column_width=True)
+                st.image(nola_img, caption="New Orleans Voodoo / Congo Square related imagery", use_column_width=True)
             if nola_vid:
                 st.video(nola_vid)
 
     st.markdown(
         """
+        ### Hoodoo / Rootwork / Conjure – Folk Magic of Black America
+        Hoodoo, rootwork, or conjure is an African American folk magic system that arose primarily in the US
+        South. It weaves together:
+        """
+    )
+    st.markdown(
+        """
+        - African understandings of roots, crossroads, ancestors, and spirit;  
+        - Native American plant knowledge and land connection;  
+        - European folk practices such as using psalms, talismans, and spiritual baths.
+        """
+    )
+    st.markdown(
+        """
+        Rootworkers historically helped people with:
+        - protection from enemies and police brutality,  
+        - love, reconciliation, and fertility,  
+        - luck in business, gambling, and court cases,  
+        - uncrossing and healing from spiritual attacks.
+        """
+    )
+    st.markdown(
+        """
+        Many rootworkers are deeply Christian and treat the Bible (especially the Psalms) as a powerful grimoire.
+        Hoodoo has always been about <strong>survival</strong> under racist systems, not about stage tricks.
+        """
+    )
+
+    st.markdown(
+        """
         ### Keeping Distinctions Clear
-        - <strong>Vodun / Vodou</strong> – religions with temples, clergy, initiations, and lineages.
-        - <strong>Louisiana Voodoo</strong> – regional spiritual practices rooted in African and Creole history,
-          including figures like Marie Laveau.
-        - <strong>Hoodoo / Rootwork</strong> – folk magic practices, often carried by Black families in the US South.
+        - <strong>Vodun / Vodun religions</strong> – West African traditions with temples, priesthoods, and lineages.  
+        - <strong>Haitian Vodou</strong> – Afro-Creole religion of Haiti, with lwa, temples, and complex theology.  
+        - <strong>Louisiana Voodoo</strong> – regional Creole spiritual practice shaped by New Orleans history.  
+        - <strong>Hoodoo / Rootwork</strong> – African American folk-magic system focused on life problems, not a formal religion.
         """
     )
 
@@ -867,13 +1077,21 @@ def page_history():
 
 def page_spirits():
     render_header()
-    st.subheader("Spirits & Ancestors – Educational Profiles")
+    st.subheader("Spirits, Lwa (Loas) & Ancestors – Deep Profiles")
 
     st.markdown(
         """
-        This page offers short, respectful descriptions of some spirits and spiritual principles mentioned
-        in West African Vodun, Haitian Vodou, and related traditions. It is <strong>not</strong> a manual
-        for summoning or commanding any being, and it cannot replace study with real teachers.
+        In Haitian Vodou and related traditions, the spirits are often called <strong>lwa</strong> (older English
+        sometimes writes “loas”). They are not vague energies but distinct beings with their own histories, styles,
+        and preferences. Different houses know them differently, and serious service to them belongs inside those
+        lineages.
+        """
+    )
+    st.markdown(
+        """
+        This page gives <strong>deep educational profiles</strong> so you can recognize names, themes, colors, and
+        stories. It is <em>not</em> a recipe book for summoning; it is a map so you don’t get lost in pop-culture
+        distortion.
         """
     )
 
@@ -906,52 +1124,57 @@ def page_spirits():
 
 def page_hoodoo_basics():
     render_header()
-    st.subheader("Hoodoo / Rootwork Basics")
+    st.subheader("Hoodoo / Rootwork Basics – Everyday Power")
 
     st.markdown(
         """
-        Hoodoo (also called rootwork or conjure) is an African American folk-magic system rooted in the
-        experience of Black communities in the United States, especially the South. It developed out of
-        African spiritual practices, contact with Native peoples, and European folk traditions.
+        Hoodoo is sometimes called <strong>rootwork</strong> or <strong>conjure</strong>. It is not the same as
+        Haitian Vodou or Louisiana Voodoo, although it shares history with them. Hoodoo is the everyday spiritual
+        technology of African American people, especially in the South, dealing with:
+        """
+    )
+    st.markdown(
+        """
+        - staying safe in dangerous conditions,  
+        - keeping a roof over your head,  
+        - protecting your children,  
+        - winning court cases and surviving the police,  
+        - drawing love, healing, and luck into broken lives.
         """
     )
 
     st.markdown(
         """
-        ### What Hoodoo Is (and Is Not)
-        - <strong>Is:</strong> practical spiritual work around protection, cleansing, luck, love, justice, and survival.
-        - <strong>Is not:</strong> a single unified church or religion with one hierarchy.
-        - Many rootworkers are Christian and pray with the Bible, especially the Psalms, while working with
-          herbs, roots, candles, and curios.
+        ### Typical Tools in Hoodoo
+        - <strong>Roots & Herbs</strong>: High John, angelica, gravel root, devil’s shoe strings, and many others.  
+        - <strong>Minerals & Curios</strong>: lodestones, coins, nails, railroad spikes, keys, dirt from specific places.  
+        - <strong>Candles</strong>: fixed with oils, herbs, and prayers for a specific purpose.  
+        - <strong>Mojo Bags / Hands</strong>: small charm bundles carried or worn for ongoing work.  
+        - <strong>Bible & Psalms</strong>: read or recited as direct spiritual force.  
+        - <strong>Lamps, Baths, and Floor Washes</strong>: used to clean, protect, and draw in certain conditions.
         """
     )
 
     st.markdown(
         """
-        ### Common Elements in Hoodoo
-        - <strong>Roots & Herbs:</strong> Plants treated as living allies with specific qualities.
-        - <strong>Minerals & Curios:</strong> Lodestones, coins, nails, and other items used symbolically.
-        - <strong>Candles:</strong> Often dressed with oils and herbs, burned with focused prayer.
-        - <strong>Mojo Bags / Hands:</strong> Small charm bundles carried on the person.
-        - <strong>Crossroads Work:</strong> Symbolic and sometimes literal work done where paths meet.
-        - <strong>Bible & Psalms:</strong> Spoken as prayer, incantation, or affirmation.
+        ### Harmful vs. Helpful Work
+        Historically, some workers took jobs for revenge, coercion, or cursing. A full teaching of Hoodoo must
+        admit this shadow. But you are choosing to build an app that aligns with <strong>helpful</strong> forms:
         """
     )
-
     st.markdown(
         """
-        ### About Harmful Work
-        Historically, some rootworkers have done work meant to harm or coerce others. A full history cannot
-        ignore this. However, this app will not provide instructions for attack, revenge, domination, or
-        cursing. Instead, the Workings & Ritual Templates focus on:
-        - Cleansing
-        - Protection
-        - Uncrossing and healing from harm
-        - Justice framed as truth, accountability, and fair resolution
-        - Prosperity and work blessings
-        - Self-love and confidence
-        - Ancestor remembrance
-        - Clarity and journaling
+        - Uncrossing and cleansing,  
+        - Protection and warding,  
+        - Justice framed as truth and accountability,  
+        - Money drawing tied to honest work,  
+        - Love and reconciliation guided by consent.
+        """
+    )
+    st.markdown(
+        """
+        The Workings section in this app reflects that choice: it gives you templates that protect, clean, and
+        empower without stepping into domination or harm.
         """
     )
 
@@ -960,14 +1183,20 @@ def page_hoodoo_basics():
 
 def page_workings():
     render_header()
-    st.subheader("Workings & Ritual Templates")
+    st.subheader("Workings & Ritual Templates – Non-Harmful Only")
 
     st.markdown(
         """
-        These templates are <strong>blueprints</strong> for non-harmful spiritual work. They focus on
-        cleansing, protection, healing, justice, prosperity, self-love, ancestor remembrance, and clarity.
-        They do not replace medical, legal, or mental-health care, and they are not instructions for
-        harming anyone.
+        This section gives you <strong>detailed templates</strong> that you can adapt to your own situation.
+        Each one has:
+        """
+    )
+    st.markdown(
+        """
+        - a clear intention,  
+        - symbolism (why these tools?),  
+        - example words or prayers,  
+        - and an ethical note.
         """
     )
 
@@ -1002,7 +1231,7 @@ def page_workings():
         st.text_area(
             "Script example (read or adapt in your own words):",
             value=textwrap.fill(tmpl["script"], width=70),
-            height=180,
+            height=200,
         )
         st.markdown("**Ethical note:**")
         st.info(tmpl["ethical_note"])
@@ -1011,7 +1240,7 @@ def page_workings():
     st.markdown("### Your Version of This Working")
 
     st.markdown(
-        "Fill this in to plan or record your own version of the working. You can save it into your journal."
+        "Use this form to plan or record your own version of the working. You can store it into your journal."
     )
 
     with st.form("working_journal_form"):
@@ -1029,27 +1258,27 @@ def page_workings():
         )
         your_intention = st.text_area(
             "In your own words, what is your intention?",
-            height=80,
+            height=90,
         )
         details = st.text_area(
             "What did you (or will you) actually do? (tools, timing, location, actions)",
-            height=110,
+            height=130,
         )
         dreams_signs = st.text_area(
             "Any dreams, signs, or patterns you noticed before/after?",
-            height=80,
+            height=90,
         )
         feelings_before = st.text_area(
             "How did you feel before the working?",
-            height=60,
+            height=70,
         )
         feelings_after = st.text_area(
             "How did you feel after (or how do you hope to feel)?",
-            height=60,
+            height=70,
         )
         notes = st.text_area(
             "Any additional notes or reflections?",
-            height=80,
+            height=90,
         )
 
         submitted = st.form_submit_button("💾 Save to Journal")
@@ -1086,7 +1315,7 @@ def page_workings():
         if df_filtered.empty:
             st.write(
                 "You have no saved supplies tagged for this category yet. "
-                "You can still perform a simple version of this working with basic items like clean water or a plain candle."
+                "You can still perform a simple version of this working with basic items like clean water, a plain candle, or spoken words."
             )
         else:
             st.write(
@@ -1110,12 +1339,20 @@ def page_workings():
 
 def page_journal():
     render_header()
-    st.subheader("Journal & Signs")
+    st.subheader("Journal & Signs – Your Ongoing Path")
 
     st.markdown(
         """
-        This is your private logbook. Use it to record studies, rituals, dreams, and everyday moments.
-        Writing things down can reveal patterns over time.
+        This page is where your path becomes <strong>your</strong> path. Over months and years, this journal
+        can show you:
+        """
+    )
+    st.markdown(
+        """
+        - which workings actually helped,  
+        - which dreams or signs kept repeating,  
+        - how your feelings changed over time,  
+        - and what teachers, books, or spirits keep returning to your life.
         """
     )
 
@@ -1140,7 +1377,7 @@ def page_journal():
             )
             details = st.text_area(
                 "What happened? (rituals, prayers, conversations, study, life events)",
-                height=110,
+                height=120,
             )
             dreams_signs = st.text_area(
                 "Any dreams or signs you want to note?",
@@ -1148,11 +1385,11 @@ def page_journal():
             )
             feelings_before = st.text_area(
                 "Feelings before",
-                height=60,
+                height=70,
             )
             feelings_after = st.text_area(
                 "Feelings after",
-                height=60,
+                height=70,
             )
             notes = st.text_area(
                 "Other notes",
@@ -1235,12 +1472,12 @@ def page_journal():
 
 def page_resources():
     render_header()
-    st.subheader("Study Path & Resources")
+    st.subheader("Study Path & Resources – Building Real Knowledge")
 
     st.markdown(
         """
-        Use this page as a long-term study map. Add books, documentaries, teachers, and other resources
-        you want to explore. Try to prioritize voices from within the traditions themselves.
+        Use this page as a <strong>long-term syllabus</strong> for yourself. Add books, documentaries, teachers,
+        temples, and classes you discover. Over time, you will see which directions your path keeps pointing.
         """
     )
 
@@ -1335,9 +1572,9 @@ def page_supplies():
 
     st.markdown(
         """
-        This page helps you keep track of where you obtain ritual supplies: candles, herbs, roots, oils,
-        curios, and other tools. The goal is to build relationships with trustworthy shops and to be mindful
-        about what you buy and from whom.
+        This page helps you track where your ritual tools come from: candles, oils, herbs, roots, colognes,
+        statuary, and curios. Over time you can build relationships with trustworthy shops instead of buying
+        random items that don’t feel right.
         """
     )
 
@@ -1396,9 +1633,7 @@ def page_supplies():
         else:
             st.markdown("#### Saved shops")
             for s in suppliers:
-                owned_label = (
-                    "Yes" if s["owned_by_diaspora"] else "Not marked"
-                )
+                owned_label = "Yes" if s["owned_by_diaspora"] else "Not marked"
                 with st.expander(f"{s['name']} – {s['shop_type']} ({s['country'] or ''})"):
                     st.write(f"**Tradition focus:** {s['tradition_focus'] or 'n/a'}")
                     st.write(f"**Owned by Diaspora (as you marked):** {owned_label}")
@@ -1497,39 +1732,38 @@ def page_supplies():
 
 def page_disclaimer():
     render_header()
-    st.subheader("Disclaimers & Ethics")
+    st.subheader("Disclaimers, Ethics & Safety")
 
     st.markdown(
         """
         ### Respect for Living Traditions
-        The practices labeled Vodun, Vodou, Voodoo, and Hoodoo come from the survival and creativity of
-        African and African-descended peoples in the face of slavery, colonialism, and ongoing oppression.
-        They are not costumes or horror props. This app offers only a small, respectful window into that
-        complexity.
+        Vodun, Vodou, Voodoo, and Hoodoo are <strong>living traditions</strong> carried by real communities:
+        Black, African, Creole, Caribbean, and others. They are not costumes or horror props. This app is
+        a bridge toward more respectful understanding, not a replacement for teachers or temples.
         """
     )
 
     st.markdown(
         """
         ### What This App Does
-        - Provides <strong>educational summaries</strong> of Vodun, Vodou, Voodoo, and Hoodoo history.
-        - Offers <strong>non-harmful ritual templates</strong> centered on cleansing, protection, healing,
-          justice, prosperity, self-love, ancestor remembrance, and clarity.
-        - Gives you a <strong>journal</strong> to track your own experiences and studies.
-        - Helps you organize <strong>resources, shops, and supplies</strong> in a thoughtful way.
+        - Offers <strong>deep educational summaries</strong> of history and key spirits.  
+        - Gives you <strong>non-harmful ritual templates</strong> centered on cleansing, protection, justice,
+          prosperity, self-love, ancestor work, and clarity.  
+        - Provides a <strong>journal</strong> so you can track your own path.  
+        - Helps you organize <strong>resources, shops, and supplies</strong> in a conscious way.
         """
     )
 
     st.markdown(
         """
         ### What This App Does Not Do
-        - It does <strong>not</strong> provide instructions for curses, attacks, domination, or coercive work.
-        - It does <strong>not</strong> claim to speak for any specific temple, house, lineage, or elder.
+        - It does <strong>not</strong> teach curses, domination, or coercive work.  
+        - It does <strong>not</strong> give initiatory secrets of any house, temple, or lineage.  
         - It does <strong>not</strong> replace:
-          - priests/priestesses, Houngans, Mambos, rootworkers, or other clergy,
-          - mental-health professionals,
-          - medical doctors,
-          - legal counsel, or financial advisors.
+            - Houngans, Mambos, priestesses, priests, or rootworkers,  
+            - therapists, counselors, or psychiatrists,  
+            - medical doctors,  
+            - lawyers or financial professionals.
         """
     )
 
@@ -1537,8 +1771,8 @@ def page_disclaimer():
         """
         ### Mental & Physical Health
         If you are in crisis, feeling unsafe, or struggling with severe mental or physical health issues,
-        please seek help from qualified professionals or local emergency services. Spiritual work can
-        support healing, but it is not a substitute for appropriate care.
+        please seek help from qualified professionals or local emergency services. Spiritual practices can
+        support healing, but they are not a substitute for proper care.
         """
     )
 
@@ -1546,18 +1780,15 @@ def page_disclaimer():
         """
         ### Your Responsibility
         By using this app, you agree to:
-        - Approach these traditions with respect and humility.
-        - Use any workings or templates only for non-harmful purposes.
-        - Take responsibility for your actions in the physical world.
+        - Approach these traditions with respect and humility.  
+        - Use any workings or templates only for non-harmful purposes.  
+        - Take responsibility for the consequences of your actions in the physical world.  
+        - Accept that real learning takes time, relationships, and listening.
         """
     )
 
     render_footer()
 
-
-# =========================
-# Admin Page
-# =========================
 
 def page_admin():
     render_header()
@@ -1565,8 +1796,8 @@ def page_admin():
 
     st.markdown(
         """
-        This page is for the creator/admin only. It lets you see quick stats, and in later versions you
-        can add more management tools. Buttons here are styled like glowing shields to match the app theme.
+        This page is for the creator/admin only. Buttons here use the same glowing shield-and-spear style as
+        the rest of the app, because even your backend deserves protection and power.
         """
     )
 
@@ -1596,7 +1827,6 @@ def page_admin():
             st.session_state["is_admin"] = False
             safe_rerun()
 
-        # Show basic stats
         conn = get_conn()
         cur = conn.cursor()
 
@@ -1629,8 +1859,8 @@ def page_admin():
         st.markdown("---")
         st.markdown("### Admin Notes")
         st.info(
-            "In future versions you can extend this admin page with data export, bulk edits, or additional "
-            "content seeding tools. For now it serves as a themed dashboard and login-protected area."
+            "You can extend this admin page later with data export, bulk edits, or content seeding tools. "
+            "Right now it serves as a shielded dashboard – only accessible with your admin credentials."
         )
 
     render_footer()
@@ -1697,3 +1927,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
