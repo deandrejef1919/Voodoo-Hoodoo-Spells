@@ -181,23 +181,54 @@ st.markdown(APP_CSS, unsafe_allow_html=True)
 
 
 # =========================
-# SMALL HELPERS
+# HELPERS
 # =========================
 
 def media_image(key: str, caption: str = "", width=None):
+    """
+    Load image from st.secrets[key].
+    - If value starts with 'images/', treat as local file path.
+    - If value starts with 'http', treat as remote URL.
+    """
     url = st.secrets.get(key, "")
-    if url:
-        st.image(url, caption=caption or None, use_column_width=True if width is None else False, width=width)
-    else:
-        st.info(f"Image not configured yet for `{key}` in secrets.")
+    if not url:
+        st.info(f"[{key}] image not configured.")
+        return
+
+    # Local file path
+    if url.startswith("images/") or url.startswith("./images/"):
+        try:
+            st.image(url, caption=caption or None, use_column_width=(width is None), width=width)
+        except Exception as e:
+            st.error(f"[{key}] local image error: {e}")
+        return
+
+    # Remote URL
+    if url.startswith("http://") or url.startswith("https://"):
+        try:
+            st.image(url, caption=caption or None, use_column_width=(width is None), width=width)
+        except Exception as e:
+            st.error(f"[{key}] remote image error: {e}")
+        return
+
+    # Fallback
+    st.warning(f"[{key}] value does not look like a path or URL: {url}")
 
 
 def media_video(key: str):
+    """
+    Load video from st.secrets[key].
+    Works for YouTube URLs, mp4 URLs, etc.
+    """
     url = st.secrets.get(key, "")
-    if url:
+    if not url:
+        st.info(f"[{key}] video not configured.")
+        return
+
+    try:
         st.video(url)
-    else:
-        st.info(f"Video not configured yet for `{key}` in secrets.")
+    except Exception as e:
+        st.error(f"[{key}] video error: {e}")
 
 
 def render_header():
@@ -230,7 +261,6 @@ def render_footer():
 
 
 def safe_rerun():
-    # Works on older & newer Streamlit
     if hasattr(st, "rerun"):
         st.rerun()
     elif hasattr(st, "experimental_rerun"):
@@ -252,9 +282,9 @@ def page_home():
                 <h3>Nana Buluku – Beginning at the Root</h3>
                 <p>
                     Many West African Vodun lineages speak of a primordial presence known as
-                    <strong>Nana Buluku</strong> (also spelled Nana Buruku). In some houses this being is
-                    beyond gender; in others, described as mother of other divine forces like Mawu and Lisa.
-                    By placing Nana Buluku at the door of this app, we remember that the story begins in
+                    <strong>Nana Buluku</strong> (or Nana Buruku). In some houses this being is beyond gender;
+                    in others, described as parent of other divine forces like Mawu and Lisa. By placing
+                    Nana Buluku at the door of this app, we remember that the story begins in
                     <strong>Africa</strong>, not in Hollywood horror.
                 </p>
                 <p>
@@ -269,7 +299,7 @@ def page_home():
                 <p>
                     <span class="vh-pill">intention</span>
                     This app does not give initiatory secrets. It offers orientation, respectful knowledge,
-                    and images/videos so your understanding is rooted in the real traditions, not stereotypes.
+                    and images/videos so your understanding is rooted in real traditions, not stereotypes.
                 </p>
             </div>
             """,
@@ -278,7 +308,7 @@ def page_home():
 
         st.markdown("#### Visual – Nana Buluku")
         media_image("NANA_BULUKU_IMAGE_URL", caption="Nana Buluku (Nana Buruku) – West African Vodun")
-        st.markdown("#### Video – Cosmic Origins (if configured)")
+        st.markdown("#### Video – Cosmic origins (if configured)")
         media_video("NANA_BULUKU_VIDEO_URL")
 
     with col2:
@@ -290,14 +320,14 @@ def page_home():
                     In some Vodun cosmologies, <strong>Mawu-Lisa</strong> represents a twin principle:
                     moon and sun, cool and hot, night and day. Together they express a living balance that
                     is never static. By remembering them, we see that Vodun speaks a language of
-                    <em>relationship and balance</em>, not of simple “good vs evil”.
+                    <em>relationship and balance</em>, not simple “good vs evil”.
                 </p>
             </div>
             """,
             unsafe_allow_html=True,
         )
         st.markdown("#### Visual – Mawu-Lisa")
-        media_image("MAWU_LISA_IMAGE_URL", caption="Mawu-Lisa – Twin forces of balance")
+        media_image("MAWU_LISA_IMAGE_URL", caption="Mawu-Lisa – twin forces of balance")
         st.markdown("#### Video – Mawu-Lisa (if configured)")
         media_video("MAWU_LISA_VIDEO_URL")
 
@@ -332,7 +362,7 @@ def page_vodun():
     col1, col2 = st.columns(2)
 
     with col1:
-        st.markdown("### Vodun Altars, Drums & Festivals")
+        st.markdown("### Altars, Drums & Festivals")
         st.markdown("**Altar / Shrine**")
         media_image("VODUN_ALTAR_IMAGE_URL", "Vodun altar or ritual focus")
         st.markdown("**Drumming**")
@@ -344,10 +374,9 @@ def page_vodun():
         st.markdown("### Divination, Sacred Trees & Ancestral Art")
         st.markdown("**Divination**")
         media_image("VODUN_DIVINATION_IMAGE_URL", "Divinatory symbols and patterns")
-        st.markmarkdown = st.markdown  # just to ensure no typo later
-        st.markdown("**Sacred Tree / Ancestral Place**")
-        media_image("VODUN_SACRED_TREE_IMAGE_URL", "Sacred tree / place in Vodun")
-        st.markdown("**Ancestral Art / Sculpture**")
+        st.markdown("**Sacred tree / ancestral place**")
+        media_image("VODUN_SACRED_TREE_IMAGE_URL", "Sacred tree / rooted place in Vodun")
+        st.markdown("**Ancestral art / sculpture**")
         media_image("VODUN_ANCESTRAL_ART_IMAGE_URL", "Ancestral or ritual art in Vodun")
 
     st.markdown("### Video – Vodun in West Africa (if configured)")
@@ -364,7 +393,7 @@ def page_lwa():
         """
         In Haitian Vodou, the spirits are called <strong>lwa</strong> (older English spelling: “loas”).
         They are distinct beings with their own histories, symbols, rhythms, and ways of being served.
-        This page gives you visual and short-text orientation to some well-known lwa.
+        This page offers visual and short-text orientation to some well-known lwa.
         """
     )
 
@@ -373,8 +402,8 @@ def page_lwa():
         st.markdown(
             """
             Papa Legba stands at the spiritual crossroads and opens the way between humans and the other lwa.
-            In many houses he is saluted first, because without the key, the door does not open.
-            He is often shown as an old man with cane, hat, and pipe, but every house has its own style.
+            Without the gatekeeper, no other lwa can easily be approached. In some houses he appears as an
+            old man with cane and pipe; in others, differently. The core idea is access, language, and doorways.
             """
         )
         media_image("PAPA_LEGBA_IMAGE_URL", "Papa Legba – gatekeeper imagery")
@@ -386,7 +415,7 @@ def page_lwa():
         st.markdown(
             """
             Damballa is often envisioned as a great serpent of creation, associated with purity, blessing,
-            rivers, and the quiet power of life itself. Devotees often approach him in a soft, cool way.
+            rivers, and the quiet power of life itself. Devotees often approach him in a soft, cool, respectful way.
             """
         )
         media_image("DAMBALLA_IMAGE_URL", "Damballa – serpent creator imagery")
@@ -398,8 +427,8 @@ def page_lwa():
         st.markdown(
             """
             The Ezili family expresses different faces of love, desire, and protection.
-            Ezili Freda leans toward romantic love, luxury, and longing; Ezili Dantò toward fierce maternal
-            protection and rage against injustice. Together they show that love can be sweet and also scarred.
+            Ezili Freda leans toward romantic love, luxury, and refined longing; Ezili Dantò toward fierce
+            maternal protection, rage against injustice, and the scars of struggle.
             """
         )
         media_image("EZILI_FREDA_IMAGE_URL", "Ezili Freda – refined love")
@@ -411,9 +440,9 @@ def page_lwa():
     with st.expander("Ogou – Iron, War & Discipline"):
         st.markdown(
             """
-            Ogou (or Ogoun) is a family of warrior lwa connected with iron, tools, soldiers, and struggle.
-            Ogou energy can feel like sharp focus, courage, and disciplined fire. In Haiti, he is remembered
-            in stories of liberation and resistance.
+            Ogou (Ogoun) is a family of warrior lwa connected with iron, tools, soldiers, and hard struggle.
+            Ogou energy can feel like sharp focus, courage, and disciplined fire — useful for strategy,
+            work, and resistance.
             """
         )
         media_image("OGOU_IMAGE_URL", "Ogou – warrior and iron imagery")
@@ -421,7 +450,7 @@ def page_lwa():
         media_video("OGOU_VIDEO_URL")
 
     # Baron Samedi / Gede
-    with st.expander("Baron Samedi & Gede – Cemeteries, Ancestors & Raw Truth"):
+    with st.expander("Baron Samedi & the Gede – Cemeteries, Ancestors & Raw Truth"):
         st.markdown(
             """
             Baron Samedi is guardian of the cemetery gates; the Gede are a wild, loving family of spirits
@@ -433,11 +462,11 @@ def page_lwa():
         st.markdown("**Video**")
         media_video("BARON_SAMEDI_VIDEO_URL")
 
-    st.markdown("### Veve & Symbol Collections (if configured)")
+    st.markdown("### Veve & symbol collections (if configured)")
     if st.secrets.get("LOA_SYMBOL_MAP_URL", ""):
         media_image("LOA_SYMBOL_MAP_URL", "Loa symbol map or chart")
     if st.secrets.get("LOA_VEVE_COLLECTION_URL", ""):
-        st.info("LOA_VEVE_COLLECTION_URL is a folder / collection. Consider using direct veve images from that folder.")
+        st.info("LOA_VEVE_COLLECTION_URL points to a folder/collection; you can also store individual veve images as separate keys.")
 
     render_footer()
 
@@ -450,27 +479,27 @@ def page_haiti_1791():
         """
         In 1791, an important Vodou ceremony remembered at Bois Caïman is said to have helped ignite
         the uprising that led to the Haitian Revolution. Over more than a decade, enslaved and free Black
-        Haitians fought and defeated one of the strongest European empires, founding the first Black republic
-        of the modern era. Vodou, drums, oaths, and lwa walked inside that struggle.
+        Haitians fought and defeated a major European empire, founding the first Black republic of the
+        modern era. Vodou, drums, oaths, and lwa walked inside that struggle.
         """
     )
 
     col1, col2 = st.columns(2)
     with col1:
-        st.markdown("### Ceremony & Symbolism")
+        st.markdown("### Ceremony & symbolism")
         media_image(
             "HAITI_1791_VOODOO_CEREMONY_IMAGE_URL",
-            "Artistic representation of 1791 Vodou ceremony"
+            "Artistic representation of 1791 Vodou ceremony",
         )
         media_image("BOIS_CAIMAN_ALTAR_IMAGE_URL", "Bois Caïman / ceremony altar imagery")
 
     with col2:
-        st.markdown("### People, Drums & Possession")
+        st.markdown("### People, drums & possession")
         media_image("HAITI_DRUM_CIRCLE_IMAGE_URL", "Haitians dancing and drumming")
         media_image("HAITI_SPIRIT_POSSESSION_IMAGE_URL", "Spirit possession in Haitian Vodou")
 
-    st.markdown("### Videos – Haiti History & Ceremony (if configured)")
-    st.markdown("**History / Revolution**")
+    st.markdown("### Videos – Haiti history & ceremony (if configured)")
+    st.markdown("**History / revolution**")
     media_video("HAITI_HISTORY_VIDEO_URL")
     st.markdown("**Ceremony / Vodou practice**")
     media_video("HAITI_CEREMONY_VIDEO_URL")
@@ -486,7 +515,7 @@ def page_new_orleans():
         """
         New Orleans is a Creole city where African, French, Spanish, Native American, and Caribbean influences
         met. Out of that mix arose <strong>Louisiana Voodoo</strong>, a regional spiritual practice that used
-        Catholic saints, roots, river water, and graveyard dirt.
+        Catholic saints, herbs, roots, river water, and graveyard dirt.
         """
     )
 
@@ -500,14 +529,14 @@ def page_new_orleans():
 
     col1, col2 = st.columns(2)
     with col1:
-        st.markdown("### Marie Laveau – Person & Legend")
+        st.markdown("### Marie Laveau – person & legend")
         media_image("MARIE_LAVEAU_IMAGE_URL", "Marie Laveau – Voodoo Queen of New Orleans")
         media_image("MARIE_LAVEAU_TOMB_IMAGE_URL", "Tomb associated with Marie Laveau")
         st.markdown("**Video about Marie Laveau (if configured)**")
         media_video("MARIE_LAVEAU_VIDEO_URL")
 
     with col2:
-        st.markdown("### New Orleans Spiritual Landscape")
+        st.markdown("### New Orleans spiritual landscape")
         media_image("NEW_ORLEANS_ALTAR_IMAGE_URL", "New Orleans Voodoo / Vodou altar")
         media_image("NEW_ORLEANS_STREET_PROCESSION_IMAGE_URL", "Procession in New Orleans streets")
         media_image("NEW_ORLEANS_CEMETERY_IMAGE_URL", "New Orleans cemetery")
@@ -523,7 +552,7 @@ def page_hoodoo():
 
     st.markdown(
         """
-        Hoodoo (also called rootwork or conjure) is an African American folk magic tradition rooted in the
+        Hoodoo (also called rootwork or conjure) is an African American folk-magic tradition rooted in the
         experience of Black people in the United States, especially in the South. It braids African spiritual
         logic, Indigenous plant knowledge, and European Bible magic into a toolkit for survival and justice.
         """
@@ -532,17 +561,17 @@ def page_hoodoo():
     col1, col2 = st.columns(2)
 
     with col1:
-        st.markdown("### Mojo Bags, Roots & Herbs")
+        st.markdown("### Mojo bags, roots & herbs")
         media_image("HOODOO_MOJO_BAG_IMAGE_URL", "Mojo bag / conjure hand")
         media_image("HOODOO_ROOTS_AND_HERBS_IMAGE_URL", "Hoodoo roots and herbs")
 
     with col2:
-        st.markdown("### Candles, Graveyard Work & Psalms")
+        st.markdown("### Candles, graveyard work & Psalms")
         media_image("HOODOO_CANDLE_WORK_IMAGE_URL", "Candle / lamp work imagery")
         media_image("HOODOO_GRAVEYARD_WORK_IMAGE_URL", "Cemetery / graveyard work symbolism")
         media_image("HOODOO_PSAWMS_BIBLE_IMAGE_URL", "Bible & Psalms used in spiritual work")
 
-    st.markdown("### Hoodoo Teaching / Documentary Video (if configured)")
+    st.markdown("### Hoodoo teaching / documentary video (if configured)")
     media_video("HOODOO_VIDEO_URL")
 
     render_footer()
@@ -562,16 +591,16 @@ def page_ancestors():
 
     col1, col2 = st.columns(2)
     with col1:
-        st.markdown("### Altars & Elements")
+        st.markdown("### Altars & elements")
         media_image("ANCESTOR_ALTAR_IMAGE_URL", "Ancestor altar (if configured)")
         media_image("ANCESTOR_WATER_GLASS_IMAGE_URL", "Glass of water / libation offering")
 
     with col2:
-        st.markdown("### Photos, Candles & Remembrance")
+        st.markdown("### Photos, candles & remembrance")
         media_image("ANCESTOR_PHOTO_COLLECTION_IMAGE_URL", "Photos of ancestors / elders")
         media_image("ANCESTOR_CANDLE_LIGHTING_IMAGE_URL", "Candle lighting for the dead")
 
-    st.markdown("### Ancestor Reflection / Ritual Video (if configured)")
+    st.markdown("### Ancestor reflection / ritual video (if configured)")
     media_video("ANCESTOR_VIDEO_URL")
 
     render_footer()
@@ -584,11 +613,10 @@ def page_gallery():
     st.markdown(
         """
         This gallery shows every media slot you’ve configured in your secrets file. It’s useful to check
-        which images are working, and which links you may need to fix (especially MediaFire `/file` URLs).
+        which images are working and which links you may need to fix.
         """
     )
 
-    # Grouped display: key, label
     image_keys = [
         ("NANA_BULUKU_IMAGE_URL", "Nana Buluku"),
         ("MAWU_LISA_IMAGE_URL", "Mawu-Lisa"),
@@ -624,7 +652,7 @@ def page_gallery():
         ("ANCESTOR_CANDLE_LIGHTING_IMAGE_URL", "Ancestor Candle Lighting"),
     ]
 
-    videos_keys = [
+    video_keys = [
         ("NANA_BULUKU_VIDEO_URL", "Nana Buluku Video"),
         ("MAWU_LISA_VIDEO_URL", "Mawu-Lisa Video"),
         ("VODUN_VIDEO_URL", "Vodun Video"),
@@ -646,17 +674,17 @@ def page_gallery():
         url = st.secrets.get(key, "")
         if url:
             st.markdown(f"**{label}** (`{key}`)")
-            st.image(url, use_column_width=True)
+            media_image(key)
         else:
             st.markdown(f"- `{key}` not set")
 
     st.markdown("---")
     st.markdown("### Videos")
-    for key, label in videos_keys:
+    for key, label in video_keys:
         url = st.secrets.get(key, "")
         if url:
             st.markdown(f"**{label}** (`{key}`)")
-            st.video(url)
+            media_video(key)
         else:
             st.markdown(f"- `{key}` not set")
 
@@ -671,7 +699,7 @@ def page_admin():
         st.session_state["is_admin"] = False
 
     if not st.session_state["is_admin"]:
-        st.markdown("### Admin Login")
+        st.markdown("### Admin login")
         with st.form("admin_login_form"):
             username = st.text_input("Admin username")
             password = st.text_input("Admin password", type="password")
@@ -696,19 +724,19 @@ def page_admin():
         safe_rerun()
 
     st.markdown("---")
-    st.markdown("### Secrets Keys Overview")
-
+    st.markdown("### Secrets keys overview")
     keys = list(st.secrets.keys())
     st.write("Loaded secret keys:")
     st.code("\n".join(sorted(keys)), language="text")
 
     st.markdown(
         """
-        #### Media Links Check
+        #### Media links check
 
-        If some images do not show up, especially from MediaFire, make sure:
-        - The URL ends with `.jpg`, `.png`, `.gif`, `.mp4`, etc.
-        - It is a direct file link, not a `/view/.../file` HTML page.
+        If some images do not show up (especially old MediaFire links), make sure:
+        - The value is either:
+            - a local path like `images/baron_samedi.webp`, or
+            - a direct URL ending in `.jpg`, `.png`, `.gif`, `.mp4`, etc.
         """
     )
 
