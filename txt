@@ -2,3 +2,6 @@ your-project/
   app.py
   .streamlit/
   images/
+git add images/baron_samedi.webp
+git commit -m "Add Baron Samedi image"
+git push
