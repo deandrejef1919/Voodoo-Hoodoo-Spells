@@ -1,0 +1,4 @@
+your-project/
+  app.py
+  .streamlit/
+  images/
