@@ -379,7 +379,7 @@ def page_vodun():
         st.markdown("**Ancestral art / sculpture**")
         media_image("VODUN_ANCESTRAL_ART_IMAGE_URL", "Ancestral or ritual art in Vodun")
 
-    st.markdown("### Video – Vodun in West Africa (if configured)")
+    st.markdown("### Video – Vodun in West Africa")
     media_video("VODUN_VIDEO_URL")
 
     render_footer()
