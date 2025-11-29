@@ -498,7 +498,7 @@ def page_haiti_1791():
         media_image("HAITI_DRUM_CIRCLE_IMAGE_URL", "Haitians dancing and drumming")
         media_image("HAITI_SPIRIT_POSSESSION_IMAGE_URL", "Spirit possession in Haitian Vodou")
 
-    st.markdown("### Videos – Haiti history & ceremony (if configured)")
+    st.markdown("### Videos – Haiti history & ceremony")
     st.markdown("**History / revolution**")
     media_video("HAITI_HISTORY_VIDEO_URL")
     st.markdown("**Ceremony / Vodou practice**")
