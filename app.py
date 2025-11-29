@@ -592,7 +592,7 @@ def page_ancestors():
     col1, col2 = st.columns(2)
     with col1:
         st.markdown("### Altars & elements")
-        media_image("ANCESTOR_ALTAR_IMAGE_URL", "Ancestor altar (if configured)")
+        media_image("ANCESTOR_ALTAR_IMAGE_URL", "Ancestor altar")
         media_image("ANCESTOR_WATER_GLASS_IMAGE_URL", "Glass of water / libation offering")
 
     with col2:
@@ -600,7 +600,7 @@ def page_ancestors():
         media_image("ANCESTOR_PHOTO_COLLECTION_IMAGE_URL", "Photos of ancestors / elders")
         media_image("ANCESTOR_CANDLE_LIGHTING_IMAGE_URL", "Candle lighting for the dead")
 
-    st.markdown("### Ancestor reflection / ritual video (if configured)")
+    st.markdown("### Ancestor reflection / ritual video")
     media_video("ANCESTOR_VIDEO_URL")
 
     render_footer()
