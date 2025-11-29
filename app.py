@@ -514,14 +514,14 @@ def page_new_orleans():
     st.markdown(
         """
         New Orleans is a Creole city where African, French, Spanish, Native American, and Caribbean influences
-        met. Out of that mix arose <strong>Louisiana Voodoo</strong>, a regional spiritual practice that used
+        met. Out of that mix arose Louisiana Voodoo, a regional spiritual practice that used
         Catholic saints, herbs, roots, river water, and graveyard dirt.
         """
     )
 
     st.markdown(
         """
-        At the center of many stories stands <strong>Marie Laveau</strong>, often called “The Voodoo Queen of
+        At the center of many stories stands Marie Laveau, often called “The Voodoo Queen of
         New Orleans.” She worked as a hairdresser, herbalist, and spiritual worker, serving clients across the
         color line and navigating a harsh racial order with intelligence and power.
         """
@@ -532,7 +532,7 @@ def page_new_orleans():
         st.markdown("### Marie Laveau – person & legend")
         media_image("MARIE_LAVEAU_IMAGE_URL", "Marie Laveau – Voodoo Queen of New Orleans")
         media_image("MARIE_LAVEAU_TOMB_IMAGE_URL", "Tomb associated with Marie Laveau")
-        st.markdown("**Video about Marie Laveau (if configured)**")
+        st.markdown("**Video about Marie Laveau")
         media_video("MARIE_LAVEAU_VIDEO_URL")
 
     with col2:
@@ -540,7 +540,7 @@ def page_new_orleans():
         media_image("NEW_ORLEANS_ALTAR_IMAGE_URL", "New Orleans Voodoo / Vodou altar")
         media_image("NEW_ORLEANS_STREET_PROCESSION_IMAGE_URL", "Procession in New Orleans streets")
         media_image("NEW_ORLEANS_CEMETERY_IMAGE_URL", "New Orleans cemetery")
-        st.markdown("**New Orleans & Voodoo video (if configured)**")
+        st.markdown("**New Orleans & Voodoo video")
         media_video("NEW_ORLEANS_VOODOO_VIDEO_URL")
 
     render_footer()
