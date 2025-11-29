@@ -308,7 +308,7 @@ def page_home():
 
         st.markdown("#### Visual – Nana Buluku")
         media_image("NANA_BULUKU_IMAGE_URL", caption="Nana Buluku (Nana Buruku) – West African Vodun")
-        st.markdown("#### Video – Cosmic origins (if configured)")
+        st.markdown("#### Video – Cosmic origins")
         media_video("NANA_BULUKU_VIDEO_URL")
 
     with col2:
