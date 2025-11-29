@@ -618,7 +618,7 @@ def page_gallery():
     )
 
     image_keys = [
-        ("NANA_BULUKU_IMAGE_URL", "Nana Buluku"),
+        ("Nana Buluku"),
         ("MAWU_LISA_IMAGE_URL", "Mawu-Lisa"),
         ("VODUN_ALTAR_IMAGE_URL", "Vodun Altar"),
         ("VODUN_DRUMMING_IMAGE_URL", "Vodun Drumming"),
