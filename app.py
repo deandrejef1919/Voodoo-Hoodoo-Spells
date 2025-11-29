@@ -571,7 +571,7 @@ def page_hoodoo():
         media_image("HOODOO_GRAVEYARD_WORK_IMAGE_URL", "Cemetery / graveyard work symbolism")
         media_image("HOODOO_PSAWMS_BIBLE_IMAGE_URL", "Bible & Psalms used in spiritual work")
 
-    st.markdown("### Hoodoo teaching / documentary video (if configured)")
+    st.markdown("### Hoodoo teaching / documentary video")
     media_video("HOODOO_VIDEO_URL")
 
     render_footer()
