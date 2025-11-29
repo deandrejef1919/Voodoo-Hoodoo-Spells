@@ -328,7 +328,7 @@ def page_home():
         )
         st.markdown("#### Visual – Mawu-Lisa")
         media_image("MAWU_LISA_IMAGE_URL", caption="Mawu-Lisa – twin forces of balance")
-        st.markdown("#### Video – Mawu-Lisa (if configured)")
+        st.markdown("#### Video – Mawu-Lisa")
         media_video("MAWU_LISA_VIDEO_URL")
 
         st.markdown("---")
