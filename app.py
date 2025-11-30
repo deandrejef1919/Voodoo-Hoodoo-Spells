@@ -383,6 +383,165 @@ def page_vodun():
     media_video("VODUN_VIDEO_URL")
 
     render_footer()
+# =========================
+# LWA / LOA GALLERY DATA
+# =========================
+
+LOA_GALLERY_DATA = [
+    {
+        "name": "Papa Legba",
+        "image_key": "LWA_PAPA_LEGBA_URL",
+        "description": (
+            "Papa Legba is the gatekeeper of the Vodou spiritual realm, standing at the crossroads. "
+            "He is the wise elder who facilitates communication between the human and spirit worlds."
+        ),
+    },
+    {
+        "name": "Baron Samedi",
+        "image_key": "LWA_BARON_SAMEDI_URL",
+        "description": (
+            "Baron Samedi is the Vodou spirit associated with death and the future. "
+            "His unique appearance and playful yet unsettling demeanor mark him as guardian of the deceased "
+            "and master of the transformations between life and death."
+        ),
+    },
+    {
+        "name": "Ogoun Badagri",
+        "image_key": "LWA_OGOUN_BADAGRI_URL",
+        "description": (
+            "Ogoun Badagri is a powerful warrior spirit of strength and valor. "
+            "With a fierce presence, he wields weapons that symbolize leadership, warfare, and metalcraft."
+        ),
+    },
+    {
+        "name": "Erzule Dantor",
+        "image_key": "LWA_ERZULE_DANTOR_URL",
+        "description": (
+            "Erzule Dantor is a fierce protector of women and children in Vodou. "
+            "She embodies strength, resilience, and the fire that guards family and independence."
+        ),
+    },
+    {
+        "name": "Dambala Wedo",
+        "image_key": "LWA_DAMBALA_WEDO_URL",
+        "description": (
+            "Dambala Wedo, often shown as twin serpents and a rainbow, embodies the sacred link between "
+            "heaven and earth. This lwa carries the essence of balance, harmony, and sacred life-force."
+        ),
+    },
+    {
+        "name": "Bossou",
+        "image_key": "LWA_BOSSOU_URL",
+        "description": (
+            "Bossou is a spirit of strength, stability, and endurance, often linked to a bull. "
+            "He symbolizes resilience and grounded energy."
+        ),
+    },
+    {
+        "name": "Ti Jan Dantò",
+        "image_key": "LWA_TI_JAN_DANTO_URL",
+        "description": (
+            "Ti Jan Dantò represents youth, passion, vitality, and determination. "
+            "He expresses the bold courage needed to pursue one’s goals and desires."
+        ),
+    },
+    {
+        "name": "Maman Brigitte",
+        "image_key": "LWA_MAMAN_BRIGITTE_URL",
+        "description": (
+            "Maman Brigitte is linked to graveyards, life, and death. "
+            "With striking presence, she is a powerful yet compassionate guardian of the deceased."
+        ),
+    },
+    {
+        "name": "Kouzen Azaka",
+        "image_key": "LWA_KOUZEN_AZAKA_URL",
+        "description": (
+            "Kouzen Azaka represents agriculture, rural life, and dedication. "
+            "He honors hard work, productivity, and prosperity earned through steady effort."
+        ),
+    },
+    {
+        "name": "Marasa Dosou",
+        "image_key": "LWA_MARASA_DOSOU_URL",
+        "description": (
+            "Marasa Dosou belongs to the divine twins in Vodou, symbolizing balance and harmony between opposites. "
+            "They stand between spiritual and physical worlds, holding both at once."
+        ),
+    },
+    {
+        "name": "Kalfu",
+        "image_key": "LWA_KALFU_URL",
+        "description": (
+            "Kalfu is a spirit of the night, crossroads, and transformation. "
+            "His commanding presence at dark crossroads reflects his role in navigating chaos and transitions."
+        ),
+    },
+    {
+        "name": "Damballa",
+        "image_key": "LWA_DAMBALLA_URL",
+        "description": (
+            "Damballa is a serpent spirit of wisdom, purity, and creation. "
+            "A serene, majestic lwa whose presence carries the breath of life and deep mystery."
+        ),
+    },
+    {
+        "name": "Simbi",
+        "image_key": "LWA_SIMBI_URL",
+        "description": (
+            "Simbi is a spirit of water, magic, and communication, often linked with rivers and streams. "
+            "He embodies spiritual insight, adaptability, and fluid paths of knowledge."
+        ),
+    },
+    {
+        "name": "Klemezine",
+        "image_key": "LWA_KLEMEZINE_URL",
+        "description": (
+            "Klemezine is a protective spirit, radiating a tranquil yet formidable aura. "
+            "He embodies the essence of spiritual safeguarding and boundary-keeping."
+        ),
+    },
+    {
+        "name": "Ayizan Velekete",
+        "image_key": "LWA_AYIZAN_VELEKETE_URL",
+        "description": (
+            "Ayizan Velekete is linked to initiation and markets, representing prosperity, spiritual authority, "
+            "and personal growth. Her nurturing energy guides those seeking higher paths."
+        ),
+    },
+    {
+        "name": "Gran Bwa",
+        "image_key": "LWA_GRAN_BWA_URL",
+        "description": (
+            "Gran Bwa is the spirit of the forest, nature, and deep wisdom. "
+            "As guardian of the wilderness, he protects its beauty and guides those who seek to understand it."
+        ),
+    },
+    {
+        "name": "Hogou Ferraille",
+        "image_key": "LWA_HOGOU_FERRAILLE_URL",
+        "description": (
+            "Hogou Ferraille is a warrior expression of Ogoun, linked to protection, leadership, and strength in battle. "
+            "Armored and resolute, he stands as a fierce protector."
+        ),
+    },
+    {
+        "name": "Erzulie Freda",
+        "image_key": "LWA_ERZULIE_FREDA_URL",
+        "description": (
+            "Erzulie Freda embodies love, beauty, and luxury. "
+            "She moves in matters of the heart, femininity, and refined desire."
+        ),
+    },
+    {
+        "name": "Brav Gede",
+        "image_key": "LWA_BRAV_GEDE_URL",
+        "description": (
+            "Brav Gede is a Gede spirit of life and death, fertility, and humor. "
+            "Playful and sharp, he holds the duality of joy and mortality together."
+        ),
+    },
+]
 
 def page_lwa():
     render_header()
