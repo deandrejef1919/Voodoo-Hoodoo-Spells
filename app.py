@@ -1072,7 +1072,6 @@ def page_lwa():
             """
         )
         media_image("PAPA_LEGBA_IMAGE_URL", "Papa Legba – gatekeeper imagery")
-        media_image("PAPA_LEGBA_VEVE_URL", "Veve of Papa Legba (symbol at the crossroads)")
         st.markdown("**Video**")
         media_video("PAPA_LEGBA_VIDEO_URL")
 
