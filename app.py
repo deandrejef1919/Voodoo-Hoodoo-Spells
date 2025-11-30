@@ -756,17 +756,15 @@ def page_lwa():
     media_image("LOA_SYMBOL_MAP_URL", "Lwa symbols / map (if configured)")
 
            # --- OPTIONAL: existing symbol/map image (if you still use one) ---
-    st.markdown("---")
+        st.markdown("---")
     st.markdown("### Lwa / Loa Portraits with Descriptions")
     st.markdown(
         "Below are visual and symbolic representations of various lwa, "
-        "showing imagery associated with them, along with brief descriptions "
-        "of their character and role in Vodou traditions."
+        "with imagery, attributes, and a short explanation of who they are."
     )
 
     for loa in LOA_GALLERY_DATA:
         image_url = st.secrets.get(loa["image_key"], "")
-        # If you haven't set this image yet in secrets, skip it
         if not image_url:
             continue
 
@@ -775,15 +773,23 @@ def page_lwa():
         col_text, col_img = st.columns([2, 3])
 
         with col_text:
+            # Main description paragraph
             st.markdown(
-                f"<p style='font-size: 17px; line-height: 1.5; font-family: \"Times New Roman\";'>{loa['description']}</p>",
+                f"<p style='font-size: 17px; line-height: 1.6; font-family: \"Times New Roman\";'>{loa['description']}</p>",
                 unsafe_allow_html=True,
             )
+            # Attribute lines with emojis
+            for line in loa.get("attributes", []):
+                st.markdown(
+                    f"<p style='font-size: 15px; line-height: 1.4; font-family: \"Times New Roman\";'>{line}</p>",
+                    unsafe_allow_html=True,
+                )
 
         with col_img:
             media_image(loa["image_key"], caption=loa["name"], width=600)
 
-        st.markdown("<hr style='border: 1px solid #AAA;'>", unsafe_allow_html=True)
+        st.markdown("<hr style='border: 1px solid #555; margin-top: 1.2rem; margin-bottom: 1.2rem;'>", unsafe_allow_html=True)
+
 
 
     render_footer()
