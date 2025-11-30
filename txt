@@ -1,7 +1,23 @@
-your-project/
+your-app/
   app.py
-  .streamlit/
   images/
-git add images/baron_samedi.webp
-git commit -m "Add Baron Samedi image"
-git push
+    loa/
+      papa_legba.png
+      baron_samedi.png
+      ogoun_badagri.png
+      erzule_dantor.png
+      dambala_wedo.png
+      bossou.png
+      ti_jan_danto.png
+      maman_brigitte.png
+      kouzen_azaka.png
+      marasa_dosou.png
+      kalfu.png
+      damballa.png
+      simbi.png
+      klemezine.png
+      ayizan_velekete.png
+      gran_bwa.png
+      hogou_ferralle.png
+      erzulie_freda.png
+      brav_gede.png
