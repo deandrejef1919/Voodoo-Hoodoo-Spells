@@ -79,26 +79,25 @@ section[data-testid="stSidebar"] {
         inset 0 0 6px rgba(0,0,0,0.7);
 }
 
-/* 🎶 Mojo tiles in sidebar */
-/* Video tile = red heartbeat */
+/* 🔥 Mojo heartbeat glow for sidebar media (separate tiles, synced timing) */
 .mojo-video-glow {
     border-radius: 16px;
     padding: 0.45rem;
     background: radial-gradient(circle at 50% 0%, #330000 0, #120000 55%, #000000 100%);
-    animation: mojo-heartbeat 1.6s ease-in-out infinite;
+    box-shadow: 0 0 4px rgba(255, 0, 0, 0.7);
+    animation: mojo-video-pulse 1.6s ease-in-out infinite;
+}
+.mojo-bag-glow {
+    border-radius: 16px;
+    padding: 0.45rem;
+    background: radial-gradient(circle at 50% 0%, #2a1b00 0, #120b00 55%, #000000 100%);
+    box-shadow: 0 0 4px rgba(255, 215, 0, 0.7);
+    animation: mojo-bag-pulse 1.6s ease-in-out infinite;
 }
 .mojo-video-container iframe {
     border-radius: 12px;
     width: 100%;
-    height: 118px; /* slightly smaller player */
-}
-
-/* Mojo bag tile = golden heartbeat */
-.mojo-bag-glow {
-    border-radius: 16px;
-    padding: 0.55rem 0.4rem 0.7rem 0.4rem;
-    background: radial-gradient(circle at 50% 0%, #3b2600 0, #120b00 55%, #000000 100%);
-    animation: mojo-heartbeat-gold 1.6s ease-in-out infinite;
+    height: 118px;
 }
 .mojo-bag-container img {
     border-radius: 14px;
@@ -106,20 +105,37 @@ section[data-testid="stSidebar"] {
     margin:0 auto;
 }
 
-/* Shared heartbeat animations (keep timing in sync) */
+/* Shared heartbeat animation for header candle */
 @keyframes mojo-heartbeat {
-    0%   { box-shadow: 0 0 0 0 rgba(255,0,0,0.0); }
-    25%  { box-shadow: 0 0 12px 3px rgba(255,0,0,0.95); }
-    50%  { box-shadow: 0 0 6px 1px rgba(255,0,0,0.55); }
-    75%  { box-shadow: 0 0 10px 2px rgba(255,0,0,0.8); }
-    100% { box-shadow: 0 0 0 0 rgba(255,0,0,0.0); }
+    0% {
+        box-shadow: 0 0 0 0 rgba(255, 0, 0, 0.0);
+    }
+    20% {
+        box-shadow: 0 0 25px 8px rgba(255, 0, 0, 0.85);
+    }
+    35% {
+        box-shadow: 0 0 10px 3px rgba(255, 0, 0, 0.45);
+    }
+    55% {
+        box-shadow: 0 0 20px 6px rgba(255, 0, 0, 0.75);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(255, 0, 0, 0.0);
+    }
 }
-@keyframes mojo-heartbeat-gold {
-    0%   { box-shadow: 0 0 0 0 rgba(255,193,7,0.0); }
-    25%  { box-shadow: 0 0 12px 3px rgba(255,193,7,0.95); }
-    50%  { box-shadow: 0 0 6px 1px rgba(255,193,7,0.55); }
-    75%  { box-shadow: 0 0 10px 2px rgba(255,193,7,0.8); }
-    100% { box-shadow: 0 0 0 0 rgba(255,193,7,0.0); }
+
+/* Sharper red pulse for player */
+@keyframes mojo-video-pulse {
+    0%   { box-shadow: 0 0 4px rgba(255, 0, 0, 0.6); }
+    50%  { box-shadow: 0 0 14px rgba(255, 0, 0, 1.0); }
+    100% { box-shadow: 0 0 4px rgba(255, 0, 0, 0.6); }
+}
+
+/* Golden pulse for Mojo Bag */
+@keyframes mojo-bag-pulse {
+    0%   { box-shadow: 0 0 4px rgba(255, 215, 0, 0.6); }
+    50%  { box-shadow: 0 0 14px rgba(255, 215, 0, 1.0); }
+    100% { box-shadow: 0 0 4px rgba(255, 215, 0, 0.6); }
 }
 
 /* Cards */
@@ -251,7 +267,7 @@ LOA_GALLERY_DATA = [
     },
     {
         "name": "Baron Semedi",
-        "image_key": "LWA_BARON_SEMEDI_URL",
+        "image_key": "LWA_BARON_SAMEDI_URL",
         "description": "Baron Samedi is the spirit of death, rebirth, and ancestor gateways.",
         "attributes": [
             "🕯️ Offerings: rum, cigars, grilled corn, peanuts, black coffee",
@@ -330,8 +346,8 @@ LOA_GALLERY_DATA = [
         ],
     },
     {
-        "name": "Ti Jan Danto",
-        "image_key": "LWA_TI_JAN_DANTO_URL",
+        "name": "Ti Jan Dantor",
+        "image_key": "LWA_TI_JAN_DANTOR_URL",
         "description": "Spirit of youthful fire, passion, and courageous energy.",
         "attributes": [
             "🕯️ Offerings: rum, red fruit, candied ginger",
@@ -508,6 +524,340 @@ LOA_GALLERY_DATA = [
 ]
 
 # =========================
+# CURATED HOODOO & SPIRITUAL SUPPLY SHOPS
+# =========================
+
+HOODOO_SUPPLY_SHOPS = [
+    {
+        "name": "SHOPPE BLACK",
+        "url": "https://shoppeblack.us/black-owned-hoodoo-shops/",
+        "tagline": "Your gateway to the global Black business ecosystem",
+        "description": (
+            "A platform that highlights and supports Black-owned businesses worldwide. "
+            "This link gathers Black-owned Hoodoo and spiritual shops so your money "
+            "circulates within the community."
+        ),
+        "location": "Online / Global",
+    },
+    {
+        "name": "Conjure South",
+        "url": "https://conjuresouth.com/",
+        "tagline": "Hoodoo • Obeah • Gris-gris from Queen Co. Meadows",
+        "description": (
+            "Founded by Queen Co. Meadows in Mobile, Alabama. Offers traditional Hoodoo, Obeah, "
+            "and gris-gris products, along with publications and educational resources rooted "
+            "in lived practice."
+        ),
+        "location": "Mobile, Alabama (USA) + Online",
+    },
+    {
+        "name": "Memphis Conjure",
+        "url": "https://memphisconjure.com/",
+        "tagline": "Master-crafted by hand • Authentic • Affordable • Delta Hoodoo",
+        "description": (
+            "Family-run Memphis Conjure Supply, tracing a 110-year lineage in Delta Hoodoo and "
+            "over 30 years of experience. Recognized in Tony Kail’s 'Stories of Rootworkers & "
+            "Hoodoo in the Mid-South'. Historically located in Memphis, Tennessee — known as "
+            "“Mojo City”."
+        ),
+        "location": "Memphis, Tennessee (USA) + Online",
+    },
+    {
+        "name": "The Hoodoo & Good Juju Botanica",
+        "url": "https://hoodoogoodjuju.org/",
+        "tagline": "Healing the homies, werking the roots",
+        "description": (
+            "A botanica focused on returning the authority and heritage of Hoodoo traditions "
+            "to the Black community. Offers organic roots, herbs, and spiritual medicines."
+        ),
+        "location": "Online (Black-centered)",
+    },
+    {
+        "name": "Hoodoo Hussy Conjure Enterprises",
+        "url": "https://hoodoohussy.squarespace.com/",
+        "tagline": "Spiritual care via plant medicine & tradition",
+        "description": (
+            "Provides spiritual care rooted in African and African American traditional practices. "
+            "Carries condition oils, cleansing sprays, incense, spiritual bath teas, and more."
+        ),
+        "location": "Online",
+    },
+    {
+        "name": "BLK + GRN",
+        "url": "https://blkgrn.com/",
+        "tagline": "All-natural marketplace curated by Black artisans",
+        "description": (
+            "A marketplace featuring all-natural products from over 60 Black artisans, including "
+            "wellness, self-care, and some spiritually aligned items."
+        ),
+        "location": "Online",
+    },
+    {
+        "name": "Sacred Botanica",
+        "url": "https://www.sacredbotanicabk.com/",
+        "tagline": "Incense, candles, crystals & spiritual advisement",
+        "description": (
+            "Offers incense, candles, crystals, and spiritual advisements via Zoom, including tarot "
+            "and astrology readings. Brooklyn-based with an online presence."
+        ),
+        "location": "Brooklyn, New York (USA) + Online",
+    },
+]
+
+# =========================
+# SUPPLICATION / OFFERING DATA (SAFE, NON-HARMFUL)
+# =========================
+
+SUPPLICATION_DATA = {
+    "Ancestors": {
+        "type": "Ancestors",
+        "offerings": [
+            "A clean glass of fresh water",
+            "A white candle in a safe holder",
+            "A small plate of food your people would recognize",
+            "Photos or written names of your beloved dead",
+        ],
+        "guidelines": [
+            "Keep the space clean and respectful.",
+            "Speak to them as you would to elders you love, not as servants.",
+            "Replace water regularly; do not leave spoiled food.",
+        ],
+        "sample_words": """
+Beloved Ancestors, blood and spirit,
+those whose names I know and those whose names I have forgotten,
+I honor you.
+
+I offer you this water, this light, and this food
+in gratitude for the lives you lived,
+for the paths you walked,
+and for the strength that flows through me from you.
+
+If it is right and aligned with the good order of things,
+please watch over me, guide my steps,
+and help me walk in dignity, courage, and wisdom.
+
+May you be elevated, remembered, and at peace.
+Ayibobo.
+""",
+    },
+    "Papa Legba": {
+        "type": "Lwa",
+        "offerings": [
+            "Black coffee (no sugar) or coffee with a little sugar",
+            "A small cup of rum (if appropriate to your house / teacher)",
+            "Tobacco, candy, or roasted corn",
+            "A simple candle (often white or red) at a crossroads imagery",
+        ],
+        "guidelines": [
+            "Legba is gatekeeper: in many houses he is approached first before other lwa.",
+            "Keep the tone respectful and clear; ask for open, honest roads.",
+            "Never promise what you cannot sincerely offer in return (like regular prayer or charity).",
+        ],
+        "sample_words": """
+Papa Legba, Atibon Legba,
+keeper of the crossroads and opener of the way,
+I greet you with respect.
+
+If it is pleasing to you, accept this coffee / rum and light,
+and open good roads before me:
+roads of right relationship,
+roads of honest work,
+roads where my head can be clear.
+
+Do not open doors that would destroy me.
+Open, instead, the ways that are good for my spirit
+and close the ways that would drag me backward.
+
+Mèsi anpil, Papa Legba.
+Ayibobo.
+""",
+    },
+    "Baron Samedi": {
+        "type": "Lwa",
+        "offerings": [
+            "A candle in purple, black, or white",
+            "A small glass of rum (often with hot pepper, depending on house)",
+            "Cigars or tobacco (if you use them in ritual contexts)",
+            "Black coffee or grilled corn/peanuts on a small plate",
+        ],
+        "guidelines": [
+            "Baron is powerful: do not approach lightly or as a joke.",
+            "Keep all work with the dead respectful; never try to disturb the dead for gossip or trivial reasons.",
+            "Avoid asking for harm; stay with healing, courage, and truthful clarity.",
+        ],
+        "sample_words": """
+Baron Samedi, guardian of the grave and lord of the boundary,
+I come with respect and clean intention.
+
+If you accept my light and this drink,
+stand by the gates between life and death for me and mine.
+Help me face the truth without fear,
+help me honor those who have passed,
+and teach me to remember that life is short and precious.
+
+Where there is sickness of the spirit,
+bring clarity and laughter that heals.
+Where there is despair,
+open a little road toward courage.
+
+If it is not right to intervene, let me be at peace with that.
+Ayibobo, Baron.
+""",
+    },
+    "Maman Brigitte": {
+        "type": "Lwa",
+        "offerings": [
+            "Rum with hot pepper (if appropriate to your house)",
+            "Purple or black candles in safe holders",
+            "Bread or dark bread, sometimes at a grave (if permitted, never trespassing)",
+        ],
+        "guidelines": [
+            "Maman Brigitte loves justice and truth. Speak honestly.",
+            "Keep graveyard work lawful and respectful; never steal from graves.",
+            "Offer prayers for souls who are forgotten or unattended.",
+        ],
+        "sample_words": """
+Maman Brigitte, strong lady of the graves and fire-tongued protector,
+I call you with honor in my heart.
+
+If it is your will, receive this rum and light.
+Stand watch over the forgotten dead,
+and over those in my bloodline who have no one else to pray for them.
+
+Where injustice has laid its hand on me or mine,
+help me find paths of righteous protection and repair,
+without falling into cruelty or bitterness.
+
+May your fire burn away lies and fear,
+leaving courage and clear sight.
+Ayibobo, Maman Brigitte.
+""",
+    },
+    "Erzulie Freda": {
+        "type": "Lwa",
+        "offerings": [
+            "A glass of champagne or sweet liqueur (if appropriate and respectful)",
+            "Perfume or scented oil in a small dish",
+            "Pink or white flowers",
+            "Pastel candles in safe holders",
+        ],
+        "guidelines": [
+            "Freda is about refined love, not manipulation.",
+            "Avoid asking for control over another person’s will.",
+            "Ask for healing of the heart, self-worth, and good partnership.",
+        ],
+        "sample_words": """
+Erzulie Freda,
+lady of sweet waters, perfume, and tender longing,
+I greet you with respect.
+
+If this offering pleases you,
+pour beauty, self-respect, and healthy love into my life.
+Heal what is bruised in my heart,
+and teach me to love myself without vanity,
+and others without chains.
+
+Keep me away from relationships that are false, cruel, or degrading.
+Bring me instead into connections that honor my soul.
+
+If it is not the time for romance,
+then let your blessing fall as peace and self-love.
+
+Mèsi, Ezili Freda. Ayibobo.
+""",
+    },
+    "Erzulie Dantò": {
+        "type": "Lwa",
+        "offerings": [
+            "Black coffee, strong and sometimes unsweetened",
+            "Blue or red candles, safely tended",
+            "Pork dishes or dark chocolate (where culturally appropriate)",
+        ],
+        "guidelines": [
+            "Dantò is fierce and protective. Come with honesty about pain.",
+            "Focus on protection, boundaries, and courage — not revenge fantasies.",
+            "Remember that justice can also mean walking away and healing.",
+        ],
+        "sample_words": """
+Erzulie Dantò,
+scarred mother, protector of women and children,
+I come to you with the truth of my wounds.
+
+If it is right for you to accept this coffee and light,
+stand over me as a shield.
+Cut the cords that bind me to abuse,
+give me courage to say no,
+and help me defend those who cannot defend themselves.
+
+Guide my anger so it becomes a sword of justice
+and not a fire that burns my own house down.
+
+May your strength sit in my bones.
+Ayibobo, Ezili Dantò.
+""",
+    },
+    "Ogou": {
+        "type": "Lwa",
+        "offerings": [
+            "Rum or strong liquor (if used in your house)",
+            "Red candles in safe holders",
+            "Iron tools placed respectfully near the altar (not random sharp clutter)",
+        ],
+        "guidelines": [
+            "Ogou is about discipline and clear action, not chaos.",
+            "Be prepared to work: Ogou can push for effort, not laziness.",
+            "Ask for strategy, courage, and endurance.",
+        ],
+        "sample_words": """
+Ogou,
+warrior of iron and disciplined fire,
+I salute you.
+
+If it is pleasing to you, accept this drink, this flame, and these tools.
+Sharpen my mind and my will.
+Cut away laziness, confusion, and cowardice.
+
+Teach me how to plan, how to work, and how to stand firm
+without becoming cruel or reckless.
+
+Where I must fight for my life, work, or dignity,
+let me do it with clarity and honor.
+
+Ayibobo, Ogou.
+""",
+    },
+    "Gran Bwa": {
+        "type": "Lwa",
+        "offerings": [
+            "Tobacco, honey, or good rum (if appropriate to your lineage)",
+            "Fresh fruit",
+            "Leaves or herbs gathered respectfully (never stripping plants bare)",
+        ],
+        "guidelines": [
+            "Gran Bwa is forest depth: approach slowly and humbly.",
+            "Spend time in nature, not only at the altar.",
+            "Ask for help understanding which plants and paths are right for you.",
+        ],
+        "sample_words": """
+Gran Bwa,
+master of the deep woods and green mysteries,
+I come to you in humility.
+
+If this light and these offerings please you,
+open my eyes to the wisdom of the living earth.
+Help me respect the plants and places I enter,
+and only take what I truly need.
+
+Root me in strength and patience,
+and help my spirit grow like a tree:
+deep-rooted, flexible, and hard to uproot.
+
+Ayibobo, Gran Bwa.
+""",
+    },
+}
+
+# =========================
 # HELPERS
 # =========================
 
@@ -516,18 +866,21 @@ def media_image(key: str, caption: str = "", width=None):
     if not url:
         st.info(f"[{key}] image not configured.")
         return
+
     if url.startswith("images/") or url.startswith("./images/"):
         try:
             st.image(url, caption=caption or None, use_column_width=(width is None), width=width)
         except Exception as e:
             st.error(f"[{key}] local image error: {e}")
         return
+
     if url.startswith("http://") or url.startswith("https://"):
         try:
             st.image(url, caption=caption or None, use_column_width=(width is None), width=width)
         except Exception as e:
             st.error(f"[{key}] remote image error: {e}")
         return
+
     st.warning(f"[{key}] value does not look like a path or URL: {url}")
 
 
@@ -651,6 +1004,8 @@ def page_home():
             - New Orleans & Marie Laveau  
             - Hoodoo / Rootwork  
             - Ancestor remembrance  
+            - Supplications & Offerings  
+            - Resources & Supplies  
             """
         )
 
@@ -708,7 +1063,6 @@ def page_lwa():
         unsafe_allow_html=True,
     )
 
-    # Papa Legba
     with st.expander("Papa Legba – Gatekeeper at the Crossroads", expanded=True):
         st.markdown(
             """
@@ -722,7 +1076,6 @@ def page_lwa():
         st.markdown("**Video**")
         media_video("PAPA_LEGBA_VIDEO_URL")
 
-    # Damballa
     with st.expander("Damballa – Serpent Creator"):
         st.markdown(
             """
@@ -735,7 +1088,6 @@ def page_lwa():
         st.markdown("**Video**")
         media_video("DAMBALLA_VIDEO_URL")
 
-    # Ezili
     with st.expander("Ezili Freda & Ezili Dantò – Hearts, Wounds & Protection"):
         st.markdown(
             """
@@ -751,7 +1103,6 @@ def page_lwa():
         st.markdown("**Video**")
         media_video("EZILI_VIDEO_URL")
 
-    # Ogou
     with st.expander("Ogou – Iron, War & Discipline"):
         st.markdown(
             """
@@ -765,7 +1116,6 @@ def page_lwa():
         st.markdown("**Video**")
         media_video("OGOU_VIDEO_URL")
 
-    # Baron Samedi / Gede
     with st.expander("Baron Samedi & the Gede – Cemeteries, Ancestors & Raw Truth"):
         st.markdown(
             """
@@ -783,7 +1133,6 @@ def page_lwa():
     st.markdown("### Lwa Visual – Additional Illustration")
     media_image("LOA_SYMBOL_MAP_URL", "Lwa symbols / map (if configured)")
 
-    # Portrait gallery
     st.markdown("---")
     st.markdown("### Lwa / Loa Portraits with Descriptions")
     st.markdown(
@@ -953,6 +1302,202 @@ def page_ancestors():
 
     st.markdown("### Ancestor reflection / ritual video")
     media_video("ANCESTOR_VIDEO_URL")
+
+    render_footer()
+
+
+def page_supplications():
+    """Supplications & Offerings (dropdown-based)."""
+    render_header()
+    st.subheader("Supplications & Offerings – Speaking with Respect")
+
+    st.markdown(
+        """
+        This section gives **non-harmful**, respectful patterns for speaking with your Ancestors and
+        selected lwa. It is **not** a replacement for initiation, house rules, or the guidance of elders.
+
+        Use this page to:
+        - Understand common *offerings* associated with each spirit.  
+        - Get a feel for the *tone* of respectful supplication.  
+        - Focus your work on **healing, protection, courage, clarity, and right order**, not on harm.
+        """
+    )
+
+    spirit_names = list(SUPPLICATION_DATA.keys())
+    choice = st.selectbox("Choose who you wish to address:", spirit_names, index=0)
+
+    data = SUPPLICATION_DATA[choice]
+
+    st.markdown("---")
+    st.markdown(f"### {choice} – Suggested Offerings & Approach")
+
+    col1, col2 = st.columns([1.2, 1])
+
+    with col1:
+        st.markdown("#### Offerings (general examples)")
+        st.markdown(
+            "<ul>" + "".join([f"<li>{o}</li>" for o in data["offerings"]]) + "</ul>",
+            unsafe_allow_html=True,
+        )
+
+        st.markdown("#### Guidelines")
+        st.markdown(
+            "<ul>" + "".join([f"<li>{g}</li>" for g in data["guidelines"]]) + "</ul>",
+            unsafe_allow_html=True,
+        )
+
+        st.markdown(
+            """
+            <p style="font-size: 0.9rem; opacity: 0.9;">
+            <strong>Always obey</strong> the rules of your own house/temple, and the counsel of elders.
+            These examples are for orientation and reflection, not a fixed ritual script.
+            </p>
+            """,
+            unsafe_allow_html=True,
+        )
+
+    with col2:
+        st.markdown("#### Sample Supplication (you can adapt this)")
+        st.text_area(
+            "Example words you might say quietly at your altar:",
+            value=data["sample_words"].strip(),
+            height=260,
+        )
+
+    st.markdown("---")
+    st.markdown(
+        """
+        **Practical tip:**  
+        Before you ask for anything, take a moment to:
+        - Breathe slowly and ground yourself.  
+        - Name what you’re grateful for.  
+        - Be clear about what you’re asking and why.  
+        - Be willing to listen in dreams, intuition, and the behavior of life over time.
+        """
+    )
+
+    render_footer()
+
+
+def page_resources():
+    """Resources & Supplies – now including curated shop list."""
+    render_header()
+    st.subheader("Resources & Supplies – Study, Shops & Ethical Notes")
+
+    st.markdown(
+        """
+        This section is here to help you think about:
+        - **How to study** these traditions with respect.  
+        - **Where to look** for supplies and tools in a grounded way.  
+        - **How to move** with ethics so your practice stays aligned with healing and justice.
+        """
+    )
+
+    # 1. Study
+    st.markdown("### 1. Study & Books (Orientation)")
+    st.markdown(
+        """
+        Look for books and materials that are:
+        - Written by practitioners from within the culture.  
+        - Recommended by temples, houses, or long-standing communities.  
+        - Clear about the difference between **Vodun / Vodou / Voodoo / Hoodoo**.  
+
+        When possible, look for:
+        - Histories of <strong>Haitian Vodou</strong> that discuss the 1791 uprising.  
+        - Works on <strong>Louisiana Voodoo</strong> and <strong>Marie Laveau</strong> that cite real archives.  
+        - Studies of <strong>Hoodoo / Rootwork</strong> that center Black experience and survival.  
+        """,
+        unsafe_allow_html=True,
+    )
+
+    # 2. Curated shops
+    st.markdown("---")
+    st.markdown("### 2. Curated Hoodoo & Spiritual Supply Shops")
+    st.markdown(
+        """
+        Below are some shops and platforms connected to Hoodoo, rootwork, and Black-owned spiritual
+        businesses. Always read each shop’s own descriptions, policies, and lineage notes so you can decide
+        what feels aligned with your practice.
+        """
+    )
+
+    for shop in HOODOO_SUPPLY_SHOPS:
+        st.markdown(
+            f"""
+            <div class="vh-card">
+                <h3>{shop['name']}</h3>
+                <p style="font-size: 0.95rem; font-style: italic; opacity:0.95;">
+                    {shop['tagline']}
+                </p>
+                <p>{shop['description']}</p>
+                <p style="font-size: 0.9rem; opacity:0.9;">
+                    <strong>Location / Reach:</strong> {shop['location']}
+                </p>
+                <p>
+                    <a href="{shop['url']}" target="_blank" style="color:#80cbc4; text-decoration:none;">
+                        🔗 Visit {shop['name']} website
+                    </a>
+                </p>
+            </div>
+            """,
+            unsafe_allow_html=True,
+        )
+
+    # 3. Botanicas & local
+    st.markdown("### 3. Botanicas & Local Supply Shops")
+    st.markdown(
+        """
+        For candles, herbs, oils, and other physical items, beyond the list above:
+
+        - Search locally for **“botanica”**, **“spiritual supply shop”**, or **“occult shop”** that:
+            - Is frequented by Caribbean / Latinx / African-diasporic communities, or  
+            - Has staff who actually know the traditions they stock.  
+        - When buying online:
+            - Prefer shops that are transparent about who runs them.  
+            - Read policies and reviews carefully.  
+            - Support Black and Afro-Caribbean owned businesses where you can.  
+
+        Common items you might look for (always within your own house rules):
+        - Glass-encased candles (white, purple, red, blue, etc.).  
+        - Basic herbs: basil, bay leaf, rosemary, hyssop, etc.  
+        - Florida Water or similar colognes used in cleansing and blessing.  
+        - Small statues, pictures of saints (if you work in a Catholic-syncretic current).  
+        """
+    )
+
+    # 4. Elders & houses
+    st.markdown("### 4. Working with Elders, Priests & Houses")
+    st.markdown(
+        """
+        Because these are **living religions and systems**, not just “spells,” the strongest path is
+        relationship with real communities:
+
+        - Haitian Vodou temples (lakou, sosyete)  
+        - West African Vodun shrines and families  
+        - New Orleans houses or churches that continue work in this line  
+        - Experienced rootworkers and conjure folk with community reputation  
+
+        Signs of trustworthy people:
+        - They are honest about what they know and do not know.  
+        - They are not trying to sell you instant power or initiation in a weekend.  
+        - They encourage you to grow in maturity and responsibility, not fear.  
+        """
+    )
+
+    # 5. Ethics
+    st.markdown("### 5. Ethical Compass for Your Practice")
+    st.markdown(
+        """
+        As you use this app and any other resource, ask:
+
+        - Does this work aim at **healing, protection, justice, clarity, and right order**?  
+        - Am I respecting the dead, the living, and the spirits I’m calling on?  
+        - Am I crossing someone else’s will in ways that mirror abuse or control?  
+
+        If the answer feels off, **pause**.  
+        Talk to elders, pray, and re-align your intentions before moving forward.
+        """
+    )
 
     render_footer()
 
@@ -1141,18 +1686,25 @@ def main():
             "New Orleans & Marie Laveau",
             "Hoodoo / Rootwork",
             "Ancestor Veneration",
+            "Supplications & Offerings",
+            "Resources & Supplies",
             "Media Gallery",
             "Disclaimers",
             "Admin",
         ]
-        choice = st.radio("Navigate", pages, index=pages.index(st.session_state["page"]))
+        # Safe index
+        current = st.session_state["page"]
+        if current not in pages:
+            current = "Home"
+            st.session_state["page"] = "Home"
+
+        choice = st.radio("Navigate", pages, index=pages.index(current))
         st.session_state["page"] = choice
 
         # --- Louisiana Mojo Music block ---
         st.markdown("---")
         st.markdown("### Louisiana \"Mojo Music\"")
 
-        # YouTube player – red glow tile
         st.markdown(
             """
             <div class="mojo-video-glow mojo-video-container">
@@ -1168,7 +1720,6 @@ def main():
             unsafe_allow_html=True,
         )
 
-        # Mojo bag image – golden glow tile
         mojo_bag_url = st.secrets.get("MOJO_BAG_IMAGE_URL", "")
         if mojo_bag_url:
             st.markdown(
@@ -1198,6 +1749,10 @@ def main():
         page_hoodoo()
     elif choice == "Ancestor Veneration":
         page_ancestors()
+    elif choice == "Supplications & Offerings":
+        page_supplications()
+    elif choice == "Resources & Supplies":
+        page_resources()
     elif choice == "Media Gallery":
         page_gallery()
     elif choice == "Disclaimers":
@@ -1210,4 +1765,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
