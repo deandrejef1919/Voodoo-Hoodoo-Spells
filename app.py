@@ -407,6 +407,8 @@ def page_lwa():
             """
         )
         media_image("PAPA_LEGBA_IMAGE_URL", "Papa Legba – gatekeeper imagery")
+        # Optional: veve / symbol for Papa Legba
+        media_image("PAPA_LEGBA_VEVE_URL", "Veve of Papa Legba (symbol at the crossroads)")
         st.markdown("**Video**")
         media_video("PAPA_LEGBA_VIDEO_URL")
 
@@ -419,6 +421,7 @@ def page_lwa():
             """
         )
         media_image("DAMBALLA_IMAGE_URL", "Damballa – serpent creator imagery")
+        media_image("DAMBALLA_VEVE_URL", "Veve of Damballa (serpent and sky)")
         st.markdown("**Video**")
         media_video("DAMBALLA_VIDEO_URL")
 
@@ -433,6 +436,8 @@ def page_lwa():
         )
         media_image("EZILI_FREDA_IMAGE_URL", "Ezili Freda – refined love")
         media_image("EZILI_DANTO_IMAGE_URL", "Ezili Dantò – protective mother")
+        media_image("EZILI_FREDA_VEVE_URL", "Veve of Ezili Freda")
+        media_image("EZILI_DANTO_VEVE_URL", "Veve of Ezili Dantò")
         st.markdown("**Video**")
         media_video("EZILI_VIDEO_URL")
 
@@ -446,6 +451,7 @@ def page_lwa():
             """
         )
         media_image("OGOU_IMAGE_URL", "Ogou – warrior and iron imagery")
+        media_image("OGOU_VEVE_URL", "Veve of Ogou (iron, tools, war)")
         st.markdown("**Video**")
         media_video("OGOU_VIDEO_URL")
 
@@ -459,14 +465,46 @@ def page_lwa():
             """
         )
         media_image("BARON_SAMEDI_IMAGE_URL", "Baron Samedi / Gede imagery")
+        media_image("BARON_SAMEDI_VEVE_URL", "Veve of Baron Samedi / Gede")
         st.markdown("**Video**")
         media_video("BARON_SAMEDI_VIDEO_URL")
 
-    st.markdown("### Veve & symbol collections (if configured)")
-    if st.secrets.get("LOA_SYMBOL_MAP_URL", ""):
-        media_image("LOA_SYMBOL_MAP_URL", "Loa symbol map or chart")
-    if st.secrets.get("LOA_VEVE_COLLECTION_URL", ""):
-        st.info("LOA_VEVE_COLLECTION_URL points to a folder/collection; you can also store individual veve images as separate keys.")
+    # --- OPTIONAL: existing image you already have at the end ---
+    st.markdown("---")
+    st.markdown("### Lwa Visual – Additional Illustration")
+    # If you already have a single image here, keep this line:
+    media_image("LOA_SYMBOL_MAP_URL", "Lwa symbols / map (if configured)")
+
+    # --- NEW: full Lwa / Loa gallery using your 16 images ---
+    st.markdown("### Lwa / Loa Veve & Icon Gallery")
+
+    gallery_keys = [
+        ("LWA_GALLERY_1_URL",  "Lwa image 1"),
+        ("LWA_GALLERY_2_URL",  "Lwa image 2"),
+        ("LWA_GALLERY_3_URL",  "Lwa image 3"),
+        ("LWA_GALLERY_4_URL",  "Lwa image 4"),
+        ("LWA_GALLERY_5_URL",  "Lwa image 5"),
+        ("LWA_GALLERY_6_URL",  "Lwa image 6"),
+        ("LWA_GALLERY_7_URL",  "Lwa image 7"),
+        ("LWA_GALLERY_8_URL",  "Lwa image 8"),
+        ("LWA_GALLERY_9_URL",  "Lwa image 9"),
+        ("LWA_GALLERY_10_URL", "Lwa image 10"),
+        ("LWA_GALLERY_11_URL", "Lwa image 11"),
+        ("LWA_GALLERY_12_URL", "Lwa image 12"),
+        ("LWA_GALLERY_13_URL", "Lwa image 13"),
+        ("LWA_GALLERY_14_URL", "Lwa image 14"),
+        ("LWA_GALLERY_15_URL", "Lwa image 15"),
+        ("LWA_GALLERY_16_URL", "Lwa image 16"),
+    ]
+
+    cols = st.columns(4)  # 4 images per row
+
+    for idx, (key, label) in enumerate(gallery_keys):
+        col = cols[idx % 4]
+        with col:
+            if st.secrets.get(key, ""):
+                media_image(key, caption=label)
+            # If key not set, we quietly skip it
 
     render_footer()
 
