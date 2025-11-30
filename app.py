@@ -1432,11 +1432,15 @@ def page_vodun():
         st.markdown("**Ancestral art / sculpture**")
         media_image("VODUN_ANCESTRAL_ART_IMAGE_URL", "Ancestral or ritual art in Vodun")
 
+    # 👉 First video (original)
     st.markdown("### Video – Vodun in West Africa")
     media_video("VODUN_VIDEO_URL")
 
-    render_footer()
+    # 👉 Second video (new one you added in secrets)
+    st.markdown("### Additional Vodun Video")
+    media_video("VODUN_VIDEO_2_URL")
 
+    render_footer()
 
 def page_lwa():
     render_header()
