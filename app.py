@@ -183,55 +183,321 @@ st.markdown(APP_CSS, unsafe_allow_html=True)
 # LWA / LOA GALLERY DATA
 # =========================
 
+# =========================
+# LWA / LOA GALLERY DATA
+# =========================
+
 LOA_GALLERY_DATA = [
     {
         "name": "Papa Legba — Atibon Legba",
         "image_key": "LWA_PAPA_LEGBA_URL",
         "description": (
             "Papa Legba is the gatekeeper of the Vodou spiritual realm, standing at the crossroads. "
-            "He is the wise elder who facilitates communication between the human and spirit worlds."
+            "He opens and closes the way between humans and the other lwa. Without him, it is difficult "
+            "to reach the rest of the spirits."
         ),
         "attributes": [
-            "🕯️ <strong>Offerings:</strong> tobacco, rum, coffee, candy",
-            "🔑 <strong>Domains:</strong> crossroads, access, communication",
-            "🎨 <strong>Colors:</strong> brown, yellow, red",
-            "📅 <strong>Day:</strong> Monday",
+            "🕯️ <strong>Offerings:</strong> tobacco, rum, coffee, candy, bread",
+            "🔑 <strong>Domains:</strong> crossroads, access, communication, language, opening roads",
+            "🎨 <strong>Colors:</strong> brown, yellow, red (varies by house)",
+            "📅 <strong>Day:</strong> Often Monday or the beginning of works",
             "🪶 <strong>Sacred animals:</strong> dogs, roosters",
-            "🌿 <strong>Plants:</strong> basil, tobacco, bay leaf",
-            "🗝️ <strong>Loa type:</strong> Rada",
+            "🌿 <strong>Plants:</strong> basil, tobacco, bay leaf, road-side herbs",
+            "⛪ <strong>Catholic syncretism:</strong> St. Peter (keys), sometimes St. Lazarus",
+            "🗝️ <strong>Loa type:</strong> Rada / gatekeeper",
         ],
     },
     {
         "name": "Baron Samedi",
         "image_key": "LWA_BARON_SAMEDI_URL",
         "description": (
-            "Baron Samedi is the Vodou spirit associated with death, the cemetery, and the future. "
-            "Playful, obscene, and deeply wise, he guards the boundary between life and death."
+            "Baron Samedi is a powerful Gede lwa associated with death, graves, and raw truth. "
+            'He stands at the gate of the cemetery, laughs at hypocrisy, and says, "You cannot lie to the dead."'
         ),
         "attributes": [
-            "🕯️ <strong>Offerings:</strong> rum, black coffee, cigars, hot peppers",
-            "💀 <strong>Domains:</strong> death, cemetery gates, ancestral paths",
+            "🕯️ <strong>Offerings:</strong> rum (often with hot pepper), black coffee, cigars, roasted peanuts",
+            "💀 <strong>Domains:</strong> death, cemeteries, ancestors, healing through truth and laughter",
             "🎨 <strong>Colors:</strong> black, purple, white",
-            "🕶️ <strong>Symbols:</strong> top hat, cane, skull, crossbones",
+            "🕶️ <strong>Symbols:</strong> top hat, cane, skull, crossbones, sunglasses, graves",
+            "⛪ <strong>Catholic syncretism:</strong> St. Martin de Porres, St. Gerard, or images of Death",
             "🧿 <strong>Loa type:</strong> Gede / death mysteries",
+        ],
+    },
+    {
+        "name": "Damballa",
+        "image_key": "LWA_DAMBALLA_URL",
+        "description": (
+            "Damballa is a serpent lwa of creation, purity, and blessing. "
+            "He is often approached quietly, with cool offerings, and is linked with the sky, rain, and rivers."
+        ),
+        "attributes": [
+            "🕯️ <strong>Offerings:</strong> white eggs, white rice, milk, clear water, unsalted foods",
+            "🐍 <strong>Domains:</strong> creation, purity, blessing, cosmic order, ancestral wisdom",
+            "🎨 <strong>Colors:</strong> white, pale blue, silver",
+            "🌈 <strong>Symbols:</strong> serpents, arcs, rainbows, coils, flowing lines",
+            "⛪ <strong>Catholic syncretism:</strong> St. Patrick (serpents), sometimes Moses",
+            "💧 <strong>Loa type:</strong> Rada / cool serpent current",
         ],
     },
     {
         "name": "Erzulie Freda",
         "image_key": "LWA_ERZULIE_FREDA_URL",
         "description": (
-            "Erzulie Freda embodies romantic love, beauty, and refined desire. "
-            "She rules perfumes, silks, sweet things, and the pains and joys of the heart."
+            "Erzulie Freda embodies romantic love, beauty, refinement, and delicate desire. "
+            "She rules perfumes, silks, sweet things, and the refined joys and pains of the heart."
         ),
         "attributes": [
-            "🕯️ <strong>Offerings:</strong> perfumes, sweets, champagne, pink flowers",
-            "💗 <strong>Domains:</strong> love, beauty, luxury, emotional longing",
+            "🕯️ <strong>Offerings:</strong> perfumes, sweets, champagne, pink flowers, fine cloth",
+            "💗 <strong>Domains:</strong> love, beauty, luxury, emotional longing, romance",
             "🎨 <strong>Colors:</strong> pink, white, gold",
-            "💍 <strong>Symbols:</strong> hearts, mirrors, fine jewelry",
+            "💍 <strong>Symbols:</strong> hearts, mirrors, jewelry, lace, fans",
+            "⛪ <strong>Catholic syncretism:</strong> Mater Dolorosa, Our Lady of Sorrows",
+            "🌸 <strong>Loa type:</strong> Rada / love and refinement",
         ],
     },
-    # 👉 Add more Loa dictionaries here later (Erzili Dantò, Ogoun Badagri, Simbi, etc.)
+    {
+        "name": "Erzulie Dantò",
+        "image_key": "LWA_ERZULIE_DANTO_URL",
+        "description": (
+            "Erzulie Dantò is a fierce protector of women, children, and the oppressed. "
+            "She carries scars and embodies a mother's rage, love, and determination to survive."
+        ),
+        "attributes": [
+            "🕯️ <strong>Offerings:</strong> rum with hot pepper, pork, dark coffee, hearty foods",
+            "❤️ <strong>Domains:</strong> protection, motherhood, vengeance against injustice, survival",
+            "🎨 <strong>Colors:</strong> blue, red, sometimes black",
+            "🗡️ <strong>Symbols:</strong> heart pierced by a dagger, scars, flames, cauldrons",
+            "⛪ <strong>Catholic syncretism:</strong> Black Madonna of Czestochowa",
+            "🔥 <strong>Loa type:</strong> Petro / fiery protective mother",
+        ],
+    },
+    {
+        "name": "Ogou",
+        "image_key": "LWA_OGOU_URL",
+        "description": (
+            "Ogou (Ogoun) is a powerful warrior lwa of iron, tools, soldiers, politics, and disciplined will. "
+            "He stands with those who fight hard battles and work with metal and fire."
+        ),
+        "attributes": [
+            "🕯️ <strong>Offerings:</strong> rum, red peppers, grilled meat, cigars, iron objects",
+            "⚔️ <strong>Domains:</strong> war, iron, tools, strategy, courage, revolution",
+            "🎨 <strong>Colors:</strong> red, blue, metallic tones",
+            "🛡️ <strong>Symbols:</strong> swords, shields, machetes, metal tools, uniforms",
+            "⛪ <strong>Catholic syncretism:</strong> St. James the Greater (Santiago), St. George",
+            "🔥 <strong>Loa type:</strong> Ogou family (often Petro-Rada blend)",
+        ],
+    },
+    {
+        "name": "Agwe",
+        "image_key": "LWA_AGWE_URL",
+        "description": (
+            "Agwe is a lwa of the sea, ships, and deep waters. He is captain of the ocean and "
+            "protects those whose lives are tied to the sea and sea-travel."
+        ),
+        "attributes": [
+            "🕯️ <strong>Offerings:</strong> champagne, clear rum, bread, seafood, offerings cast into clean water",
+            "🌊 <strong>Domains:</strong> ocean, ships, sailors, sea-journeys, naval matters",
+            "🎨 <strong>Colors:</strong> deep blue, sea-green, white",
+            "⚓ <strong>Symbols:</strong> boats, anchors, oars, shells, waves",
+            "⛪ <strong>Catholic syncretism:</strong> St. Ulrich, St. Raphael, or seafaring saints (varies by house)",
+            "💧 <strong>Loa type:</strong> Rada / maritime current",
+        ],
+    },
+    {
+        "name": "Kouzen Azaka",
+        "image_key": "LWA_AZAKA_URL",
+        "description": (
+            "Kouzen Azaka (Cousin Azaka) is a peasant farmer lwa of fields, harvest, and rural families. "
+            "He values hard work, honesty, and simple, practical living."
+        ),
+        "attributes": [
+            "🕯️ <strong>Offerings:</strong> corn, beans, bread, roasted foods, simple peasant dishes",
+            "🌾 <strong>Domains:</strong> agriculture, harvests, rural life, food security",
+            "🎨 <strong>Colors:</strong> blue, straw-yellow, brown",
+            "👒 <strong>Symbols:</strong> straw hat, sack, peasant clothes, tools of the field",
+            "⛪ <strong>Catholic syncretism:</strong> St. Isidore the Farmer",
+            "🌱 <strong>Loa type:</strong> Rada / agrarian current",
+        ],
+    },
+    {
+        "name": "Gran Bois",
+        "image_key": "LWA_GRAN_BOIS_URL",
+        "description": (
+            "Gran Bois is the lwa of the deep forest and wild places. "
+            "He holds the mysteries of roots, herbs, trees, and hidden paths."
+        ),
+        "attributes": [
+            "🕯️ <strong>Offerings:</strong> fruits, roots, leaves, rum, forest offerings",
+            "🌳 <strong>Domains:</strong> wilderness, woods, herbalism, untamed nature",
+            "🎨 <strong>Colors:</strong> green, brown, forest tones",
+            "🍃 <strong>Symbols:</strong> trees, roots, vines, winding trails",
+            "⛪ <strong>Catholic syncretism:</strong> sometimes St. Sebastian or nature-associated saints",
+            "🌿 <strong>Loa type:</strong> Rada / forest and plant current",
+        ],
+    },
+    {
+        "name": "Gede / Guedes",
+        "image_key": "LWA_GUEDES_URL",
+        "description": (
+            "The Gede (Guedes) are a family of spirits linked with death, sex, fertility, and raw humor. "
+            "They heal through shock, laughter, and truth that cannot be hidden."
+        ),
+        "attributes": [
+            "🕯️ <strong>Offerings:</strong> rum with hot pepper, black coffee, cigarettes, sweets",
+            "💀 <strong>Domains:</strong> death, graves, fertility, raw truth, protection of children",
+            "🎨 <strong>Colors:</strong> black, purple, white",
+            "🎭 <strong>Symbols:</strong> skulls, sunglasses, canes, top hats, jokes",
+            "⛪ <strong>Catholic syncretism:</strong> St. Gerard, St. Martin de Porres (varies), sometimes folk images of Death",
+            "🧿 <strong>Loa type:</strong> Gede family",
+        ],
+    },
+    {
+        "name": "Marinette",
+        "image_key": "LWA_MARINNETTE_URL",
+        "description": (
+            "Marinette is a fierce Petro lwa linked with revolutionary fire and breaking chains. "
+            "She is wild, intense, and not approached lightly."
+        ),
+        "attributes": [
+            "🕯️ <strong>Offerings:</strong> strong rum, hot pepper, roasted meat, fire itself",
+            "🔥 <strong>Domains:</strong> liberation, burning away oppression, untamed fire",
+            "🎨 <strong>Colors:</strong> red, black, animal-print tones",
+            "🐐 <strong>Symbols:</strong> flames, wild animals, broken chains",
+            "⛪ <strong>Catholic syncretism:</strong> often connected with fierce Marian or martyr images (varies by line)",
+            "⚡ <strong>Loa type:</strong> Petro / revolutionary fire",
+        ],
+    },
+    {
+        "name": "La Sirèn",
+        "image_key": "LWA_LASIREN_URL",
+        "description": (
+            "La Sirèn is a mermaid lwa of deep water, beauty, music, and hidden wealth. "
+            "She sings from below the surface and often appears in dreams and visions."
+        ),
+        "attributes": [
+            "🕯️ <strong>Offerings:</strong> mirrors, perfumes, jewelry, white wine, seashells",
+            "🌊 <strong>Domains:</strong> oceans, music, dreams, psychic visions, wealth beneath the surface",
+            "🎨 <strong>Colors:</strong> blue, turquoise, white, silver",
+            "🐚 <strong>Symbols:</strong> shells, combs, mirrors, waves",
+            "⛪ <strong>Catholic syncretism:</strong> often Our Lady of Regla, Stella Maris, or sea-connected Mary images",
+            "💧 <strong>Loa type:</strong> Rada / marine mystery",
+        ],
+    },
+    {
+        "name": "Bossou / Boso",
+        "image_key": "LWA_BOSO_URL",
+        "description": (
+            "Bossou (Boso) is a bull-associated lwa of grounded, stubborn strength. "
+            "He embodies endurance, rooted power, and fierce protection."
+        ),
+        "attributes": [
+            "🕯️ <strong>Offerings:</strong> strong liquor, corn, meat, sturdy foods",
+            "🐂 <strong>Domains:</strong> strength, endurance, protection, grounded aggression",
+            "🎨 <strong>Colors:</strong> red, brown, dark earth tones",
+            "🛡️ <strong>Symbols:</strong> bull horns, hooves, earth, heavy steps",
+            "⛪ <strong>Catholic syncretism:</strong> sometimes associated with strong warrior saints (varies by house)",
+            "💪 <strong>Loa type:</strong> often Petro / strong protective force",
+        ],
+    },
+    {
+        "name": "Adja / Adjakò",
+        "image_key": "LWA_ADJAKO_URL",
+        "description": (
+            "Adja (Adjakò) is associated with movement, rhythm, and certain rural or forest energies. "
+            "He carries a lively, shifting presence connected with drums and communal motion."
+        ),
+        "attributes": [
+            "🕯️ <strong>Offerings:</strong> rum, simple foods, music, drumming",
+            "🥁 <strong>Domains:</strong> rhythm, processions, communal movement, transitions",
+            "🎨 <strong>Colors:</strong> mixed earth and bright colors (varies by temple)",
+            "🎵 <strong>Symbols:</strong> drums, dancing feet, roadways",
+            "⛪ <strong>Catholic syncretism:</strong> not standardized; often tied to local devotions",
+            "🌪️ <strong>Loa type:</strong> moving / rhythmic current",
+        ],
+    },
+    {
+        "name": "Kalfu",
+        "image_key": "LWA_KAFU_URL",
+        "description": (
+            "Kalfu (Carrefour) is a powerful spirit of the night crossroads and dangerous openings. "
+            "He governs pathways that lead into risk, intensity, and shadow."
+        ),
+        "attributes": [
+            "🕯️ <strong>Offerings:</strong> rum, dark foods, sometimes gunpowder (symbolically; never literally in this app)",
+            "🌒 <strong>Domains:</strong> night crossroads, danger, difficult choices, paths of risk",
+            "🎨 <strong>Colors:</strong> red, black, deep blue",
+            "🧿 <strong>Symbols:</strong> crossroads, stars, iron keys, dark roads",
+            "⛪ <strong>Catholic syncretism:</strong> not fixed; often treated carefully and separately",
+            "⚠️ <strong>Loa type:</strong> Petro / powerful crossroads current",
+        ],
+    },
+    {
+        "name": "Sobo",
+        "image_key": "LWA_SOBI_URL",
+        "description": (
+            "Sobo is associated with thunder, storms, and sudden force. "
+            "He brings the crack of energy that clears the air and shakes loose what is stuck."
+        ),
+        "attributes": [
+            "🕯️ <strong>Offerings:</strong> rum, roasted corn, strong savory foods",
+            "⚡ <strong>Domains:</strong> thunder, storms, power, swift action, shock",
+            "🎨 <strong>Colors:</strong> blue, white, storm-grey",
+            "🌩️ <strong>Symbols:</strong> lightning, storm clouds, drums, rain",
+            "⛪ <strong>Catholic syncretism:</strong> sometimes linked to St. Jerome or other strong saints (varies)",
+            "🌧️ <strong>Loa type:</strong> Rada / storm current",
+        ],
+    },
+    {
+        "name": "Maitre Cimetière",
+        "image_key": "LWA_MAITRE_CIMETIERE_URL",
+        "description": (
+            "Maitre Cimetière (Master of the Cemetery) is a graveyard lwa associated with order, silence, "
+            "and the strict rules of the dead. He oversees the resting places and the spiritual law of cemeteries."
+        ),
+        "attributes": [
+            "🕯️ <strong>Offerings:</strong> rum, black coffee, candles placed respectfully in cemeteries",
+            "⚰️ <strong>Domains:</strong> graveyards, tombs, boundaries of the dead, spiritual law",
+            "🎨 <strong>Colors:</strong> black, dark grey, deep purple",
+            "🪦 <strong>Symbols:</strong> tombstones, crosses, graveyard gates",
+            "⛪ <strong>Catholic syncretism:</strong> often St. Expedit, St. Joseph, or cemetery-associated saints",
+            "🧿 <strong>Loa type:</strong> Gede / cemetery guardian",
+        ],
+    },
+    {
+        "name": "Azacca-Medica / Doctor Azacca",
+        "image_key": "LWA_AZACCA_MEDICINE_URL",
+        "description": (
+            "Azacca-Medica (Doctor Azacca) is a healing and herbal-medicine aspect of Azaka, "
+            "connected with folk remedies, plant cures, and community health."
+        ),
+        "attributes": [
+            "🕯️ <strong>Offerings:</strong> herbal infusions, simple foods, small bottles of remedy-like liquids",
+            "🌿 <strong>Domains:</strong> healing, herbs, folk medicine, community health",
+            "🎨 <strong>Colors:</strong> green, white, soft earth tones",
+            "🧺 <strong>Symbols:</strong> baskets of herbs, vials, jars, mortar and pestle",
+            "⛪ <strong>Catholic syncretism:</strong> healing saints like St. Raphael or St. Roch (varies)",
+            "💊 <strong>Loa type:</strong> healing / agrarian aspect",
+        ],
+    },
+    {
+        "name": "Simbi",
+        "image_key": "LWA_SIMBI_URL",
+        "description": (
+            "Simbi is a family of spirits associated with water, magic, communication, and the hidden currents "
+            "of knowledge. He is linked with rivers, streams, and spiritual technologies."
+        ),
+        "attributes": [
+            "🕯️ <strong>Offerings:</strong> clear water, light-colored drinks, river stones, simple sweets",
+            "💧 <strong>Domains:</strong> water, magic, communication, divination, spiritual messages",
+            "🎨 <strong>Colors:</strong> blue, green, aqua",
+            "🌊 <strong>Symbols:</strong> waves, rivers, serpentine currents, flowing lines",
+            "⛪ <strong>Catholic syncretism:</strong> not standardized; varies by lineage",
+            "🔮 <strong>Loa type:</strong> Rada / water-magic and communication",
+        ],
+    },
 ]
+
+
 
 # =========================
 # HELPERS
