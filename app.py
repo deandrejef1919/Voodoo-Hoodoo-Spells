@@ -538,6 +538,60 @@ def page_lwa():
             media_image(loa["image_key"], caption=loa["name"], width=600)
 
         st.markdown("<hr style='border: 1px solid #555; margin-top: 1.2rem; margin-bottom: 1.2rem;'>", unsafe_allow_html=True)
+def page_lwa():
+    render_header()
+    st.subheader("Lwa / Loas – Spirits of Haitian Vodou")
+
+    st.markdown(
+        """
+        In Haitian Vodou, the spirits are called <strong>lwa</strong> (older English spelling: “loas”).
+        They are distinct beings with their own histories, symbols, rhythms, and ways of being served.
+        This page offers visual and short-text orientation to some well-known lwa.
+        """,
+        unsafe_allow_html=True,
+    )
+
+    # (keep your existing expanders here: Papa Legba, Damballa, Ezili, Ogou, Baron, etc.)
+
+    # --- NEW: portraits with descriptions & attributes ---
+    st.markdown("---")
+    st.markdown("### Lwa / Loa Portraits with Descriptions")
+    st.markdown(
+        "Below are visual and symbolic representations of various lwa, "
+        "with imagery, attributes, and a short explanation of who they are."
+    )
+
+    for loa in LOA_GALLERY_DATA:
+        image_url = st.secrets.get(loa["image_key"], "")
+        if not image_url:
+            continue
+
+        st.markdown(f"#### {loa['name']}")
+
+        col_text, col_img = st.columns([2, 3])
+
+        with col_text:
+            # Main description
+            st.markdown(
+                f"<p style='font-size: 17px; line-height: 1.6; font-family: \"Times New Roman\";'>{loa['description']}</p>",
+                unsafe_allow_html=True,
+            )
+            # Attribute lines (emoji bullets)
+            for line in loa.get("attributes", []):
+                st.markdown(
+                    f"<p style='font-size: 15px; line-height: 1.4; font-family: \"Times New Roman\";'>{line}</p>",
+                    unsafe_allow_html=True,
+                )
+
+        with col_img:
+            media_image(loa["image_key"], caption=loa['name'], width=600)
+
+        st.markdown(
+            "<hr style='border: 1px solid #555; margin-top: 1.2rem; margin-bottom: 1.2rem;'>",
+            unsafe_allow_html=True,
+        )
+
+    render_footer()
 
 
 
