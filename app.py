@@ -1083,7 +1083,6 @@ def page_lwa():
             """
         )
         media_image("DAMBALLA_IMAGE_URL", "Damballa – serpent creator imagery")
-        media_image("DAMBALLA_VEVE_URL", "Veve of Damballa (serpent and sky)")
         st.markdown("**Video**")
         media_video("DAMBALLA_VIDEO_URL")
 
@@ -1097,8 +1096,6 @@ def page_lwa():
         )
         media_image("EZILI_FREDA_IMAGE_URL", "Ezili Freda – refined love")
         media_image("EZILI_DANTO_IMAGE_URL", "Ezili Dantò – protective mother")
-        media_image("EZILI_FREDA_VEVE_URL", "Veve of Ezili Freda")
-        media_image("EZILI_DANTO_VEVE_URL", "Veve of Ezili Dantò")
         st.markdown("**Video**")
         media_video("EZILI_VIDEO_URL")
 
@@ -1111,7 +1108,6 @@ def page_lwa():
             """
         )
         media_image("OGOU_IMAGE_URL", "Ogou – warrior and iron imagery")
-        media_image("OGOU_VEVE_URL", "Veve of Ogou (iron, tools, war)")
         st.markdown("**Video**")
         media_video("OGOU_VIDEO_URL")
 
