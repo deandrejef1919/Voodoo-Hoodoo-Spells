@@ -79,12 +79,12 @@ section[data-testid="stSidebar"] {
         inset 0 0 6px rgba(0,0,0,0.7);
 }
 
-/* 🔥 Mojo heartbeat glow for sidebar media */
-.mojo-glow {
+/* 🎶 Mojo tiles in sidebar */
+/* Video tile = red heartbeat */
+.mojo-video-glow {
     border-radius: 16px;
     padding: 0.45rem;
     background: radial-gradient(circle at 50% 0%, #330000 0, #120000 55%, #000000 100%);
-    box-shadow: 0 0 0px rgba(255, 0, 0, 0.0);
     animation: mojo-heartbeat 1.6s ease-in-out infinite;
 }
 .mojo-video-container iframe {
@@ -92,29 +92,34 @@ section[data-testid="stSidebar"] {
     width: 100%;
     height: 118px; /* slightly smaller player */
 }
+
+/* Mojo bag tile = golden heartbeat */
+.mojo-bag-glow {
+    border-radius: 16px;
+    padding: 0.55rem 0.4rem 0.7rem 0.4rem;
+    background: radial-gradient(circle at 50% 0%, #3b2600 0, #120b00 55%, #000000 100%);
+    animation: mojo-heartbeat-gold 1.6s ease-in-out infinite;
+}
 .mojo-bag-container img {
     border-radius: 14px;
     display:block;
     margin:0 auto;
 }
 
-/* Shared heartbeat animation (candle + sidebar) */
+/* Shared heartbeat animations (keep timing in sync) */
 @keyframes mojo-heartbeat {
-    0% {
-        box-shadow: 0 0 0 0 rgba(255, 0, 0, 0.0);
-    }
-    20% {
-        box-shadow: 0 0 25px 8px rgba(255, 0, 0, 0.85);
-    }
-    35% {
-        box-shadow: 0 0 10px 3px rgba(255, 0, 0, 0.45);
-    }
-    55% {
-        box-shadow: 0 0 20px 6px rgba(255, 0, 0, 0.75);
-    }
-    100% {
-        box-shadow: 0 0 0 0 rgba(255, 0, 0, 0.0);
-    }
+    0%   { box-shadow: 0 0 0 0 rgba(255,0,0,0.0); }
+    25%  { box-shadow: 0 0 12px 3px rgba(255,0,0,0.95); }
+    50%  { box-shadow: 0 0 6px 1px rgba(255,0,0,0.55); }
+    75%  { box-shadow: 0 0 10px 2px rgba(255,0,0,0.8); }
+    100% { box-shadow: 0 0 0 0 rgba(255,0,0,0.0); }
+}
+@keyframes mojo-heartbeat-gold {
+    0%   { box-shadow: 0 0 0 0 rgba(255,193,7,0.0); }
+    25%  { box-shadow: 0 0 12px 3px rgba(255,193,7,0.95); }
+    50%  { box-shadow: 0 0 6px 1px rgba(255,193,7,0.55); }
+    75%  { box-shadow: 0 0 10px 2px rgba(255,193,7,0.8); }
+    100% { box-shadow: 0 0 0 0 rgba(255,193,7,0.0); }
 }
 
 /* Cards */
@@ -222,12 +227,10 @@ div.stButton > button:hover {
 st.markdown(APP_CSS, unsafe_allow_html=True)
 
 # =========================
-# LWA / LOA GALLERY DATA (19 matching your text Loas)
+# LWA / LOA GALLERY DATA (19)
 # =========================
 
 LOA_GALLERY_DATA = [
-
-    # 1
     {
         "name": "Papa Legba",
         "image_key": "LWA_PAPA_LEGBA_URL",
@@ -246,8 +249,6 @@ LOA_GALLERY_DATA = [
             "🔥 Classification: Rada",
         ],
     },
-
-    # 2
     {
         "name": "Baron Semedi",
         "image_key": "LWA_BARON_SEMEDI_URL",
@@ -266,8 +267,6 @@ LOA_GALLERY_DATA = [
             "🔥 Classification: Gede",
         ],
     },
-
-    # 3
     {
         "name": "Ogoun Badagri",
         "image_key": "LWA_OGOUN_BADAGRI_URL",
@@ -285,8 +284,6 @@ LOA_GALLERY_DATA = [
             "🔥 Classification: Petro / Nago",
         ],
     },
-
-    # 4
     {
         "name": "Erzule Dantor",
         "image_key": "LWA_ERZULE_DANTOR_URL",
@@ -303,8 +300,6 @@ LOA_GALLERY_DATA = [
             "🔥 Classification: Petro",
         ],
     },
-
-    # 5
     {
         "name": "Damballa Wedo",
         "image_key": "LWA_DAMBALA_WEDO_URL",
@@ -321,8 +316,6 @@ LOA_GALLERY_DATA = [
             "🔥 Classification: Rada",
         ],
     },
-
-    # 6
     {
         "name": "Bossou",
         "image_key": "LWA_BOSSOU_URL",
@@ -336,8 +329,6 @@ LOA_GALLERY_DATA = [
             "🔥 Classification: Nago / Petro",
         ],
     },
-
-    # 7
     {
         "name": "Ti Jan Danto",
         "image_key": "LWA_TI_JAN_DANTO_URL",
@@ -351,8 +342,6 @@ LOA_GALLERY_DATA = [
             "🔥 Classification: Petro",
         ],
     },
-
-    # 8
     {
         "name": "Maman Brigitte",
         "image_key": "LWA_MAMAN_BRIGITTE_URL",
@@ -367,8 +356,6 @@ LOA_GALLERY_DATA = [
             "🔥 Classification: Gede",
         ],
     },
-
-    # 9
     {
         "name": "Kouzen Azaka",
         "image_key": "LWA_KOUZEN_AZAKA_URL",
@@ -382,8 +369,6 @@ LOA_GALLERY_DATA = [
             "🔥 Classification: Rada",
         ],
     },
-
-    # 10
     {
         "name": "Marasa Dosou",
         "image_key": "LWA_MARASA_DOSOU_URL",
@@ -400,8 +385,6 @@ LOA_GALLERY_DATA = [
             "🔥 Classification: Rada",
         ],
     },
-
-    # 11
     {
         "name": "Kalfu",
         "image_key": "LWA_KALFU_URL",
@@ -416,8 +399,6 @@ LOA_GALLERY_DATA = [
             "🔥 Classification: Petro",
         ],
     },
-
-    # 12
     {
         "name": "Damballa",
         "image_key": "LWA_DAMBALLA_URL",
@@ -432,8 +413,6 @@ LOA_GALLERY_DATA = [
             "🔥 Classification: Rada",
         ],
     },
-
-    # 13
     {
         "name": "Simbi",
         "image_key": "LWA_SIMBI_URL",
@@ -447,8 +426,6 @@ LOA_GALLERY_DATA = [
             "🔥 Classification: Rada / Kongo",
         ],
     },
-
-    # 14
     {
         "name": "Klemezine",
         "image_key": "LWA_KLEMEZINE_URL",
@@ -462,8 +439,6 @@ LOA_GALLERY_DATA = [
             "🔥 Classification: Rada / Kongo",
         ],
     },
-
-    # 15
     {
         "name": "Ayizan Velekete",
         "image_key": "LWA_AYIZAN_VELEKETE_URL",
@@ -478,8 +453,6 @@ LOA_GALLERY_DATA = [
             "🔥 Classification: Rada",
         ],
     },
-
-    # 16
     {
         "name": "Gran Bwa",
         "image_key": "LWA_GRAN_BWA_URL",
@@ -493,8 +466,6 @@ LOA_GALLERY_DATA = [
             "🔥 Classification: Kongo",
         ],
     },
-
-    # 17
     {
         "name": "Hogou Ferralle",
         "image_key": "LWA_HOGOU_FERALLE_URL",
@@ -508,8 +479,6 @@ LOA_GALLERY_DATA = [
             "🔥 Classification: Nago / Petro",
         ],
     },
-
-    # 18
     {
         "name": "Erzulie Freda",
         "image_key": "LWA_ERZULIE_FREDA_URL",
@@ -523,8 +492,6 @@ LOA_GALLERY_DATA = [
             "🔥 Classification: Rada",
         ],
     },
-
-    # 19
     {
         "name": "Brav Gede",
         "image_key": "LWA_BRAV_GEDE_URL",
@@ -538,7 +505,6 @@ LOA_GALLERY_DATA = [
             "🔥 Classification: Gede",
         ],
     },
-
 ]
 
 # =========================
@@ -546,46 +512,30 @@ LOA_GALLERY_DATA = [
 # =========================
 
 def media_image(key: str, caption: str = "", width=None):
-    """
-    Load image from st.secrets[key].
-    - If value starts with 'images/', treat as local file path.
-    - If value starts with 'http', treat as remote URL.
-    """
     url = st.secrets.get(key, "")
     if not url:
         st.info(f"[{key}] image not configured.")
         return
-
-    # Local file path
     if url.startswith("images/") or url.startswith("./images/"):
         try:
             st.image(url, caption=caption or None, use_column_width=(width is None), width=width)
         except Exception as e:
             st.error(f"[{key}] local image error: {e}")
         return
-
-    # Remote URL
     if url.startswith("http://") or url.startswith("https://"):
         try:
             st.image(url, caption=caption or None, use_column_width=(width is None), width=width)
         except Exception as e:
             st.error(f"[{key}] remote image error: {e}")
         return
-
-    # Fallback
     st.warning(f"[{key}] value does not look like a path or URL: {url}")
 
 
 def media_video(key: str):
-    """
-    Load video from st.secrets[key].
-    Works for YouTube URLs, mp4 URLs, etc.
-    """
     url = st.secrets.get(key, "")
     if not url:
         st.info(f"[{key}] video not configured.")
         return
-
     try:
         st.video(url)
     except Exception as e:
@@ -829,12 +779,11 @@ def page_lwa():
         st.markdown("**Video**")
         media_video("BARON_SAMEDI_VIDEO_URL")
 
-    # Additional illustration if configured
     st.markdown("---")
     st.markdown("### Lwa Visual – Additional Illustration")
     media_image("LOA_SYMBOL_MAP_URL", "Lwa symbols / map (if configured)")
 
-    # --- Portraits with descriptions & attributes ---
+    # Portrait gallery
     st.markdown("---")
     st.markdown("### Lwa / Loa Portraits with Descriptions")
     st.markdown(
@@ -852,12 +801,10 @@ def page_lwa():
         col_text, col_img = st.columns([2, 3])
 
         with col_text:
-            # Main description paragraph
             st.markdown(
                 f"<p style='font-size: 17px; line-height: 1.6; font-family: \"Times New Roman\";'>{loa['description']}</p>",
                 unsafe_allow_html=True,
             )
-            # Attribute lines with emojis
             for line in loa.get("attributes", []):
                 st.markdown(
                     f"<p style='font-size: 15px; line-height: 1.4; font-family: \"Times New Roman\";'>{line}</p>",
@@ -1122,7 +1069,6 @@ def page_admin():
         render_footer()
         return
 
-    # Logged in
     st.success("You are logged in as admin.")
     if st.button("🚪 Log Out"):
         st.session_state["is_admin"] = False
@@ -1206,10 +1152,10 @@ def main():
         st.markdown("---")
         st.markdown("### Louisiana \"Mojo Music\"")
 
-        # YouTube player (slightly smaller, clean, centered)
+        # YouTube player – red glow tile
         st.markdown(
             """
-            <div class="mojo-glow mojo-video-container">
+            <div class="mojo-video-glow mojo-video-container">
                 <iframe
                     src="https://www.youtube.com/embed/UuA4eRCvTbo?rel=0&modestbranding=1&loop=1&playlist=UuA4eRCvTbo"
                     title="Louisiana Mojo Music"
@@ -1222,16 +1168,16 @@ def main():
             unsafe_allow_html=True,
         )
 
-        # Mojo bag image under the player (only)
+        # Mojo bag image – golden glow tile
         mojo_bag_url = st.secrets.get("MOJO_BAG_IMAGE_URL", "")
         if mojo_bag_url:
             st.markdown(
                 f"""
-                <div class="mojo-glow mojo-bag-container" style="margin-top: 0.85rem; text-align:center;">
+                <div class="mojo-bag-glow mojo-bag-container" style="margin-top: 0.85rem; text-align:center;">
                     <img src="{mojo_bag_url}" alt="Mojo Bag"
-                         style="width:78%; max-width:165px;" />
+                         style="width:70%; max-width:140px;" />
                     <div style="margin-top:0.35rem; font-size:0.9rem; opacity:0.9; font-family:'Times New Roman';">
-                        Working Mojo Hand
+                        Mojo Bag
                     </div>
                 </div>
                 """,
