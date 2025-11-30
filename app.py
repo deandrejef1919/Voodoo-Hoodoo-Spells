@@ -3,22 +3,19 @@ import random
 import datetime
 from pathlib import Path
 
-# =========================
+# ------------------------------------------------------
 # BASIC CONFIG
-# =========================
-
+# ------------------------------------------------------
 st.set_page_config(
     page_title="Voodoo & Hoodoo Spells",
     page_icon="🕯️",
     layout="wide",
 )
 
-
-# =========================
-# CSS THEMES (DAY & NIGHT)
-# =========================
-
-APP_CSS_DAY = """
+# ------------------------------------------------------
+# CORE THEME (single red / black / green theme)
+# ------------------------------------------------------
+APP_CSS = """
 <style>
 body, .stApp {
     background-color: #050505;
@@ -28,7 +25,6 @@ body, .stApp {
     line-height: 1.75;
 }
 
-/* Main container width & padding */
 .block-container {
     max-width: 1100px;
     padding-top: 1.2rem;
@@ -83,7 +79,7 @@ section[data-testid="stSidebar"] {
         inset 0 0 6px rgba(0,0,0,0.7);
 }
 
-/* 🔥 Mojo heartbeat glow for sidebar media (separate tiles, synced timing) */
+/* Mojo tiles (separate pulse for each) */
 .mojo-video-glow {
     border-radius: 16px;
     padding: 0.45rem;
@@ -109,7 +105,7 @@ section[data-testid="stSidebar"] {
     margin:0 auto;
 }
 
-/* Shared heartbeat animation for header candle */
+/* Heartbeat / candle animation */
 @keyframes mojo-heartbeat {
     0% {
         box-shadow: 0 0 0 0 rgba(255, 0, 0, 0.0);
@@ -128,21 +124,19 @@ section[data-testid="stSidebar"] {
     }
 }
 
-/* Sharper red pulse for player */
+/* Sharper pulses */
 @keyframes mojo-video-pulse {
     0%   { box-shadow: 0 0 4px rgba(255, 0, 0, 0.6); }
     50%  { box-shadow: 0 0 14px rgba(255, 0, 0, 1.0); }
     100% { box-shadow: 0 0 4px rgba(255, 0, 0, 0.6); }
 }
-
-/* Golden pulse for Mojo Bag */
 @keyframes mojo-bag-pulse {
     0%   { box-shadow: 0 0 4px rgba(255, 215, 0, 0.6); }
     50%  { box-shadow: 0 0 14px rgba(255, 215, 0, 1.0); }
     100% { box-shadow: 0 0 4px rgba(255, 215, 0, 0.6); }
 }
 
-/* Incense burner & smoke animation */
+/* Incense smoke */
 .incense-container {
     text-align: center;
     margin-top: 0.5rem;
@@ -189,7 +183,7 @@ h2, h3, h4 {
     font-family: "Times New Roman", Times, serif;
 }
 
-/* Shield glow animation */
+/* Shield buttons */
 @keyframes shieldGlow {
     0% {
         box-shadow:
@@ -204,8 +198,6 @@ h2, h3, h4 {
             0 0 12px rgba(0,0,0,0.9);
     }
 }
-
-/* Zulu shield-like buttons */
 div.stButton > button {
     border-radius: 999px / 70px;
     border-width: 2px;
@@ -217,27 +209,18 @@ div.stButton > button {
     letter-spacing: 0.09em;
     font-family: "Times New Roman", Times, serif;
     font-size: 15px;
-
     background-image:
         linear-gradient(135deg, #f44336 0%, #000000 40%, #1b5e20 100%),
         radial-gradient(circle at 16% 0%, rgba(255,255,255,0.25) 0%, transparent 60%);
     background-blend-mode: overlay;
-
     color: #fff7ec;
     animation: shieldGlow 2.4s ease-in-out infinite alternate;
     transform: translateY(0);
 }
-
-/* Spear icon */
 div.stButton > button::before {
     content: "⚔️";
     margin-right: 0.35rem;
-    text-shadow:
-        0 0 6px rgba(244,67,54,0.9),
-        0 0 10px rgba(0,0,0,0.7);
 }
-
-/* Button hover */
 div.stButton > button:hover {
     border-color: #f44336;
     transform: translateY(-2px);
@@ -253,674 +236,342 @@ div.stButton > button:hover {
     border-top: 1px solid rgba(76,175,80,0.7);
     opacity: 0.95;
 }
-
-/* Pill label */
-.vh-pill {
-    display:inline-block;
-    padding: 0.18rem 0.6rem;
-    border-radius: 999px;
-    font-size: 0.78rem;
-    text-transform: uppercase;
-    letter-spacing: 0.12em;
-    border: 1px solid rgba(76,175,80,0.9);
-    color: #e0f2f1;
-}
 </style>
 """
+st.markdown(APP_CSS, unsafe_allow_html=True)
 
-# Night theme: keep structure but slightly colder / more purple
-APP_CSS_NIGHT = """
-<style>
-body, .stApp {
-    background-color: #020208;
-    color: #f1e6ff;
-    font-family: "Times New Roman", Times, serif;
-    font-size: 16px;
-    line-height: 1.75;
-}
-.block-container {
-    max-width: 1100px;
-    padding-top: 1.2rem;
-}
-.vh-header { text-align:center; padding: 0.75rem 0 0.25rem 0; }
-.vh-logo {
-    font-size: 3.4rem;
-    text-shadow:
-        0 0 12px rgba(156,39,176,0.95),
-        0 0 20px rgba(0,0,0,1.0);
-    animation: mojo-heartbeat 1.6s ease-in-out infinite;
-}
-.vh-title {
-    font-size: 2.4rem;
-    font-weight: 800;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: #ce93d8;
-    text-shadow:
-        0 0 12px rgba(156,39,176,1.0),
-        0 0 26px rgba(0,0,0,1.0);
-}
-.vh-subtitle { font-size: 1rem; opacity: 0.95; }
-
-section[data-testid="stSidebar"] {
-    background: radial-gradient(circle at top, #210038 0%, #04000a 55%, #000 100%);
-    border-right: 1px solid rgba(103,58,183,0.8);
-}
-
-.sidebar-logo {
-    text-align:center;
-    font-size: 1rem;
-    font-weight: 700;
-    margin: 0.75rem 0 1.2rem 0;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-    padding: 0.6rem 0.4rem;
-    border-radius: 14px;
-    background: radial-gradient(circle at 30% 0%, #3a005e 0%, #050010 55%, #000 100%);
-    border: 1px solid rgba(156,39,176,0.8);
-    box-shadow:
-        0 0 10px rgba(156,39,176,0.6),
-        0 0 18px rgba(0,0,0,0.9),
-        inset 0 0 6px rgba(0,0,0,0.7);
-}
-
-/* reuse pulses */
-.mojo-video-glow, .mojo-bag-glow { border-radius: 16px; padding: 0.45rem; }
-.mojo-video-glow {
-    background: radial-gradient(circle at 50% 0%, #1f0022 0, #090010 55%, #000000 100%);
-    box-shadow: 0 0 4px rgba(244, 143, 177, 0.8);
-    animation: mojo-video-pulse 1.6s ease-in-out infinite;
-}
-.mojo-bag-glow {
-    background: radial-gradient(circle at 50% 0%, #1d1400 0, #090600 55%, #000 100%);
-    box-shadow: 0 0 4px rgba(255, 215, 0, 0.9);
-    animation: mojo-bag-pulse 1.6s ease-in-out infinite;
-}
-.mojo-video-container iframe { border-radius: 12px; width: 100%; height: 118px; }
-.mojo-bag-container img { border-radius: 14px; display:block; margin:0 auto; }
-
-/* incence + heartbeat reused from day */
-.smoke { width: 4px; height: 60px; margin: 0 auto;
-         background: linear-gradient(to top, rgba(255,255,255,0.0), rgba(209,196,233,0.6));
-         border-radius: 999px; animation: smoke-rise 4.2s ease-in-out infinite; }
-
-.vh-card {
-    border-radius: 16px;
-    border: 1px solid rgba(156,39,176,0.85);
-    padding: 1.2rem 1.45rem;
-    margin-bottom: 1.1rem;
-    background: radial-gradient(circle at top, #130019 0%, #06000a 55%, #010101 100%);
-    box-shadow:
-        0 0 16px rgba(156,39,176,0.65),
-        0 0 28px rgba(0,0,0,0.98);
-}
-.vh-footer {
-    text-align:center;
-    font-size: 0.9rem;
-    color: #d1c4e9;
-    margin-top: 2.8rem;
-    padding-top: 0.9rem;
-    border-top: 1px solid rgba(103,58,183,0.8);
-    opacity: 0.95;
-}
-
-div.stButton > button {
-    border-radius: 999px / 70px;
-    border-width: 2px;
-    border-style: solid;
-    border-color: #4527a0;
-    padding: 0.45rem 1.9rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.09em;
-    font-family: "Times New Roman", Times, serif;
-    font-size: 15px;
-
-    background-image:
-        linear-gradient(135deg, #7b1fa2 0%, #000000 40%, #283593 100%),
-        radial-gradient(circle at 16% 0%, rgba(255,255,255,0.25) 0%, transparent 60%);
-    background-blend-mode: overlay;
-    color: #f3e5f5;
-}
-</style>
-"""
-
-
-def apply_theme():
-    """Apply CSS according to theme stored in session_state."""
-    theme = st.session_state.get("theme", "day")
-    if theme == "night":
-        st.markdown(APP_CSS_NIGHT, unsafe_allow_html=True)
-    else:
-        st.markdown(APP_CSS_DAY, unsafe_allow_html=True)
-
-
-apply_theme()
-
-
-# =========================
-# LWA / LOA GALLERY DATA (19)
-# (from your previous configuration)
-# =========================
-
-# NOTE: image_key MUST match keys you set in Streamlit secrets
+# ------------------------------------------------------
+# LWA DATA (19) – same structure as last time
+# ------------------------------------------------------
 LOA_GALLERY_DATA = [
+    # (shortened descriptions so app fits nicely – you still get all 19)
     {
         "name": "Papa Legba",
         "image_key": "LWA_PAPA_LEGBA_URL",
-        "description": "Papa Legba is the gatekeeper at the crossroads, facilitator of communication between worlds.",
+        "description": "Gatekeeper of the crossroads, opening and closing spiritual roads.",
         "attributes": [
-            "🕯️ Offerings: tobacco, coffee, rum, sugar cane, roasted corn",
-            "🔑 Domains: crossroads, guidance, language, access, destiny",
-            "📅 Feast Day: June 13",
-            "📆 Day of the week (trad.): Monday",
-            "🎨 Colors: red, black, yellow, brown",
-            "⛪ Syncretized Saint: St. Peter",
-            "🐕 Sacred Animals: dogs, roosters",
-            "🌿 Sacred Plants: basil, bay leaf, tobacco leaf",
-            "🗝️ Symbols: cane, crutches, keys, crossroads",
-            "⚠️ Caution: Must ALWAYS be invoked first — or no spirit will arrive",
-            "🔥 Classification: Rada",
+            "🕯️ Coffee, tobacco, rum, candy",
+            "🔑 Crossroads, communication, access",
+            "📆 Monday • 🎨 Brown, red, yellow",
+            "🐕 Dogs and roosters • Rada current",
         ],
     },
     {
         "name": "Baron Samedi",
         "image_key": "LWA_BARON_SAMEDI_URL",
-        "description": "Baron Samedi is the spirit of death, rebirth, and ancestor gateways.",
+        "description": "Gede lord of the grave, death, rebirth and sharp truth.",
         "attributes": [
-            "🕯️ Offerings: rum, cigars, grilled corn, peanuts, black coffee",
-            "💀 Domains: death, resurrection, fertility, ancestor communication",
-            "📅 Feast Day: November 2 (Fête des Morts)",
-            "📆 Day of the week (trad.): Saturday",
-            "⛪ Syncretized Saint: Saint Martin de Porres",
-            "🎨 Colors: black, purple, white",
-            "⚰️ Symbols: top hat, skull, cross, sunglasses",
-            "🐓 Sacred Animals: black roosters",
-            "🌶️ Sacred Foods: hot peppers",
-            "😈 Behavior: crude humor, sexually explicit jokes",
-            "🔥 Classification: Gede",
+            "🕯️ Rum with hot pepper, cigars, peanuts",
+            "💀 Death, ancestors, fertility, gallows humor",
+            "📆 Saturday • 🎨 Black, purple, white",
         ],
     },
     {
         "name": "Ogoun Badagri",
         "image_key": "LWA_OGOUN_BADAGRI_URL",
-        "description": "Ogoun Badagri is a warrior spirit of force, metal, leadership and revolution.",
+        "description": "Warrior of metal, revolution and disciplined force.",
         "attributes": [
-            "🕯️ Offerings: rum, raw meat, red beans, iron tools, cigars",
-            "⚔️ Domains: war, metal, blood, military action, political force",
-            "📅 Feast Day: July 25 (varies)",
-            "📆 Day of the week (trad.): Tuesday",
-            "⛪ Syncretized Saint: St. James the Greater",
-            "🎨 Colors: red, blue",
-            "🧲 Sacred Metals: iron, steel",
-            "🐓 Sacred Animals: ram, dogs",
-            "⚠️ Caution: Very strong — do not call without intent & purpose",
-            "🔥 Classification: Petro / Nago",
+            "🕯️ Rum, raw meat, iron tools",
+            "⚔️ War, courage, politics, surgery",
+            "📆 Tuesday • 🎨 Red, blue",
         ],
     },
     {
         "name": "Erzule Dantor",
         "image_key": "LWA_ERZULE_DANTOR_URL",
-        "description": "Erzule Dantor is the fierce protector of women, mothers, and children.",
+        "description": "Fierce protector of mothers, children and the wronged.",
         "attributes": [
-            "🕯️ Offerings: black coffee, blue candles, rum, pork, dark chocolate",
-            "🔥 Domains: protection, vengeance, motherhood, independence",
-            "📆 Day of the week (trad.): Tuesday or Saturday (varies by house)",
-            "⛪ Syncretized Saint: Mater Dolorosa",
-            "🎨 Colors: dark blue, red, gold",
-            "🐗 Sacred Animals: pigs, boars",
-            "🗡️ Symbols: dagger, scratched heart",
-            "⚠️ Caution: Protective but fierce — reacts to injustice",
-            "🔥 Classification: Petro",
+            "🕯️ Black coffee, rum, pork, dark chocolate",
+            "🗡️ Protection, vengeance, independence",
+            "📆 Sat / Tue • 🎨 Dark blue, red, gold",
         ],
     },
     {
         "name": "Damballa Wedo",
         "image_key": "LWA_DAMBALA_WEDO_URL",
-        "description": "Damballa Wedo, the twin cosmic serpents, bring harmony and celestial breath.",
+        "description": "Twin cosmic serpent of creation, purity and blessing.",
         "attributes": [
-            "🕯️ Offerings: white eggs, rice, cool water, flour, milk",
-            "🐍 Domains: creation, purity, cosmic blessing",
-            "📆 Day of the week (trad.): Thursday",
-            "⛪ Syncretized Saint: St. Patrick",
-            "🎨 Colors: white, silver",
-            "🧊 Caution: No alcohol, no profanity, no spicy foods",
-            "🐍 Symbols: snakes",
-            "🌈 Sacred Element: rainbow",
-            "🔥 Classification: Rada",
+            "🕯️ White eggs, rice, milk, water",
+            "🐍 Creation, peace, purity",
+            "📆 Thursday • 🎨 White, silver",
         ],
     },
     {
         "name": "Bossou",
         "image_key": "LWA_BOSSOU_URL",
-        "description": "Bossou is a bull-spirit representing unstoppable force and endurance.",
+        "description": "Bull-like force of endurance, will and ground power.",
         "attributes": [
-            "🕯️ Offerings: raw meat, rum, cigars, yams",
-            "🐂 Domains: strength, virility, ground power",
-            "📆 Day of the week (trad.): Thursday",
-            "🎨 Colors: red, black",
-            "⚠️ Caution: Very intense — should be handled by experienced priests",
-            "🔥 Classification: Nago / Petro",
+            "🕯️ Raw meat, rum, yams",
+            "🐂 Strength, virility, stubborn power",
+            "📆 Thursday • 🎨 Red, black",
         ],
     },
     {
         "name": "Ti Jan Dantor",
         "image_key": "LWA_TI_JAN_DANTOR_URL",
-        "description": "Spirit of youthful fire, passion, and courageous energy.",
+        "description": "Young fiery aspect of Dantor – passion and courage.",
         "attributes": [
-            "🕯️ Offerings: rum, red fruit, candied ginger",
-            "🔥 Domains: youth, passion, fearless action",
-            "📆 Day of the week (trad.): Saturday",
-            "🎨 Colors: red, gold",
-            "⚠️ Caution: Impulsive — must be guided with discipline",
-            "🔥 Classification: Petro",
+            "🔥 Youth, daring, bold movement",
+            "📆 Saturday • 🎨 Red, gold",
         ],
     },
     {
         "name": "Maman Brigitte",
         "image_key": "LWA_MAMAN_BRIGITTE_URL",
-        "description": "Maman Brigitte guards the graves and protects the dead.",
+        "description": "Graveyard mistress, wife of Baron, sharp protector.",
         "attributes": [
-            "🕯️ Offerings: rum with hot pepper, candles, black bread",
-            "💀 Domains: graves, justice, death, past lives",
-            "📆 Day of the week (trad.): Saturday",
-            "⛪ Syncretized Saint: St. Brigid / Brigid of Kildare",
-            "🎨 Colors: purple, black, white",
-            "🐓 Sacred Animals: black hen",
-            "🔥 Classification: Gede",
+            "🕯️ Rum with hot pepper, black bread",
+            "💀 Graves, justice, honest speech",
+            "📆 Saturday • 🎨 Purple, black, white",
         ],
     },
     {
         "name": "Kouzen Azaka",
         "image_key": "LWA_KOUZEN_AZAKA_URL",
-        "description": "Kouzen Azaka is the rural peasant spirit of farming, honesty, and simple living.",
+        "description": "Peasant spirit of fields, farms, honest work.",
         "attributes": [
-            "🕯️ Offerings: sugar cane, bread, beans, corn meal, fresh fruit",
-            "🌾 Domains: agriculture, rural life, diligence",
-            "📆 Day of the week (trad.): Thursday",
-            "⛪ Syncretized Saint: St. Isidore the Farmer",
-            "🎨 Colors: denim blue, straw brown",
-            "🔥 Classification: Rada",
+            "🌾 Sugar cane, beans, corn meal",
+            "📆 Thursday • 🎨 Denim blue, straw brown",
         ],
     },
     {
         "name": "Marasa Dosou",
         "image_key": "LWA_MARASA_DOSOU_URL",
-        "description": "The Marasa are sacred twins representing divine polarity — duality in unity, childlike purity, and cosmic symmetry.",
+        "description": "Sacred twins – childlike purity and cosmic balance.",
         "attributes": [
-            "🕯️ Offerings: candies, milk, white cakes, coconut, popcorn",
-            "👥 Domains: twins, childhood, cosmic balance, innocence",
-            "📆 Day of the week (trad.): Sunday",
-            "🎨 Colors: white, light blue, pink",
-            "⛪ Syncretized Saints: Saints Cosmas and Damian",
-            "🐓 Sacred Animals: doves",
-            "🌿 Plants: coconut palm",
-            "⚠️ Caution: ALWAYS feed both — never make an offering to one twin alone",
-            "🔥 Classification: Rada",
+            "👥 Candy, milk, white cakes",
+            "📆 Sunday • 🎨 White, soft blue, pink",
         ],
     },
     {
         "name": "Kalfu",
         "image_key": "LWA_KALFU_URL",
-        "description": "Kalfu rules the powerful crossroads of the night and governs the darker pathways of fate and possibility.",
+        "description": "Night crossroads, wild chance, shadow roads.",
         "attributes": [
-            "🕯️ Offerings: dark rum, gunpowder, spicy food, black candles",
-            "🌒 Domains: night magic, crossroads, destiny manipulation",
-            "📆 Day of the week (trad.): Saturday (night works)",
-            "🎨 Colors: black, red",
-            "🗝️ Symbols: inverted crosses, shadowed crossroads",
-            "⚠️ Caution: Do NOT invoke without Legba’s permission",
-            "🔥 Classification: Petro",
+            "🕯️ Dark rum, spicy food, black candles",
+            "🌒 Night magic, high-risk choices",
+            "📆 Saturday night • 🎨 Black, red",
         ],
     },
     {
         "name": "Damballa",
         "image_key": "LWA_DAMBALLA_URL",
-        "description": "Damballa embodies purity, wisdom, innocence, and the breath of creation — a calm serpent of heavenly radiance.",
+        "description": "Serpent of purity, silence and blessing breath.",
         "attributes": [
-            "🕯️ Offerings: white eggs, filtered water, rice, coconut milk",
-            "🐍 Domains: creation, peace, purity, celestial order",
-            "📆 Day of the week (trad.): Thursday",
-            "🎨 Colors: white, silver, pale blue",
-            "⛪ Syncretized Saint: St. Patrick",
-            "⚠️ Caution: No alcohol or profanity",
-            "🔥 Classification: Rada",
+            "🕯️ White eggs, cool water, rice",
+            "🐍 Peace, innocence, order",
+            "📆 Thursday • 🎨 White, pale blue",
         ],
     },
     {
         "name": "Simbi",
         "image_key": "LWA_SIMBI_URL",
-        "description": "Simbi is a water and communication spirit — associated with magic, telepathy, divination, and flowing intelligence.",
+        "description": "Water, magic and communication current.",
         "attributes": [
-            "🕯️ Offerings: rum, fresh water, anise, fish",
-            "💧 Domains: water, magic, channeling, spiritual transmission",
-            "📆 Day of the week (trad.): Wednesday",
-            "🎨 Colors: green, blue, white",
-            "🌊 Sacred Places: rivers, springs, wells",
-            "🔥 Classification: Rada / Kongo",
+            "💧 Rivers, streams, telepathy, divination",
+            "📆 Wednesday • 🎨 Green, blue, white",
         ],
     },
     {
         "name": "Klemezine",
         "image_key": "LWA_KLEMEZINE_URL",
-        "description": "Klemezine offers psychic and spiritual protection — a firm yet gentle guardian of sacred spaces.",
+        "description": "Psychic and spiritual protection current.",
         "attributes": [
-            "🕯️ Offerings: white rum, silver jewelry, incense",
-            "🛡️ Domains: protection, clarity, defensive magic",
-            "📆 Day of the week (trad.): Wednesday",
-            "🎨 Colors: white, silver, grey",
-            "🌿 Plants: sage, palm leaf",
-            "🔥 Classification: Rada / Kongo",
+            "🛡️ Guarding, clarity, warding",
+            "📆 Wednesday • 🎨 White, silver",
         ],
     },
     {
         "name": "Ayizan Velekete",
         "image_key": "LWA_AYIZAN_VELEKETE_URL",
-        "description": "Ayizan is the matron of priesthood, commerce, and spiritual initiation — keeper of sacred lineage.",
+        "description": "Matron of priesthood, markets and sacred order.",
         "attributes": [
-            "🕯️ Offerings: cassava, breadfruit, palm wine, corn",
-            "🌿 Domains: priesthood, social order, commerce, knowledge",
-            "📆 Day of the week (trad.): Friday",
-            "🎨 Colors: gold, yellow, green",
-            "🌿 Sacred Plants: palm frond",
-            "⛪ Syncretized Saint: St. Clare",
-            "🔥 Classification: Rada",
+            "🌿 Palm fronds, markets, initiation",
+            "📆 Friday • 🎨 Yellow, gold, green",
         ],
     },
     {
         "name": "Gran Bwa",
         "image_key": "LWA_GRAN_BWA_URL",
-        "description": "Gran Bwa is master of the forest, herbal mysteries, and green life — a primal nature spirit.",
+        "description": "Forest master – herbs, wilderness and deep nature.",
         "attributes": [
-            "🕯️ Offerings: tobacco, honey, herbs, fresh fruit",
-            "🌳 Domains: nature, wilderness, secrets of plants",
-            "📆 Day of the week (trad.): Thursday",
-            "🎨 Colors: green, brown",
-            "🌿 Sacred Plants: vetiver grass",
-            "🔥 Classification: Kongo",
+            "🌳 Forests, roots, green mysteries",
+            "📆 Thursday • 🎨 Green, brown",
         ],
     },
     {
         "name": "Hogou Ferralle",
         "image_key": "LWA_HOGOU_FERALLE_URL",
-        "description": "Hogou Ferralle is an armored aspect of Ogun — the disciplined, militant, steel-willed warforce.",
+        "description": "Armored Ogun – disciplined war and defense.",
         "attributes": [
-            "🕯️ Offerings: iron nails, rum, whiskey, blood sausage",
-            "🛡️ Domains: warfare, iron, defense, righteous conflict",
-            "📆 Day of the week (trad.): Tuesday",
-            "🎨 Colors: red, metallic steel",
-            "⛪ Syncretized Saint: St. George",
-            "🔥 Classification: Nago / Petro",
+            "🛡️ Military, surgery, righteous fight",
+            "📆 Tuesday • 🎨 Red, steel",
         ],
     },
     {
         "name": "Erzulie Freda",
         "image_key": "LWA_ERZULIE_FREDA_URL",
-        "description": "Erzulie Freda is the patroness of love, romance, perfume, elegance and sensual beauty.",
+        "description": "Love, perfume, luxury and tender longing.",
         "attributes": [
-            "🕯️ Offerings: champagne, perfumes, sweets, pink flowers",
-            "💗 Domains: romance, luxury, femininity, emotional longing",
-            "📆 Day of the week (trad.): Friday",
-            "🎨 Colors: pink, gold, white",
-            "⛪ Syncretized Saint: Our Lady of Sorrows",
-            "🔥 Classification: Rada",
+            "💗 Champagne, perfume, sweets, flowers",
+            "📆 Friday • 🎨 Pink, gold, white",
         ],
     },
     {
         "name": "Brav Gede",
         "image_key": "LWA_BRAV_GEDE_URL",
-        "description": "Brav Gede walks the line between life and death, using humor as spiritual medicine.",
+        "description": "Laughing Gede – jokes about death and truth.",
         "attributes": [
-            "🕯️ Offerings: rum, peanuts, popcorn, cigars",
-            "😈 Domains: death, sexuality, laughter, truth-telling",
-            "📆 Day of the week (trad.): Saturday",
-            "🎨 Colors: black, purple, white",
-            "💀 Symbols: skull, cross of the cemetery",
-            "🔥 Classification: Gede",
+            "😈 Rum, popcorn, peanuts, cigars",
+            "📆 Saturday • 🎨 Black, purple, white",
         ],
     },
 ]
 
-
-# =========================
-# CURATED SUPPLY SHOPS
-# =========================
-
-HOODOO_SUPPLY_SHOPS = [
-    {
-        "name": "SHOPPE BLACK",
-        "url": "https://shoppeblack.us/black-owned-hoodoo-shops/",
-        "tagline": "Your gateway to the global Black business ecosystem",
-        "description": (
-            "A platform that highlights and supports Black-owned businesses worldwide. "
-            "This link gathers Black-owned Hoodoo and spiritual shops so your money "
-            "circulates within the community."
-        ),
-        "location": "Online / Global",
-    },
-    {
-        "name": "Conjure South",
-        "url": "https://conjuresouth.com/",
-        "tagline": "Hoodoo • Obeah • Gris-gris from Queen Co. Meadows",
-        "description": (
-            "Founded by Queen Co. Meadows in Mobile, Alabama. Offers traditional Hoodoo, Obeah, "
-            "and gris-gris products, along with publications and educational resources rooted "
-            "in lived practice."
-        ),
-        "location": "Mobile, Alabama (USA) + Online",
-    },
-    {
-        "name": "Memphis Conjure",
-        "url": "https://memphisconjure.com/",
-        "tagline": "Master-crafted by hand • Authentic • Affordable • Delta Hoodoo",
-        "description": (
-            "Family-run Memphis Conjure Supply, tracing a 110-year lineage in Delta Hoodoo and "
-            "over 30 years of experience. Recognized in Tony Kail’s 'Stories of Rootworkers & "
-            "Hoodoo in the Mid-South'. Historically located in Memphis, Tennessee — known as "
-            "“Mojo City”."
-        ),
-        "location": "Memphis, Tennessee (USA) + Online",
-    },
-    {
-        "name": "The Hoodoo & Good Juju Botanica",
-        "url": "https://hoodoogoodjuju.org/",
-        "tagline": "Healing the homies, werking the roots",
-        "description": (
-            "A botanica focused on returning the authority and heritage of Hoodoo traditions "
-            "to the Black community. Offers organic roots, herbs, and spiritual medicines."
-        ),
-        "location": "Online (Black-centered)",
-    },
-    {
-        "name": "Hoodoo Hussy Conjure Enterprises",
-        "url": "https://hoodoohussy.squarespace.com/",
-        "tagline": "Spiritual care via plant medicine & tradition",
-        "description": (
-            "Provides spiritual care rooted in African and African American traditional practices. "
-            "Carries condition oils, cleansing sprays, incense, spiritual bath teas, and more."
-        ),
-        "location": "Online",
-    },
-    {
-        "name": "BLK + GRN",
-        "url": "https://blkgrn.com/",
-        "tagline": "All-natural marketplace curated by Black artisans",
-        "description": (
-            "A marketplace featuring all-natural products from over 60 Black artisans, including "
-            "wellness, self-care, and some spiritually aligned items."
-        ),
-        "location": "Online",
-    },
-    {
-        "name": "Sacred Botanica",
-        "url": "https://www.sacredbotanicabk.com/",
-        "tagline": "Incense, candles, crystals & spiritual advisement",
-        "description": (
-            "Offers incense, candles, crystals, and spiritual advisements via Zoom, including tarot "
-            "and astrology readings. Brooklyn-based with an online presence."
-        ),
-        "location": "Brooklyn, New York (USA) + Online",
-    },
-]
-
-
-# =========================
-# SUPPLICATION / OFFERING DATA (SAFE)
-#  (shortened here, but keeps your Ancestors + key lwa)
-# =========================
-
+# ------------------------------------------------------
+# SUPPLICATION DATA (Ancestors + a few key lwa)
+# ------------------------------------------------------
 SUPPLICATION_DATA = {
     "Ancestors": {
-        "type": "Ancestors",
         "offerings": [
-            "A clean glass of fresh water",
-            "A white candle in a safe holder",
-            "A small plate of food your people would recognize",
+            "Clean glass of fresh water",
+            "White candle in safe holder",
+            "Small plate of food your people would recognize",
             "Photos or written names of your beloved dead",
         ],
         "guidelines": [
-            "Keep the space clean and respectful.",
-            "Speak to them as you would to elders you love, not as servants.",
-            "Replace water regularly; do not leave spoiled food.",
+            "Keep the altar space clean and respectful.",
+            "Replace water often; do not leave spoiled food.",
+            "Speak from the heart – you’re talking to real people.",
         ],
-        "sample_words": """
+        "sample": """
 Beloved Ancestors, blood and spirit,
-those whose names I know and those whose names I have forgotten,
-I honor you.
+known and unknown, I honor you.
 
-I offer you this water, this light, and this food
-in gratitude for the lives you lived,
-for the paths you walked,
-and for the strength that flows through me from you.
+I offer this water, this light, and this food
+in gratitude for the lives you lived and the paths you walked.
 
-If it is right and aligned with the good order of things,
-please watch over me, guide my steps,
-and help me walk in dignity, courage, and wisdom.
+If it is good and right, guide my steps,
+protect my mind, and help me walk in dignity.
 
 May you be elevated, remembered, and at peace.
 Ayibobo.
 """,
     },
-    # For brevity we keep a few key lwa examples; you can add more
     "Papa Legba": {
-        "type": "Lwa",
         "offerings": [
-            "Black coffee (no sugar) or coffee with a little sugar",
-            "A small cup of rum (if appropriate to your house / teacher)",
-            "Tobacco, candy, or roasted corn",
-            "A simple candle (often white or red) at a crossroads imagery",
+            "Coffee, rum (if appropriate), roasted corn",
+            "Tobacco, candy, simple candle at a symbolic crossroads",
         ],
         "guidelines": [
-            "Legba is gatekeeper: in many houses he is approached first before other lwa.",
-            "Keep the tone respectful and clear; ask for open, honest roads.",
-            "Never promise what you cannot sincerely offer in return.",
+            "Legba is the gatekeeper – often approached first.",
+            "Be clear and honest about what you ask.",
+            "Never promise what you cannot truly offer.",
         ],
-        "sample_words": """
+        "sample": """
 Papa Legba, Atibon Legba,
-keeper of the crossroads and opener of the way, I greet you with respect.
+keeper of the crossroads, I greet you.
 
-If it is pleasing to you, accept this coffee/rum and light,
-and open good roads before me:
-roads of right relationship, roads of honest work,
-roads where my head can be clear.
+If this offering pleases you, open good roads before me —
+roads of honest work, right relationship, and clear mind.
+Close the ways that would drag me backward.
 
-Do not open doors that would destroy me.
-Open instead the ways that are good for my spirit
-and close the ways that would drag me backward.
-
-Mèsi anpil, Papa Legba. Ayibobo.
+Mèsi, Papa Legba. Ayibobo.
 """,
     },
     "Baron Samedi": {
-        "type": "Lwa",
         "offerings": [
-            "Purple, black, or white candle",
-            "Small glass of rum (often with hot pepper)",
-            "Cigars or tobacco",
-            "Black coffee or grilled corn/peanuts",
+            "Purple/black/white candles",
+            "Rum with hot pepper, cigars, peanuts",
         ],
         "guidelines": [
-            "Baron is powerful — approach with seriousness and humor, but not mockery.",
-            "Keep all work with the dead respectful.",
-            "Avoid asking for harm; focus on courage, clarity, healing.",
+            "Approach with seriousness and humor, never mockery.",
+            "Do not play with the dead: keep requests within respect.",
         ],
-        "sample_words": """
-Baron Samedi, guardian of the grave and lord of the boundary,
+        "sample": """
+Baron Samedi, guardian of the boundary,
 I come with respect and clean intention.
 
-If you accept my light and this drink,
-stand by the gates between life and death for me and mine.
-Help me face the truth without fear,
-and teach me to remember that life is short and precious.
+If you accept this drink and this light,
+help me face the truth without fear,
+and remember that my days are precious.
 
-Where there is sickness of the spirit, bring clarity and laughter that heals.
-Where there is despair, open a little road toward courage.
-
-If it is not right to intervene, let me be at peace with that.
+Where despair has settled, open a small road toward courage.
 Ayibobo, Baron.
 """,
     },
     "Erzulie Freda": {
-        "type": "Lwa",
         "offerings": [
-            "Glass of champagne or sweet liqueur",
-            "Perfume or scented oil in a small dish",
-            "Pink or white flowers",
-            "Pastel candles",
+            "Champagne or sweet liqueur",
+            "Perfume, pink / white flowers, sweets",
         ],
         "guidelines": [
-            "Freda is about refined love, not manipulation.",
-            "Avoid asking to control another person’s will.",
-            "Ask for healing of the heart, self-worth, and good partnership.",
+            "Focus on healing of the heart, not control of others.",
+            "Ask for self-worth, honest love and beauty in life.",
         ],
-        "sample_words": """
-Erzulie Freda, lady of sweet waters and delicate perfume,
-if this offering pleases you, pour beauty, self-respect and healthy love into my life.
+        "sample": """
+Erzulie Freda, lady of sweet waters,
+if this offering pleases you,
+heal what is bruised in my heart.
 
-Heal what is bruised in my heart, and teach me to love
-myself without vanity and others without chains.
-
-Keep me away from relationships that are false or degrading.
-Bring me into connections that honor my soul.
+Teach me to love myself without vanity,
+and others without chains.
+Bring into my life relationships that honor my spirit.
 
 Mèsi, Ezili Freda. Ayibobo.
 """,
     },
 }
 
+# ------------------------------------------------------
+# HOODOO SUPPLY SHOPS (summary)
+# ------------------------------------------------------
+HOODOO_SUPPLY_SHOPS = [
+    {
+        "name": "SHOPPE BLACK – Hoodoo Shops List",
+        "url": "https://shoppeblack.us/black-owned-hoodoo-shops/",
+        "desc": "Directory of Black-owned Hoodoo and spiritual shops so your money stays in the community.",
+    },
+    {
+        "name": "Conjure South",
+        "url": "https://conjuresouth.com/",
+        "desc": "Queen Co. Meadows – Hoodoo, Obeah, gris-gris and writings rooted in lived practice.",
+    },
+    {
+        "name": "Memphis Conjure",
+        "url": "https://memphisconjure.com/",
+        "desc": "Delta Hoodoo lineage shop from Memphis, “Mojo City”, with oils, powders and more.",
+    },
+    {
+        "name": "The Hoodoo & Good Juju Botanica",
+        "url": "https://hoodoogoodjuju.org/",
+        "desc": "Botanica focused on Black community healing, roots and herbs.",
+    },
+    {
+        "name": "Hoodoo Hussy Conjure Enterprises",
+        "url": "https://hoodoohussy.squarespace.com/",
+        "desc": "Condition oils, baths, incense and plant-based spiritual care.",
+    },
+]
 
-# =========================
-# HELPERS
-# =========================
-
-def media_image(secret_key: str, caption: str = "", width=None):
-    """Render image from secrets; supports http URLs or local 'images/...'. """
-    url = st.secrets.get(secret_key, "")
+# ------------------------------------------------------
+# SMALL HELPERS
+# ------------------------------------------------------
+def media_image(key: str, caption: str = "", width=None):
+    url = st.secrets.get(key, "")
     if not url:
-        st.info(f"[{secret_key}] image not configured in secrets.")
+        st.info(f"[{key}] image URL not set in secrets.")
         return
-
-    # Local file
-    if url.startswith("images/") or url.startswith("./images/"):
-        try:
-            st.image(url, caption=caption or None,
-                     use_column_width=(width is None), width=width)
-        except Exception as e:
-            st.error(f"[{secret_key}] local image error: {e}")
-        return
-
-    # Remote
-    st.image(url, caption=caption or None,
-             use_column_width=(width is None), width=width)
+    st.image(url, caption=caption or None, use_column_width=(width is None), width=width)
 
 
-def media_video(secret_key: str, label: str = ""):
-    """Render YouTube-style video from secrets (expects full iframe-able URL)."""
-    url = st.secrets.get(secret_key, "")
+def media_video(key: str, label: str = ""):
+    url = st.secrets.get(key, "")
     if not url:
-        st.info(f"[{secret_key}] video not configured.")
+        st.info(f"[{key}] video URL not set in secrets.")
         return
-    st.markdown(f"**{label}**" if label else "", unsafe_allow_html=True)
+    if label:
+        st.markdown(f"**{label}**")
     st.video(url)
 
 
@@ -931,8 +582,7 @@ def render_header():
             <div class="vh-logo">🕯️</div>
             <div class="vh-title">VOODOO &amp; HOODOO SPELLS</div>
             <div class="vh-subtitle">
-                From West African Vodun to Haitian Vodou, New Orleans Voodoo &amp; Black American Hoodoo —
-                a learning temple, not a toy.
+                From West African Vodun to Haitian Vodou, Louisiana Voodoo &amp; Hoodoo.
             </div>
         </div>
         """,
@@ -944,8 +594,8 @@ def render_footer():
     st.markdown(
         """
         <div class="vh-footer">
-            This app is for respectful study, ancestor-honoring, and spiritual reflection only.<br/>
-            It does not substitute for elders, clergy, mental health care, or medical help.
+            This app is for respectful study, ancestor-honoring, and spiritual reflection only.
+            It does not replace elders, clergy, therapy, or medical care.
         </div>
         """,
         unsafe_allow_html=True,
@@ -956,43 +606,105 @@ def sidebar_mojo():
     with st.sidebar:
         st.markdown('<div class="sidebar-logo">VOODOO • HOODOO • ROOTS</div>', unsafe_allow_html=True)
 
-        # Mojo Music
-        mojo_url = st.secrets.get("MOJO_MUSIC_URL", "")
+        # Mojo music
         st.markdown("#### Louisiana “Mojo Music”")
+        mojo_url = st.secrets.get("MOJO_MUSIC_URL", "")
         if mojo_url:
-            st.markdown(
-                '<div class="mojo-video-glow mojo-video-container">',
-                unsafe_allow_html=True,
-            )
+            st.markdown('<div class="mojo-video-glow mojo-video-container">', unsafe_allow_html=True)
             st.video(mojo_url)
             st.markdown("</div>", unsafe_allow_html=True)
         else:
-            st.info("Set `MOJO_MUSIC_URL` in secrets for the sidebar music.")
+            st.info("Set `MOJO_MUSIC_URL` in secrets for sidebar music.")
 
-        # Mojo Bag image
-        mojo_img_url = st.secrets.get("MOJO_BAG_IMAGE_URL", "")
+        # Mojo bag
         st.markdown("#### Mojo Bag")
-        if mojo_img_url:
+        mojo_bag = st.secrets.get("MOJO_BAG_IMAGE_URL", "")
+        if mojo_bag:
             st.markdown('<div class="mojo-bag-glow mojo-bag-container">', unsafe_allow_html=True)
-            st.image(mojo_img_url, caption="Mojo Bag", use_column_width=True)
+            st.image(mojo_bag, caption="Mojo Bag", use_column_width=True)
             st.markdown("</div>", unsafe_allow_html=True)
         else:
-            st.info("Set `MOJO_BAG_IMAGE_URL` in secrets for the Mojo Bag art.")
+            st.info("Set `MOJO_BAG_IMAGE_URL` in secrets for Mojo Bag art.")
 
-        # Simple theme toggle in sidebar (for convenience)
+        # Small incense
         st.markdown("---")
-        theme_choice = st.radio(
-            "Theme",
-            ["Current (Red/Green Day)", "Dark Ritual Night"],
-            index=0 if st.session_state.get("theme", "day") == "day" else 1,
+        st.markdown("#### Incense")
+        st.markdown(
+            """
+            <div class="incense-container">
+                <div class="incense-burner">🪔</div>
+                <div class="smoke"></div>
+            </div>
+            """,
+            unsafe_allow_html=True,
         )
-        st.session_state["theme"] = "day" if theme_choice.startswith("Current") else "night"
+
+# ------------------------------------------------------
+# DIVINATION & AI-STYLE HELPER
+# ------------------------------------------------------
+DIVINATION_ITEMS = {
+    "Cowrie shells": [
+        "Open shell: a road opening, conversation flowing.",
+        "Closed shell: something withheld; more listening needed.",
+        "Clustered shells: community and ancestors close.",
+    ],
+    "Bones": [
+        "Bone toward you: take responsibility.",
+        "Bone away from you: release what you cannot control.",
+        "Crossed bones: conflict that needs honest words.",
+    ],
+    "Stones": [
+        "Smooth white stone: clarity and truth.",
+        "Dark stone: rest, retreat and recharge.",
+        "Two stones touching: partnership and reconciliation.",
+    ],
+}
 
 
-# =========================
-# CORE PAGES (HISTORY / LORE)
-# =========================
+def pick_random_divination(tool: str) -> str:
+    options = DIVINATION_ITEMS.get(tool, [])
+    return random.choice(options) if options else ""
 
+
+def random_lwa_omen():
+    today = datetime.date.today()
+    random.seed(today.toordinal())
+    return random.choice(LOA_GALLERY_DATA)
+
+
+def ai_style_suggestion(question: str) -> str:
+    q = question.lower()
+    picks = []
+
+    def add(name):
+        if name not in picks:
+            picks.append(name)
+
+    if any(k in q for k in ["road", "path", "blocked", "stuck", "direction"]):
+        add("Papa Legba")
+    if any(k in q for k in ["love", "relationship", "romance", "heart"]):
+        add("Erzulie Freda")
+    if any(k in q for k in ["protect", "safety", "abuse", "children"]):
+        add("Erzule Dantor")
+    if any(k in q for k in ["grave", "death", "dead", "cemetery", "ancestor"]):
+        add("Baron Samedi")
+    if any(k in q for k in ["money", "job", "work", "harvest"]):
+        add("Kouzen Azaka")
+    if any(k in q for k in ["war", "fight", "lawsuit", "conflict"]):
+        add("Ogoun Badagri")
+    if any(k in q for k in ["forest", "tree", "herb", "plants"]):
+        add("Gran Bwa")
+    if any(k in q for k in ["child", "children", "twins", "innocent"]):
+        add("Marasa Dosou")
+
+    if not picks:
+        add("Ancestors")
+
+    return ", ".join(picks)
+
+# ------------------------------------------------------
+# PAGES
+# ------------------------------------------------------
 def page_home():
     render_header()
 
@@ -1001,30 +713,14 @@ def page_home():
         <div class="vh-card">
         <h3>Welcome</h3>
         <p>
-        This working is not a game. It is a study temple built around 
-        West African Vodun, Haitian Vodou, Louisiana Voodoo and Black American Hoodoo.
+        This app is a living study altar: West African Vodun, Haitian Vodou, Louisiana Voodoo,
+        and Black American Hoodoo. It is <strong>not</strong> a toy and not a substitute for elders.
         </p>
         <p>
-        Everything here stays on the side of <strong>respectful, non-harmful practice</strong>:
-        ancestor veneration, offerings, supplications, journaling, and divination for clarity —
-        never for violence, coercion, or self-harm.
+        What you see here: history, imagery, safe offerings, ancestor veneration, journaling,
+        divination for clarity, and links to real-world resources.
+        No curses, no coercion, no self-harm work.
         </p>
-        <p>
-        Move through the pages like a pilgrimage: from West Africa to Haiti, to New Orleans, to 
-        the rootwork of the American South, and finally into your own altar, journal, and path.
-        </p>
-        </div>
-        """,
-        unsafe_allow_html=True,
-    )
-
-    # Small incense animation on home
-    st.markdown("#### Incense for the Road")
-    st.markdown(
-        """
-        <div class="incense-container">
-            <div class="incense-burner">🪔</div>
-            <div class="smoke"></div>
         </div>
         """,
         unsafe_allow_html=True,
@@ -1039,33 +735,18 @@ def page_vodun():
 
     st.markdown(
         """
-        Vodun (Vodún, Vodoun) is a family of spiritual traditions practiced among Fon, Ewe and
-        related peoples in present-day Benin, Togo, Ghana and Nigeria. There is no single holy book.
-        Knowledge is carried by elders, drums, masks, proverbs and living community.
+        Vodun (Vodún, Vodoun) is a family of spiritual traditions among Fon, Ewe and related peoples
+        in Benin, Togo, Ghana and Nigeria. There is no single holy book; knowledge lives in elders,
+        drums, proverbs and shrines.
         """,
         unsafe_allow_html=True,
     )
 
     col1, col2 = st.columns(2)
     with col1:
-        media_video("VODUN_VIDEO_URL", "Vodun documentary / overview")
+        media_video("VODUN_VIDEO_URL", "Documentary / Overview")
     with col2:
-        media_video("VODUN_VIDEO_2_URL", "Ritual & festival footage")
-
-    st.markdown(
-        """
-        <div class="vh-card">
-        <h3>Core Themes</h3>
-        <ul>
-          <li>A high creator (Nana Buluku, Mawu-Lisa, etc.) beyond direct daily worship.</li>
-          <li>Many spirits / forces served in shrines, families and lineages.</li>
-          <li>Ancestors tightly intertwined with the living — no hard wall between worlds.</li>
-          <li>Divination, spirit possession, drumming and song as everyday technologies.</li>
-        </ul>
-        </div>
-        """,
-        unsafe_allow_html=True,
-    )
+        media_video("VODUN_VIDEO_2_URL", "Ritual / Festival Footage")
 
     render_footer()
 
@@ -1076,15 +757,12 @@ def page_lwa():
 
     st.markdown(
         """
-        In Haitian Vodou, the spirits are called <strong>lwa</strong> (older English: “loas”).
-        They are not vague archetypes but distinct presences with histories, veves, songs and
-        ways of being served. Below you can meet some of them visually and through their
-        attributes. This is orientation, not initiation.
+        The lwa are distinct spirits with their own histories, veves, songs and ways of service.
+        What follows is orientation only – initiation and deep work belongs in community.
         """,
         unsafe_allow_html=True,
     )
 
-    # Portrait list
     for loa in LOA_GALLERY_DATA:
         st.markdown(f"### {loa['name']}")
         col_text, col_img = st.columns([2, 3])
@@ -1094,14 +772,10 @@ def page_lwa():
                 unsafe_allow_html=True,
             )
             for line in loa["attributes"]:
-                st.markdown(
-                    f"<p style='font-size: 15px; line-height: 1.4;'>{line}</p>",
-                    unsafe_allow_html=True,
-                )
+                st.markdown(f"- {line}")
         with col_img:
             media_image(loa["image_key"], caption=loa["name"], width=520)
-
-        st.markdown("<hr/>", unsafe_allow_html=True)
+        st.markdown("---")
 
     render_footer()
 
@@ -1112,10 +786,9 @@ def page_hoodoo():
 
     st.markdown(
         """
-        Hoodoo (conjure, rootwork) is a Black American folk-magic tradition grown primarily in the
-        U.S. South out of West and Central African practices braided with Native and European
-        influences. It is not a religion on its own, but a toolkit often practiced alongside
-        Christianity.
+        Hoodoo (conjure, rootwork) is a Black American folk-magic system grown from African roots,
+        Native knowledge and European influences – especially in the U.S. South.
+        It is often practiced alongside Christianity.
         """,
         unsafe_allow_html=True,
     )
@@ -1123,13 +796,13 @@ def page_hoodoo():
     st.markdown(
         """
         <div class="vh-card">
-        <h3>Rootwork Themes</h3>
+        <h3>Key Themes</h3>
         <ul>
-          <li>Mojo hands / nation sacks (like the Mojo bag glowing in your sidebar).</li>
-          <li>Condition oils, spiritual baths, powders and floor washes.</li>
-          <li>Work for uncrossing, justice, court cases, money-drawing, protection and love —
-              always with the understanding that <em>what you do returns to you</em>.</li>
-          <li>Strong link to the Psalms and biblical language (“Hoodoo in the Psalms”).</li>
+          <li>Mojo hands / nation sacks, like the glowing Mojo Bag in your sidebar.</li>
+          <li>Condition oils, powders, baths and floor washes for specific needs.</li>
+          <li>Work for uncrossing, protection, justice, money-drawing and love – with the
+              understanding that <em>what you do returns to you</em>.</li>
+          <li>Strong connection to the Psalms and biblical language.</li>
         </ul>
         </div>
         """,
@@ -1145,24 +818,16 @@ def page_ancestors():
 
     data = SUPPLICATION_DATA["Ancestors"]
 
-    st.markdown(
-        """
-        Most African-descended traditions begin with the dead — the ones whose blood and stories
-        you carry. This page gives a gentle, safe way to set up a simple ancestor glass and candle.
-        """,
-        unsafe_allow_html=True,
-    )
-
     st.markdown("### Offerings")
-    for item in data["offerings"]:
-        st.markdown(f"- {item}")
+    for o in data["offerings"]:
+        st.markdown(f"- {o}")
 
     st.markdown("### Guidelines")
     for g in data["guidelines"]:
         st.markdown(f"- {g}")
 
-    st.markdown("### Sample Words (Adapt, don’t recite like a robot)")
-    st.code(data["sample_words"].strip())
+    st.markdown("### Sample Words")
+    st.code(data["sample"].strip())
 
     render_footer()
 
@@ -1171,146 +836,33 @@ def page_supplications():
     render_header()
     st.subheader("Supplications & Offerings")
 
-    st.markdown(
-        """
-        Choose a spirit from the list to see suggested offerings, safety notes and a sample
-        supplication. This is <strong>orientation only</strong>; real work should be done under
-        the guidance of elders and lineage.
-        """,
-        unsafe_allow_html=True,
-    )
-
-    loa_names = list(SUPPLICATION_DATA.keys())
-    choice = st.selectbox("Choose spirit / Ancestors", loa_names, index=0)
-
+    names = list(SUPPLICATION_DATA.keys())
+    choice = st.selectbox("Choose spirit / Ancestors", names, index=0)
     data = SUPPLICATION_DATA[choice]
 
     st.markdown(f"### {choice}")
     st.markdown("#### Offerings")
-    for item in data["offerings"]:
-        st.markdown(f"- {item}")
+    for o in data["offerings"]:
+        st.markdown(f"- {o}")
 
     st.markdown("#### Guidelines")
     for g in data["guidelines"]:
         st.markdown(f"- {g}")
 
     st.markdown("#### Suggested Words")
-    st.code(data["sample_words"].strip())
+    st.code(data["sample"].strip())
 
     render_footer()
-
-
-def page_resources():
-    render_header()
-    st.subheader("Supplies & Resources")
-
-    st.markdown(
-        """
-        These are <strong>real-world shops and resources</strong> where you can learn more or
-        obtain candles, herbs, books, and condition products. Always vet for yourself, support
-        Black-owned spaces where possible, and stay away from anyone promising guaranteed results
-        or quick fixes.
-        """,
-        unsafe_allow_html=True,
-    )
-
-    for shop in HOODOO_SUPPLY_SHOPS:
-        st.markdown("----")
-        st.markdown(f"### [{shop['name']}]({shop['url']})")
-        st.markdown(f"*{shop['tagline']}*  \nLocation: {shop['location']}")
-        st.markdown(shop["description"])
-
-    render_footer()
-
-
-# =========================
-# NEW: DIVINATION, OMENS, AI SUGGESTIONS
-# =========================
-
-DIVINATION_ITEMS = {
-    "Cowrie shells": [
-        "Open shell: a road opening, conversation flowing.",
-        "Closed shell: something withheld, more listening needed.",
-        "Cluster of shells: community and ancestors close by.",
-    ],
-    "Bones": [
-        "Bone pointing toward you: take responsibility.",
-        "Bone pointing away: release control where you have none.",
-        "Bone crossing another: conflict that needs honest words.",
-    ],
-    "Stones": [
-        "Smooth white stone: clarity, truth coming to light.",
-        "Dark stone: rest, retreat, gather strength.",
-        "Two stones touching: partnership, alliance, reconciliation.",
-    ],
-}
-
-
-def pick_random_divination(tool: str) -> str:
-    choices = DIVINATION_ITEMS.get(tool, [])
-    return random.choice(choices) if choices else ""
-
-
-def random_lwa_omen() -> dict:
-    """Pick a random lwa each day (seeded by date so it is stable per day)."""
-    today = datetime.date.today()
-    random.seed(today.toordinal())
-    loa = random.choice(LOA_GALLERY_DATA)
-    return loa
-
-
-def ai_style_suggestion(question: str) -> str:
-    """Very simple rule-based 'AI' to suggest which lwa themes might fit."""
-    q = question.lower()
-    picks = []
-
-    def add(name):
-        if name not in picks:
-            picks.append(name)
-
-    if any(k in q for k in ["road", "path", "blocked", "stuck", "direction", "open"]):
-        add("Papa Legba")
-    if any(k in q for k in ["love", "romance", "heart", "relationship", "beauty"]):
-        add("Erzulie Freda")
-    if any(k in q for k in ["abuse", "violence", "protect", "safety", "kids", "children"]):
-        add("Erzule Dantor")
-    if any(k in q for k in ["grave", "dead", "death", "ancestors", "cemetery"]):
-        add("Baron Samedi")
-    if any(k in q for k in ["money", "work", "job", "harvest", "farm", "crop"]):
-        add("Kouzen Azaka")
-    if any(k in q for k in ["war", "fight", "battle", "court", "lawsuit", "conflict"]):
-        add("Ogoun Badagri")
-    if any(k in q for k in ["forest", "trees", "plants", "herb", "nature"]):
-        add("Gran Bwa")
-    if any(k in q for k in ["child", "innocent", "twins", "playful"]):
-        add("Marasa Dosou")
-
-    if not picks:
-        add("Ancestors")
-
-    return ", ".join(picks)
 
 
 def page_divination_omens():
     render_header()
-    st.subheader("Divination, Omens & Spirit Guidance")
+    st.subheader("Divination & Omens")
 
     st.markdown(
         """
-        This page offers a simple, safe way to pull symbolic messages — like sitting quietly
-        with a small throwing set. It does not replace full divination by a priest or reader.
-        """,
-        unsafe_allow_html=True,
-    )
-
-    # --- Incense animation at top of page ---
-    st.markdown("#### Incense Burner")
-    st.markdown(
-        """
-        <div class="incense-container">
-            <div class="incense-burner">🪔</div>
-            <div class="smoke"></div>
-        </div>
+        This is a gentle, symbolic divination helper. It does not replace a full reading by an
+        initiated priest or reader – it is more like pulling a proverb for the day.
         """,
         unsafe_allow_html=True,
     )
@@ -1327,109 +879,86 @@ def page_divination_omens():
     loa = random_lwa_omen()
     col1, col2 = st.columns([2, 3])
     with col1:
-        st.markdown(f"**Today’s lwa to meditate on:** {loa['name']}")
+        st.markdown(f"**Spirit to meditate on today:** {loa['name']}")
         st.markdown(loa["description"])
-        st.markdown("**Key themes:**")
-        for line in loa["attributes"][:4]:
-            st.markdown(f"- {line}")
     with col2:
         media_image(loa["image_key"], caption=loa["name"], width=420)
 
     st.markdown("---")
-    st.markdown("### 3. Spirit Suggestion Helper (local AI-style logic)")
+    st.markdown("### 3. Spirit Suggestion Helper")
 
     q = st.text_area(
-        "Describe what you’re seeking help with (non-harmful only):",
+        "Describe what you need help with (non-harmful only):",
         placeholder="Example: I feel blocked in work and unsure which direction to move...",
     )
     if q.strip():
-        names = ai_style_suggestion(q)
+        suggestion = ai_style_suggestion(q)
         st.info(
-            f"Based on what you wrote, spirits whose themes might be relevant include: **{names}**.\n\n"
-            "This is not divination and not a command — just a pointer to where you might study or pray."
+            f"Based on what you wrote, spirits whose themes might be relevant include: **{suggestion}**.\n\n"
+            "This is not divination, just a study pointer."
         )
 
     render_footer()
 
-
-# =========================
-# SPELL JOURNAL & VOICE
-# =========================
 
 def page_spell_journal_voice():
     render_header()
     st.subheader("Spell Journal & Voice Invocation")
 
-    # --- Spell journaling (session-based) ---
-    st.markdown("### Spell & Prayer Journal")
-
     if "journal_entries" not in st.session_state:
         st.session_state["journal_entries"] = []
 
-    entry = st.text_area(
-        "Write what you did, saw, dreamed, or promised.",
+    st.markdown("### Spell / Prayer Journal")
+    txt = st.text_area(
+        "Write what you did, saw, dreamed or prayed:",
         height=180,
-        placeholder="Example: Tonight I lit a white candle for my ancestors and prayed for clarity...",
+        placeholder="Tonight I lit a white candle for my ancestors and prayed for clarity...",
     )
-
-    col_save, col_clear = st.columns(2)
-    with col_save:
+    col1, col2 = st.columns(2)
+    with col1:
         if st.button("Save Entry"):
-            if entry.strip():
+            if txt.strip():
                 st.session_state["journal_entries"].append(
                     {
-                        "timestamp": datetime.datetime.now().isoformat(timespec="seconds"),
-                        "text": entry.strip(),
+                        "time": datetime.datetime.now().isoformat(timespec="seconds"),
+                        "text": txt.strip(),
                     }
                 )
-                st.success("Entry saved in this session.")
-    with col_clear:
-        if st.button("Clear All Saved (this session only)"):
+                st.success("Entry saved (this browser session).")
+    with col2:
+        if st.button("Clear Journal (this session)"):
             st.session_state["journal_entries"] = []
-            st.warning("Journal cleared for this session.")
+            st.warning("Cleared.")
 
     if st.session_state["journal_entries"]:
         st.markdown("#### Entries This Session")
         for e in reversed(st.session_state["journal_entries"]):
-            st.markdown(f"**{e['timestamp']}**")
+            st.markdown(f"**{e['time']}**")
             st.markdown(e["text"])
             st.markdown("---")
 
-        # Download as text
-        text_blob = "\n\n".join(
-            f"{e['timestamp']}\n{e['text']}" for e in st.session_state["journal_entries"]
-        )
+        blob = "\n\n".join(f"{e['time']}\n{e['text']}" for e in st.session_state["journal_entries"])
         st.download_button(
             "Download Journal (TXT)",
-            data=text_blob.encode("utf-8"),
+            data=blob.encode("utf-8"),
             file_name="voodoo_hoodoo_journal.txt",
             mime="text/plain",
         )
 
     st.markdown("---")
-    st.markdown("### Voice Invocation Mode")
-
-    st.markdown(
-        """
-        There is power in speaking prayers and psalms aloud. This section is kept simple so
-        it works everywhere:
-        """,
-        unsafe_allow_html=True,
-    )
+    st.markdown("### Voice Invocation")
 
     chant_url = st.secrets.get("VOICE_CHANT_URL", "")
     if chant_url:
-        st.markdown("#### Example Chant / Song")
         st.audio(chant_url)
+        st.caption("Optional chant / drum track set in `VOICE_CHANT_URL`.")
     else:
-        st.info("Set `VOICE_CHANT_URL` in secrets to embed a chant or drumming track.")
+        st.info("Set `VOICE_CHANT_URL` in secrets to embed a chant or drum track.")
 
     st.markdown(
         """
-        1. Choose who you are addressing (Ancestors, a lwa, or God as you understand).  
-        2. Light a candle safely.  
-        3. Read your supplication, journal entry, or a psalm <em>slowly and clearly</em>.  
-        4. Leave space for silence after you speak.
+        Speak slowly and clearly. Address Ancestors, God, or a lwa respectfully and leave silence
+        after you speak so your own spirit can answer.
         """,
         unsafe_allow_html=True,
     )
@@ -1437,55 +966,45 @@ def page_spell_journal_voice():
     render_footer()
 
 
-# =========================
-# PDF LIBRARY – HOODOO IN THE PSALMS
-# =========================
-
 def page_pdf_library():
     render_header()
-    st.subheader("Library – Hoodoo in the Psalms")
-
-    st.markdown(
-        """
-        This is a study PDF, not a promise machine. It connects particular Psalms with
-        traditional conditions (healing, protection, justice, etc.).
-        """,
-        unsafe_allow_html=True,
-    )
+    st.subheader("PDF Library – Hoodoo in the Psalms")
 
     pdf_path = Path("Hoodoo_in_the_Psalms.pdf")
     if pdf_path.exists():
-        with pdf_path.open("rb") as f:
-            pdf_bytes = f.read()
+        pdf_bytes = pdf_path.read_bytes()
         st.download_button(
-            "📖 Download “Hoodoo in the Psalms” (PDF)",
+            "📖 Download “Hoodoo in the Psalms”",
             data=pdf_bytes,
             file_name="Hoodoo_in_the_Psalms.pdf",
             mime="application/pdf",
         )
-        st.info("Place this PDF on your device, read slowly, and cross-reference with your elders/teachers.")
     else:
-        st.error(
-            "Could not find `Hoodoo_in_the_Psalms.pdf` in the app folder. "
-            "Add it next to app.py when you deploy."
-        )
+        st.error("`Hoodoo_in_the_Psalms.pdf` not found next to app.py. Add it and redeploy.")
 
     render_footer()
 
 
-# =========================
-# ACCOUNT BLESSINGS & INITIATION LOCK
-# =========================
-
-def page_account_and_initiation():
+def page_resources():
     render_header()
-    st.subheader("Account Blessings & Initiation Gate")
+    st.subheader("Supplies & Resources")
 
-    # --- Private blessing form ---
-    st.markdown("### Private Blessing (local only – nothing leaves this browser)")
+    for shop in HOODOO_SUPPLY_SHOPS:
+        st.markdown(f"### [{shop['name']}]({shop['url']})")
+        st.markdown(shop["desc"])
+        st.markdown("---")
+
+    render_footer()
+
+
+def page_account_initiation():
+    render_header()
+    st.subheader("Account Blessings & Initiation Notes")
+
+    st.markdown("### Personal Blessing (local only)")
     name = st.text_input("Your name or ritual name")
-    focus = st.text_input("Main focus right now (e.g., protection, clarity, courage)")
-    fav_spirit = st.text_input("Spirit you feel closest to (Ancestors, Papa Legba, etc.)")
+    focus = st.text_input("Main focus right now (protection, clarity, courage, etc.)")
+    fav = st.text_input("Spirit you feel closest to (Ancestors, Papa Legba, etc.)")
 
     if st.button("Generate Blessing Text"):
         if not name.strip():
@@ -1499,99 +1018,74 @@ and by the spirits you walk with.
 May your work around **{focus or 'the path before you'}**
 be guided by wisdom and protected from confusion.
 
-If it is right with {fav_spirit or 'the spirits'}, may doors that are good
-for your spirit open, and doors that would destroy you quietly close.
+If it is right with {fav or 'the spirits'},
+may good doors open and destructive doors quietly close.
 
 Ayibobo.
 """
             )
 
     st.markdown("---")
-    st.markdown("### Initiation-Locked Notes")
+    st.subheader("Initiation-Locked Note")
 
-    st.info(
-        "This section is intentionally light. It is not real initiation, just a way to hide "
-        "a deeper study note behind a passphrase you choose."
-    )
-
-    code = st.text_input("Enter initiation code", type="password")
+    code = st.text_input("Enter initiation code (set INITIATION_CODE in secrets)", type="password")
     real_code = st.secrets.get("INITIATION_CODE", "")
-
-    if real_code and code == real_code:
-        st.success("Gate opened (for this session).")
-        st.markdown(
-            """
-            - Keep a separate physical notebook for dreams, omens and altar experiences.  
-            - Check in with your mental health and body regularly; spirits do not replace doctors.  
-            - Remember that saying “no” to work you do not understand is also part of the path.
-            """,
-            unsafe_allow_html=True,
-        )
-    elif code:
-        st.error("Code not recognized. Keep the mysteries safe — try again or leave it closed.")
+    if real_code and code:
+        if code == real_code:
+            st.success("Gate opened.")
+            st.markdown(
+                """
+                - Keep a physical notebook for dreams, omens and altar work.  
+                - Monitor your mental and physical health; spirits do not replace doctors.  
+                - Saying “no” to work you do not understand is also part of the path.
+                """,
+                unsafe_allow_html=True,
+            )
+        else:
+            st.error("Code not recognized. Better to leave the gate closed than force it.")
 
     render_footer()
 
 
-# =========================
-# SETTINGS – THEME & DRUMS
-# =========================
-
-def page_settings_themes():
+def page_settings():
     render_header()
-    st.subheader("Settings – Themes, Drums & Atmosphere")
+    st.subheader("Settings – Drum Track & Atmosphere")
 
-    st.markdown("### Theme")
-    theme_choice = st.radio(
-        "Choose app theme",
-        ["Current (Red/Green Day)", "Dark Ritual Night"],
-        index=0 if st.session_state.get("theme", "day") == "day" else 1,
-    )
-    st.session_state["theme"] = "day" if theme_choice.startswith("Current") else "night"
-    st.info("Theme will re-apply on the next rerun (change page or press 'R' in dev).")
-
-    st.markdown("---")
-    st.markdown("### Drum Track (for safe use only)")
-
-    drum_url = st.secrets.get("DRUMS_AUDIO_URL", "")
-    if drum_url:
-        st.audio(drum_url)
-        st.caption("Use this softly; do not overwork yourself or others.")
+    drum = st.secrets.get("DRUMS_AUDIO_URL", "")
+    if drum:
+        st.audio(drum)
+        st.caption("Ritual drum track from `DRUMS_AUDIO_URL` – use gently.")
     else:
-        st.info("Set `DRUMS_AUDIO_URL` in secrets to embed a drum rhythm track.")
+        st.info("Set `DRUMS_AUDIO_URL` in secrets to embed a drum rhythm.")
 
     render_footer()
 
-
-# =========================
-# MAIN NAVIGATION
-# =========================
-
+# ------------------------------------------------------
+# MAIN
+# ------------------------------------------------------
 def main():
     sidebar_mojo()
 
-    pages_main = {
+    pages = {
         "Home": page_home,
         "West African Vodun": page_vodun,
         "Lwa / Loas": page_lwa,
         "Hoodoo / Rootwork": page_hoodoo,
         "Ancestor Veneration": page_ancestors,
         "Supplications & Offerings": page_supplications,
-        "Supplies & Resources": page_resources,
         "Divination & Omens": page_divination_omens,
         "Spell Journal & Voice": page_spell_journal_voice,
         "PDF Library": page_pdf_library,
-        "Account & Initiation": page_account_and_initiation,
-        "Settings & Themes": page_settings_themes,
+        "Supplies & Resources": page_resources,
+        "Account & Initiation": page_account_initiation,
+        "Settings": page_settings,
     }
 
     with st.sidebar:
         st.markdown("---")
-        choice = st.radio("Navigate", list(pages_main.keys()), index=0)
+        choice = st.radio("Navigate", list(pages.keys()), index=0)
 
-    # Re-apply theme each run in case user changed it
-    apply_theme()
-    pages_main[choice]()
+    pages[choice]()
 
 
 if __name__ == "__main__":
