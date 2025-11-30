@@ -192,236 +192,302 @@ st.markdown(APP_CSS, unsafe_allow_html=True)
 # =========================
 
 LOA_GALLERY_DATA = [
+
+    # 1
     {
         "name": "Papa Legba",
         "image_key": "LWA_PAPA_LEGBA_URL",
-        "description": (
-            "Papa Legba is the gatekeeper of the Vodou spiritual realm, standing at the crossroads. "
-            "He is the wise elder who facilitates communication between the human and spirit worlds."
-        ),
+        "description": "Papa Legba is the gatekeeper at the crossroads, facilitator of communication between worlds.",
         "attributes": [
-            "🕯️ <strong>Role:</strong> Gatekeeper of doors and crossroads",
-            "🔑 <strong>Domains:</strong> Access, communication, opening roads",
+            "🕯️ Offerings: tobacco, coffee, rum, sugar cane, roasted corn",
+            "🔑 Domains: crossroads, guidance, language, access, destiny",
+            "📅 Feast Day: June 13",
+            "🎨 Colors: red, black, yellow, brown",
+            "⛪ Syncretized Saint: St. Peter",
+            "🐕 Sacred Animals: dogs, roosters",
+            "🌿 Sacred Plants: basil, bay leaf, tobacco leaf",
+            "🗝️ Symbols: cane, crutches, keys, crossroads",
+            "⚠️ Caution: Must ALWAYS be invoked first — or no spirit will arrive",
+            "🔥 Classification: Rada",
         ],
     },
+
+    # 2
     {
         "name": "Baron Semedi",
         "image_key": "LWA_BARON_SEMEDI_URL",
-        "description": (
-            "Baron Semedi is the Vodou spirit associated with death and the future. His unique appearance, "
-            "combined with a playful yet unsettling demeanor, marks him as guardian of the deceased and master "
-            "of transformation between life and death."
-        ),
+        "description": "Baron Samedi is the spirit of death, rebirth, and ancestor gateways.",
         "attributes": [
-            "💀 <strong>Role:</strong> Guardian of the dead, master of the cemetery",
-            "🎭 <strong>Qualities:</strong> Playful, shocking, truthful",
+            "🕯️ Offerings: rum, cigars, grilled corn, peanuts, black coffee",
+            "💀 Domains: death, resurrection, fertility, ancestor communication",
+            "📅 Feast Day: November 2 (Fête des Morts)",
+            "⛪ Syncretized Saint: Saint Martin de Porres",
+            "🎨 Colors: black, purple, white",
+            "⚰️ Symbols: top hat, skull, cross, sunglasses",
+            "🐓 Sacred Animals: black roosters",
+            "🌶️ Sacred Foods: hot peppers",
+            "😈 Behavior: crude humor, sexually explicit jokes",
+            "🔥 Classification: Gede",
         ],
     },
+
+    # 3
     {
         "name": "Ogoun Badagri",
         "image_key": "LWA_OGOUN_BADAGRI_URL",
-        "description": (
-            "Ogoun Badagri is a powerful warrior spirit of strength and valor. With a fierce presence, "
-            "he wields a weapon symbolizing leadership and ties to warfare and metalcraft."
-        ),
+        "description": "Ogoun Badagri is a warrior spirit of force, metal, leadership and revolution.",
         "attributes": [
-            "⚔️ <strong>Role:</strong> Warrior and protector",
-            "🛡️ <strong>Domains:</strong> Strength, battle, metal, leadership",
+            "🕯️ Offerings: rum, raw meat, red beans, iron tools, cigars",
+            "⚔️ Domains: war, metal, blood, military action, political force",
+            "📅 Feast Day: July 25 (varies)",
+            "⛪ Syncretized Saint: St. James the Greater",
+            "🎨 Colors: red, blue",
+            "🧲 Sacred Metals: iron, steel",
+            "🐓 Sacred Animals: ram, dogs",
+            "⚠️ Caution: Very strong — do not call without intent & purpose",
+            "🔥 Classification: Petro / Nago",
         ],
     },
+
+    # 4
     {
         "name": "Erzule Dantor",
         "image_key": "LWA_ERZULE_DANTOR_URL",
-        "description": (
-            "Erzule Dantor is the fierce protector of women and children in Vodou. Her strength and resilience "
-            "are highlighted, along with her role as guardian of family and independence."
-        ),
+        "description": "Erzule Dantor is the fierce protector of women, mothers, and children.",
         "attributes": [
-            "❤️ <strong>Role:</strong> Mother-protector of family",
-            "🔥 <strong>Domains:</strong> Protection, vengeance, independence",
+            "🕯️ Offerings: black coffee, blue candles, rum, pork, dark chocolate",
+            "🔥 Domains: protection, vengeance, motherhood, independence",
+            "⛪ Syncretized Saint: Mater Dolorosa",
+            "🎨 Colors: dark blue, red, gold",
+            "🐗 Sacred Animals: pigs, boars",
+            "🗡️ Symbols: dagger, scratched heart",
+            "⚠️ Caution: Protective but fierce — reacts to injustice",
+            "🔥 Classification: Petro",
         ],
     },
+
+    # 5
     {
-        "name": "Dambala Wedo",
+        "name": "Damballa Wedo",
         "image_key": "LWA_DAMBALA_WEDO_URL",
-        "description": (
-            "Dambala Wedo, often shown as twin serpents with a vibrant rainbow, embodies the sacred link "
-            "between the heavens and the earth. They carry the essence of balance and harmony."
-        ),
+        "description": "Damballa Wedo, the twin cosmic serpents, bring harmony and celestial breath.",
         "attributes": [
-            "🐍 <strong>Role:</strong> Serpent of balance between heaven and earth",
-            "🌈 <strong>Domains:</strong> Harmony, cosmic order, blessing",
+            "🕯️ Offerings: white eggs, rice, cool water, flour, milk",
+            "🐍 Domains: creation, purity, cosmic blessing",
+            "⛪ Syncretized Saint: St. Patrick",
+            "🎨 Colors: white, silver",
+            "🧊 Caution: No alcohol, no profanity, no spicy foods",
+            "🐍 Symbols: snakes",
+            "🌈 Sacred Element: rainbow",
+            "🔥 Classification: Rada",
         ],
     },
+
+    # 6
     {
         "name": "Bossou",
         "image_key": "LWA_BOSSOU_URL",
-        "description": (
-            "Bossou is the Vodou spirit of strength, stability, and endurance, embodying bull-like traits "
-            "that symbolize resilience and grounded power."
-        ),
+        "description": "Bossou is a bull-spirit representing unstoppable force and endurance.",
         "attributes": [
-            "🐂 <strong>Role:</strong> Bull-spirit of endurance",
-            "💪 <strong>Domains:</strong> Strength, stability, persistence",
+            "🕯️ Offerings: raw meat, rum, cigars, yams",
+            "🐂 Domains: strength, virility, ground power",
+            "🎨 Colors: red, black",
+            "⚠️ Caution: Very intense — should be handled by experienced priests",
+            "🔥 Classification: Nago / Petro",
         ],
     },
+
+    # 7
     {
         "name": "Ti Jan Danto",
         "image_key": "LWA_TI_JAN_DANTO_URL",
-        "description": (
-            "Ti Jan Danto represents youth, passion, vitality, and determination. He symbolizes bold energy "
-            "and the courage needed to pursue one’s desires and goals."
-        ),
+        "description": "Spirit of youthful fire, passion, and courageous energy.",
         "attributes": [
-            "🔥 <strong>Role:</strong> Youthful warrior energy",
-            "⚡ <strong>Domains:</strong> Courage, passion, bold action",
+            "🕯️ Offerings: rum, red fruit, candied ginger",
+            "🔥 Domains: youth, passion, fearless action",
+            "🎨 Colors: red, gold",
+            "⚠️ Caution: Impulsive — must be guided with discipline",
+            "🔥 Classification: Petro",
         ],
     },
+
+    # 8
     {
         "name": "Maman Brigitte",
         "image_key": "LWA_MAMAN_BRIGITTE_URL",
-        "description": (
-            "Maman Brigitte is linked to life, death, and the protection of graves. With her striking presence, "
-            "she embodies a powerful yet compassionate guardian of the deceased."
-        ),
+        "description": "Maman Brigitte guards the graves and protects the dead.",
         "attributes": [
-            "🪦 <strong>Role:</strong> Guardian of graves and graveyards",
-            "💀 <strong>Domains:</strong> Death, justice for the dead, protection",
+            "🕯️ Offerings: rum with hot pepper, candles, black bread",
+            "💀 Domains: graves, justice, death, past lives",
+            "⛪ Syncretized Saint: St. Brigid / Brigid of Kildare",
+            "🎨 Colors: purple, black, white",
+            "🐓 Sacred Animals: black hen",
+            "🔥 Classification: Gede",
         ],
     },
+
+    # 9
     {
         "name": "Kouzen Azaka",
         "image_key": "LWA_KOUZEN_AZAKA_URL",
-        "description": (
-            "Kouzen Azaka is the Vodou spirit representing agriculture and dedication. His humble, rural essence "
-            "promotes diligence, productivity, and prosperity through hard work."
-        ),
+        "description": "Kouzen Azaka is the rural peasant spirit of farming, honesty, and simple living.",
         "attributes": [
-            "🌾 <strong>Role:</strong> Farmer-spirit of the countryside",
-            "🌱 <strong>Domains:</strong> Harvest, labor, practical prosperity",
+            "🕯️ Offerings: sugar cane, bread, beans, corn meal, fresh fruit",
+            "🌾 Domains: agriculture, rural life, diligence",
+            "⛪ Syncretized Saint: St. Isidore the Farmer",
+            "🎨 Colors: denim blue, straw brown",
+            "🔥 Classification: Rada",
         ],
     },
+
+    # 10
     {
         "name": "Marasa Dosou",
         "image_key": "LWA_MARASA_DOSOU_URL",
-        "description": (
-            "Marasa Dosou is one of the divine twins in Vodou, symbolizing balance and harmony between opposites. "
-            "Together, the Marasa represent the bridge between spiritual and physical worlds."
-        ),
+        "description": "The Marasa are sacred twins representing divine polarity — duality in unity, childlike purity, and cosmic symmetry.",
         "attributes": [
-            "👥 <strong>Role:</strong> Divine twin principle",
-            "⚖️ <strong>Domains:</strong> Duality, balance, sacred childhood",
+            "🕯️ Offerings: candies, milk, white cakes, coconut, popcorn",
+            "👥 Domains: twins, childhood, cosmic balance, innocence",
+            "🎨 Colors: white, light blue, pink",
+            "⛪ Syncretized Saints: Saints Cosmas and Damian",
+            "🐓 Sacred Animals: doves",
+            "🌿 Plants: coconut palm",
+            "⚠️ Caution: ALWAYS feed both — never make an offering to one twin alone",
+            "🔥 Classification: Rada",
         ],
     },
+
+    # 11
     {
         "name": "Kalfu",
         "image_key": "LWA_KALFU_URL",
-        "description": (
-            "Kalfu is the Vodou spirit of the night, crossroads, and transformation. His commanding presence "
-            "and dark surroundings symbolize his role in navigating chaos and transitions."
-        ),
+        "description": "Kalfu rules the powerful crossroads of the night and governs the darker pathways of fate and possibility.",
         "attributes": [
-            "🌒 <strong>Role:</strong> Keeper of dangerous crossroads",
-            "⚠️ <strong>Domains:</strong> Night, risk, powerful openings",
+            "🕯️ Offerings: dark rum, gunpowder, spicy food, black candles",
+            "🌒 Domains: night magic, crossroads, destiny manipulation",
+            "🎨 Colors: black, red",
+            "🗝️ Symbols: inverted crosses, shadowed crossroads",
+            "⚠️ Caution: Do NOT invoke without Legba’s permission",
+            "🔥 Classification: Petro",
         ],
     },
+
+    # 12
     {
         "name": "Damballa",
         "image_key": "LWA_DAMBALLA_URL",
-        "description": (
-            "Damballa, the serpent spirit in Vodou, embodies wisdom, purity, and the breath of creation. "
-            "His serene aura carries mystical qualities that inspire awe and reverence."
-        ),
+        "description": "Damballa embodies purity, wisdom, innocence, and the breath of creation — a calm serpent of heavenly radiance.",
         "attributes": [
-            "🐍 <strong>Role:</strong> Serpent of creation and purity",
-            "💧 <strong>Domains:</strong> Blessing, purity, cosmic life-force",
+            "🕯️ Offerings: white eggs, filtered water, rice, coconut milk",
+            "🐍 Domains: creation, peace, purity, celestial order",
+            "🎨 Colors: white, silver, pale blue",
+            "⛪ Syncretized Saint: St. Patrick",
+            "⚠️ Caution: No alcohol or profanity",
+            "🔥 Classification: Rada",
         ],
     },
+
+    # 13
     {
         "name": "Simbi",
         "image_key": "LWA_SIMBI_URL",
-        "description": (
-            "Simbi is the Vodou spirit representing water, magic, and communication. His flowing form, often "
-            "depicted among rivers and streams, embodies spiritual insight and adaptability."
-        ),
+        "description": "Simbi is a water and communication spirit — associated with magic, telepathy, divination, and flowing intelligence.",
         "attributes": [
-            "💧 <strong>Role:</strong> Water-magic communicator",
-            "🔮 <strong>Domains:</strong> Divination, messages, fluid intelligence",
+            "🕯️ Offerings: rum, fresh water, anise, fish",
+            "💧 Domains: water, magic, channeling, spiritual transmission",
+            "🎨 Colors: green, blue, white",
+            "🌊 Sacred Places: rivers, springs, wells",
+            "🔥 Classification: Rada / Kongo",
         ],
     },
+
+    # 14
     {
         "name": "Klemezine",
         "image_key": "LWA_KLEMEZINE_URL",
-        "description": (
-            "Klemezine is the Vodou spirit of protection, embodying spiritual safeguarding with a tranquil "
-            "yet formidable aura. She shields and stabilizes those under her care."
-        ),
+        "description": "Klemezine offers psychic and spiritual protection — a firm yet gentle guardian of sacred spaces.",
         "attributes": [
-            "🕊️ <strong>Role:</strong> Protective guardian spirit",
-            "🛡️ <strong>Domains:</strong> Safety, defense, spiritual shielding",
+            "🕯️ Offerings: white rum, silver jewelry, incense",
+            "🛡️ Domains: protection, clarity, defensive magic",
+            "🎨 Colors: white, silver, grey",
+            "🌿 Plants: sage, palm leaf",
+            "🔥 Classification: Rada / Kongo",
         ],
     },
+
+    # 15
     {
         "name": "Ayizan Velekete",
         "image_key": "LWA_AYIZAN_VELEKETE_URL",
-        "description": (
-            "Ayizan Velekete is linked to initiation and market success, representing prosperity, spiritual "
-            "authority, and personal growth. She uplifts those seeking guidance and elevation."
-        ),
+        "description": "Ayizan is the matron of priesthood, commerce, and spiritual initiation — keeper of sacred lineage.",
         "attributes": [
-            "🌿 <strong>Role:</strong> Initiatory and market-mystery spirit",
-            "📈 <strong>Domains:</strong> Prosperity, spiritual rank, growth",
+            "🕯️ Offerings: cassava, breadfruit, palm wine, corn",
+            "🌿 Domains: priesthood, social order, commerce, knowledge",
+            "🎨 Colors: gold, yellow, green",
+            "🌿 Sacred Plants: palm frond",
+            "⛪ Syncretized Saint: St. Clare",
+            "🔥 Classification: Rada",
         ],
     },
+
+    # 16
     {
         "name": "Gran Bwa",
         "image_key": "LWA_GRAN_BWA_URL",
-        "description": (
-            "Gran Bwa is the Vodou spirit of the forest, representing nature and wisdom. As guardian of the "
-            "wilderness, he protects its beauty and guides those seeking to understand natural relationships."
-        ),
+        "description": "Gran Bwa is master of the forest, herbal mysteries, and green life — a primal nature spirit.",
         "attributes": [
-            "🌳 <strong>Role:</strong> Guardian of the forest",
-            "🍃 <strong>Domains:</strong> Nature, herbal wisdom, wild paths",
+            "🕯️ Offerings: tobacco, honey, herbs, fresh fruit",
+            "🌳 Domains: nature, wilderness, secrets of plants",
+            "🎨 Colors: green, brown",
+            "🌿 Sacred Plants: vetiver grass",
+            "🔥 Classification: Kongo",
         ],
     },
+
+    # 17
     {
         "name": "Hogou Ferralle",
         "image_key": "LWA_HOGOU_FERALLE_URL",
-        "description": (
-            "Hogou Ferralle embodies the Vodou spirit Ogoun in his armored aspect, representing protection, "
-            "leadership, and strength in battle. His energy is fierce and resilient."
-        ),
+        "description": "Hogou Ferralle is an armored aspect of Ogun — the disciplined, militant, steel-willed warforce.",
         "attributes": [
-            "🛡️ <strong>Role:</strong> Armored warrior aspect of Ogoun",
-            "⚔️ <strong>Domains:</strong> Protection, battle, disciplined force",
+            "🕯️ Offerings: iron nails, rum, whiskey, blood sausage",
+            "🛡️ Domains: warfare, iron, defense, righteous conflict",
+            "🎨 Colors: red, metallic steel",
+            "⛪ Syncretized Saint: St. George",
+            "🔥 Classification: Nago / Petro",
         ],
     },
+
+    # 18
     {
         "name": "Erzulie Freda",
         "image_key": "LWA_ERZULIE_FREDA_URL",
-        "description": (
-            "Erzulie Freda is the enchanting Vodou spirit of love, beauty, and opulence. She exudes elegance "
-            "and intertwines herself with the affairs of the heart."
-        ),
+        "description": "Erzulie Freda is the patroness of love, romance, perfume, elegance and sensual beauty.",
         "attributes": [
-            "💗 <strong>Role:</strong> Embodiment of refined love and beauty",
-            "🎀 <strong>Domains:</strong> Romance, luxury, emotional longing",
+            "🕯️ Offerings: champagne, perfumes, sweets, pink flowers",
+            "💗 Domains: romance, luxury, femininity, emotional longing",
+            "🎨 Colors: pink, gold, white",
+            "⛪ Syncretized Saint: Our Lady of Sorrows",
+            "🔥 Classification: Rada",
         ],
     },
+
+    # 19
     {
         "name": "Brav Gede",
         "image_key": "LWA_BRAV_GEDE_URL",
-        "description": (
-            "Brav Gede is the Vodou spirit of life and death, fertility, and humor. His playful, colorful "
-            "presence symbolizes the powerful duality of joy and mortality."
-        ),
+        "description": "Brav Gede walks the line between life and death, using humor as spiritual medicine.",
         "attributes": [
-            "🎭 <strong>Role:</strong> Trickster of life, death, and fertility",
-            "💀 <strong>Domains:</strong> Death, sexuality, jokes, irreverent healing",
+            "🕯️ Offerings: rum, peanuts, popcorn, cigars",
+            "😈 Domains: death, sexuality, laughter, truth-telling",
+            "🎨 Colors: black, purple, white",
+            "💀 Symbols: skull, cross of the cemetery",
+            "🔥 Classification: Gede",
         ],
     },
+
 ]
+
 
 
 
