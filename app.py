@@ -384,7 +384,6 @@ def page_vodun():
 
     render_footer()
 
-
 def page_lwa():
     render_header()
     st.subheader("Lwa / Loas – Spirits of Haitian Vodou")
@@ -495,6 +494,9 @@ def page_lwa():
         ("LWA_GALLERY_14_URL", "Lwa image 14"),
         ("LWA_GALLERY_15_URL", "Lwa image 15"),
         ("LWA_GALLERY_16_URL", "Lwa image 16"),
+        ("LWA_GALLERY_17_URL", "Lwa image 17"),
+        ("LWA_GALLERY_18_URL", "Lwa image 18"),
+        ("LWA_GALLERY_19_URL", "Lwa image 19"),
     ]
 
     cols = st.columns(4)  # 4 images per row
@@ -507,6 +509,7 @@ def page_lwa():
             # If key not set, we quietly skip it
 
     render_footer()
+
 
 
 def page_haiti_1791():
