@@ -179,14 +179,6 @@ div.stButton > button:hover {
 """
 st.markdown(APP_CSS, unsafe_allow_html=True)
 
-
-# =========================
-# HELPERS
-# =========================
-# =========================
-# LWA / LOA GALLERY DATA
-# =========================
-
 # =========================
 # LWA / LOA GALLERY DATA
 # =========================
@@ -209,9 +201,41 @@ LOA_GALLERY_DATA = [
             "🗝️ <strong>Loa type:</strong> Rada",
         ],
     },
-    # ... other Loa dicts here, same style ...
+    {
+        "name": "Baron Samedi",
+        "image_key": "LWA_BARON_SAMEDI_URL",
+        "description": (
+            "Baron Samedi is the Vodou spirit associated with death, the cemetery, and the future. "
+            "Playful, obscene, and deeply wise, he guards the boundary between life and death."
+        ),
+        "attributes": [
+            "🕯️ <strong>Offerings:</strong> rum, black coffee, cigars, hot peppers",
+            "💀 <strong>Domains:</strong> death, cemetery gates, ancestral paths",
+            "🎨 <strong>Colors:</strong> black, purple, white",
+            "🕶️ <strong>Symbols:</strong> top hat, cane, skull, crossbones",
+            "🧿 <strong>Loa type:</strong> Gede / death mysteries",
+        ],
+    },
+    {
+        "name": "Erzulie Freda",
+        "image_key": "LWA_ERZULIE_FREDA_URL",
+        "description": (
+            "Erzulie Freda embodies romantic love, beauty, and refined desire. "
+            "She rules perfumes, silks, sweet things, and the pains and joys of the heart."
+        ),
+        "attributes": [
+            "🕯️ <strong>Offerings:</strong> perfumes, sweets, champagne, pink flowers",
+            "💗 <strong>Domains:</strong> love, beauty, luxury, emotional longing",
+            "🎨 <strong>Colors:</strong> pink, white, gold",
+            "💍 <strong>Symbols:</strong> hearts, mirrors, fine jewelry",
+        ],
+    },
+    # 👉 Add more Loa dictionaries here later (Erzili Dantò, Ogoun Badagri, Simbi, etc.)
 ]
 
+# =========================
+# HELPERS
+# =========================
 
 def media_image(key: str, caption: str = "", width=None):
     """
@@ -294,7 +318,6 @@ def safe_rerun():
         st.rerun()
     elif hasattr(st, "experimental_rerun"):
         st.experimental_rerun()
-
 
 # =========================
 # PAGES
@@ -420,10 +443,11 @@ def page_lwa():
 
     st.markdown(
         """
-        In Haitian Vodou, the spirits are called <strong>lwa</strong> (older English spelling: “loas”).
+        In Haitian Vodou, the spirits are called <strong>lwa</strong> (older English spelling: "loas").
         They are distinct beings with their own histories, symbols, rhythms, and ways of being served.
         This page offers visual and short-text orientation to some well-known lwa.
-        """
+        """,
+        unsafe_allow_html=True,
     )
 
     # Papa Legba
@@ -436,7 +460,6 @@ def page_lwa():
             """
         )
         media_image("PAPA_LEGBA_IMAGE_URL", "Papa Legba – gatekeeper imagery")
-        # Optional: veve / symbol for Papa Legba
         media_image("PAPA_LEGBA_VEVE_URL", "Veve of Papa Legba (symbol at the crossroads)")
         st.markdown("**Video**")
         media_video("PAPA_LEGBA_VIDEO_URL")
@@ -498,14 +521,13 @@ def page_lwa():
         st.markdown("**Video**")
         media_video("BARON_SAMEDI_VIDEO_URL")
 
-    # --- OPTIONAL: existing image you already have at the end ---
+    # Additional illustration if configured
     st.markdown("---")
     st.markdown("### Lwa Visual – Additional Illustration")
-    # If you already have a single image here, keep this line:
     media_image("LOA_SYMBOL_MAP_URL", "Lwa symbols / map (if configured)")
 
-           # --- OPTIONAL: existing symbol/map image (if you still use one) ---
-        st.markdown("---")
+    # --- Portraits with descriptions & attributes ---
+    st.markdown("---")
     st.markdown("### Lwa / Loa Portraits with Descriptions")
     st.markdown(
         "Below are visual and symbolic representations of various lwa, "
@@ -537,66 +559,12 @@ def page_lwa():
         with col_img:
             media_image(loa["image_key"], caption=loa["name"], width=600)
 
-        st.markdown("<hr style='border: 1px solid #555; margin-top: 1.2rem; margin-bottom: 1.2rem;'>", unsafe_allow_html=True)
-def page_lwa():
-    render_header()
-    st.subheader("Lwa / Loas – Spirits of Haitian Vodou")
-
-    st.markdown(
-        """
-        In Haitian Vodou, the spirits are called <strong>lwa</strong> (older English spelling: “loas”).
-        They are distinct beings with their own histories, symbols, rhythms, and ways of being served.
-        This page offers visual and short-text orientation to some well-known lwa.
-        """,
-        unsafe_allow_html=True,
-    )
-
-    # (keep your existing expanders here: Papa Legba, Damballa, Ezili, Ogou, Baron, etc.)
-
-    # --- NEW: portraits with descriptions & attributes ---
-    st.markdown("---")
-    st.markdown("### Lwa / Loa Portraits with Descriptions")
-    st.markdown(
-        "Below are visual and symbolic representations of various lwa, "
-        "with imagery, attributes, and a short explanation of who they are."
-    )
-
-    for loa in LOA_GALLERY_DATA:
-        image_url = st.secrets.get(loa["image_key"], "")
-        if not image_url:
-            continue
-
-        st.markdown(f"#### {loa['name']}")
-
-        col_text, col_img = st.columns([2, 3])
-
-        with col_text:
-            # Main description
-            st.markdown(
-                f"<p style='font-size: 17px; line-height: 1.6; font-family: \"Times New Roman\";'>{loa['description']}</p>",
-                unsafe_allow_html=True,
-            )
-            # Attribute lines (emoji bullets)
-            for line in loa.get("attributes", []):
-                st.markdown(
-                    f"<p style='font-size: 15px; line-height: 1.4; font-family: \"Times New Roman\";'>{line}</p>",
-                    unsafe_allow_html=True,
-                )
-
-        with col_img:
-            media_image(loa["image_key"], caption=loa['name'], width=600)
-
         st.markdown(
             "<hr style='border: 1px solid #555; margin-top: 1.2rem; margin-bottom: 1.2rem;'>",
             unsafe_allow_html=True,
         )
 
     render_footer()
-
-
-
-    render_footer()
-
 
 
 def page_haiti_1791():
@@ -660,7 +628,7 @@ def page_new_orleans():
         st.markdown("### Marie Laveau – person & legend")
         media_image("MARIE_LAVEAU_IMAGE_URL", "Marie Laveau – Voodoo Queen of New Orleans")
         media_image("MARIE_LAVEAU_TOMB_IMAGE_URL", "Tomb associated with Marie Laveau")
-        st.markdown("**Video about Marie Laveau")
+        st.markdown("**Video about Marie Laveau**")
         media_video("MARIE_LAVEAU_VIDEO_URL")
 
     with col2:
@@ -668,7 +636,7 @@ def page_new_orleans():
         media_image("NEW_ORLEANS_ALTAR_IMAGE_URL", "New Orleans Voodoo / Vodou altar")
         media_image("NEW_ORLEANS_STREET_PROCESSION_IMAGE_URL", "Procession in New Orleans streets")
         media_image("NEW_ORLEANS_CEMETERY_IMAGE_URL", "New Orleans cemetery")
-        st.markdown("**New Orleans & Voodoo video")
+        st.markdown("**New Orleans & Voodoo video**")
         media_video("NEW_ORLEANS_VOODOO_VIDEO_URL")
 
     render_footer()
@@ -740,7 +708,8 @@ def page_gallery():
 
     st.markdown(
         """
-        
+        This page lists all image and video keys that the app knows about.
+        Use it as a debugging tool to confirm which secrets are set correctly.
         """
     )
 
@@ -777,6 +746,7 @@ def page_gallery():
         ("ANCESTOR_WATER_GLASS_IMAGE_URL", "Ancestor Water Glass"),
         ("ANCESTOR_PHOTO_COLLECTION_IMAGE_URL", "Ancestor Photos"),
         ("ANCESTOR_CANDLE_LIGHTING_IMAGE_URL", "Ancestor Candle Lighting"),
+        ("LOA_SYMBOL_MAP_URL", "Lwa Symbol Map / Illustration"),
     ]
 
     video_keys = [
@@ -896,7 +866,6 @@ def page_disclaimer():
 
     render_footer()
 
-
 # =========================
 # MAIN ROUTER
 # =========================
@@ -951,5 +920,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
-
