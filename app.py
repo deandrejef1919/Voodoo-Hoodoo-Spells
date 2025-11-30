@@ -37,6 +37,10 @@ body, .stApp {
 }
 .vh-logo {
     font-size: 3.4rem;
+    text-shadow:
+        0 0 8px rgba(244,67,54,0.9),
+        0 0 14px rgba(0,0,0,1.0);
+    animation: mojo-heartbeat 1.6s ease-in-out infinite;
 }
 .vh-title {
     font-size: 2.4rem;
@@ -78,18 +82,23 @@ section[data-testid="stSidebar"] {
 /* 🔥 Mojo heartbeat glow for sidebar media */
 .mojo-glow {
     border-radius: 16px;
-    padding: 0.4rem;
+    padding: 0.45rem;
     background: radial-gradient(circle at 50% 0%, #330000 0, #120000 55%, #000000 100%);
     box-shadow: 0 0 0px rgba(255, 0, 0, 0.0);
     animation: mojo-heartbeat 1.6s ease-in-out infinite;
 }
 .mojo-video-container iframe {
     border-radius: 12px;
+    width: 100%;
+    height: 118px; /* slightly smaller player */
 }
 .mojo-bag-container img {
     border-radius: 14px;
+    display:block;
+    margin:0 auto;
 }
 
+/* Shared heartbeat animation (candle + sidebar) */
 @keyframes mojo-heartbeat {
     0% {
         box-shadow: 0 0 0 0 rgba(255, 0, 0, 0.0);
@@ -213,15 +222,7 @@ div.stButton > button:hover {
 st.markdown(APP_CSS, unsafe_allow_html=True)
 
 # =========================
-# LWA / LOA GALLERY DATA
-# =========================
-
-# =========================
-# LWA / LOA GALLERY DATA
-# =========================
-
-# =========================
-# LWA / LOA GALLERY DATA (19 matching your text file)
+# LWA / LOA GALLERY DATA (19 matching your text Loas)
 # =========================
 
 LOA_GALLERY_DATA = [
@@ -539,9 +540,6 @@ LOA_GALLERY_DATA = [
     },
 
 ]
-
-
-
 
 # =========================
 # HELPERS
@@ -1208,13 +1206,11 @@ def main():
         st.markdown("---")
         st.markdown("### Louisiana \"Mojo Music\"")
 
-        # YouTube player (glowing)
+        # YouTube player (slightly smaller, clean, centered)
         st.markdown(
             """
             <div class="mojo-glow mojo-video-container">
                 <iframe
-                    width="260"
-                    height="145"
                     src="https://www.youtube.com/embed/UuA4eRCvTbo?rel=0&modestbranding=1&loop=1&playlist=UuA4eRCvTbo"
                     title="Louisiana Mojo Music"
                     frameborder="0"
@@ -1226,29 +1222,21 @@ def main():
             unsafe_allow_html=True,
         )
 
-        # Mojo bag image under the player
+        # Mojo bag image under the player (only)
         mojo_bag_url = st.secrets.get("MOJO_BAG_IMAGE_URL", "")
         if mojo_bag_url:
             st.markdown(
                 f"""
-                <div class="mojo-glow mojo-bag-container" style="margin-top: 0.6rem;">
+                <div class="mojo-glow mojo-bag-container" style="margin-top: 0.85rem; text-align:center;">
                     <img src="{mojo_bag_url}" alt="Mojo Bag"
-                         style="width:100%; max-width:200px; display:block; margin:0 auto;" />
+                         style="width:78%; max-width:165px;" />
+                    <div style="margin-top:0.35rem; font-size:0.9rem; opacity:0.9; font-family:'Times New Roman';">
+                        Working Mojo Hand
+                    </div>
                 </div>
                 """,
                 unsafe_allow_html=True,
             )
-
-        # Candle icon with same glow
-        st.markdown(
-            """
-            <div class="mojo-glow mojo-candle-container"
-                 style="text-align:center; margin-top:0.6rem; margin-bottom:0.4rem;">
-                <span style="font-size: 2.2rem;">🕯️</span>
-            </div>
-            """,
-            unsafe_allow_html=True,
-        )
 
     if choice == "Home":
         page_home()
