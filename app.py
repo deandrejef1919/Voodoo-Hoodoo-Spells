@@ -634,27 +634,36 @@ def page_lwa():
     # If you already have a single image here, keep this line:
     media_image("LOA_SYMBOL_MAP_URL", "Lwa symbols / map (if configured)")
 
-        # --- OPTIONAL: existing symbol/map image ---
+           # --- OPTIONAL: existing symbol/map image (if you still use one) ---
     st.markdown("---")
     st.markdown("### Lwa / Loa Portraits with Descriptions")
+    st.markdown(
+        "Below are visual and symbolic representations of various lwa, "
+        "showing imagery associated with them, along with brief descriptions "
+        "of their character and role in Vodou traditions."
+    )
 
     for loa in LOA_GALLERY_DATA:
         image_url = st.secrets.get(loa["image_key"], "")
-        # If you haven't set this image yet, skip it quietly
+        # If you haven't set this image yet in secrets, skip it
         if not image_url:
             continue
 
         st.markdown(f"#### {loa['name']}")
+
         col_text, col_img = st.columns([2, 3])
 
         with col_text:
-            st.markdown(loa["description"])
+            st.markdown(
+                f"<p style='font-size: 17px; line-height: 1.5; font-family: \"Times New Roman\";'>{loa['description']}</p>",
+                unsafe_allow_html=True,
+            )
 
         with col_img:
-            # Large image so the details are clear
-            media_image(loa["image_key"], caption=loa["name"], width=550)
+            media_image(loa["image_key"], caption=loa["name"], width=600)
 
-        st.markdown("---")
+        st.markdown("<hr style='border: 1px solid #AAA;'>", unsafe_allow_html=True)
+
 
     render_footer()
 
