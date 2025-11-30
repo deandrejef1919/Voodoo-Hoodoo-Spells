@@ -189,159 +189,280 @@ st.markdown(APP_CSS, unsafe_allow_html=True)
 
 LOA_GALLERY_DATA = [
     {
-        "name": "Papa Legba",
+        "name": "Papa Legba — Atibon Legba",
         "image_key": "LWA_PAPA_LEGBA_URL",
         "description": (
             "Papa Legba is the gatekeeper of the Vodou spiritual realm, standing at the crossroads. "
             "He is the wise elder who facilitates communication between the human and spirit worlds."
         ),
+        "attributes": [
+            "🕯️ <strong>Offerings:</strong> tobacco, rum, coffee, candy",
+            "🔑 <strong>Domains:</strong> crossroads, access, communication",
+            "🎨 <strong>Colors:</strong> brown, yellow, red",
+            "📅 <strong>Day:</strong> Monday",
+            "🪶 <strong>Sacred animals:</strong> dogs, roosters",
+            "🌿 <strong>Plants:</strong> basil, tobacco, bay leaf",
+            "🗝️ <strong>Loa type:</strong> Rada",
+        ],
     },
     {
         "name": "Baron Samedi",
         "image_key": "LWA_BARON_SAMEDI_URL",
         "description": (
-            "Baron Samedi is the Vodou spirit associated with death and the future. "
-            "His unique appearance and playful yet unsettling demeanor mark him as guardian of the deceased "
-            "and master of the transformations between life and death."
+            "Baron Samedi is the Vodou spirit associated with death, the cemetery, and the future. "
+            "Playful, obscene, and deeply wise, he guards the boundary between life and death."
         ),
+        "attributes": [
+            "🕯️ <strong>Offerings:</strong> rum, black coffee, cigars, hot peppers",
+            "💀 <strong>Domains:</strong> death, cemetery gates, ancestral paths",
+            "🎨 <strong>Colors:</strong> black, purple, white",
+            "🕶️ <strong>Symbols:</strong> top hat, cane, skull, crossbones",
+            "🧿 <strong>Loa type:</strong> Gede / death mysteries",
+        ],
     },
     {
         "name": "Ogoun Badagri",
         "image_key": "LWA_OGOUN_BADAGRI_URL",
         "description": (
-            "Ogoun Badagri is a powerful warrior spirit of strength and valor. "
-            "With a fierce presence, he wields weapons that symbolize leadership, warfare, and metalcraft."
+            "Ogoun Badagri is a warrior aspect of Ogoun, linked with strength, iron, and disciplined action. "
+            "He stands with soldiers, workers, and those fighting for justice."
         ),
+        "attributes": [
+            "🕯️ <strong>Offerings:</strong> rum, red peppers, grilled meat, cigars",
+            "⚔️ <strong>Domains:</strong> war, iron, strategy, courage",
+            "🎨 <strong>Colors:</strong> red, blue, metallic tones",
+            "🛡️ <strong>Symbols:</strong> sword, shield, tools of iron",
+            "🔥 <strong>Loa type:</strong> Ogoun / warrior current",
+        ],
     },
     {
-        "name": "Erzule Dantor",
+        "name": "Erzuli Dantò",
         "image_key": "LWA_ERZULE_DANTOR_URL",
         "description": (
-            "Erzule Dantor is a fierce protector of women and children in Vodou. "
-            "She embodies strength, resilience, and the fire that guards family and independence."
+            "Erzuli Dantò is a fierce protector of women, children, and the oppressed. "
+            "She carries the scars of struggle and embodies a mother’s rage and protection."
         ),
+        "attributes": [
+            "🕯️ <strong>Offerings:</strong> rum with hot pepper, pork, dark coffee",
+            "❤️ <strong>Domains:</strong> protection, motherhood, vengeance, survival",
+            "🎨 <strong>Colors:</strong> blue, red, sometimes black",
+            "🗡️ <strong>Symbols:</strong> heart with a dagger, scars, flames",
+            "🔥 <strong>Loa type:</strong> Petro / fiery current",
+        ],
     },
     {
         "name": "Dambala Wedo",
         "image_key": "LWA_DAMBALA_WEDO_URL",
         "description": (
-            "Dambala Wedo, often shown as twin serpents and a rainbow, embodies the sacred link between "
-            "heaven and earth. This lwa carries the essence of balance, harmony, and sacred life-force."
+            "Dambala Wedo is a serpent creator spirit, linked with purity, blessing, and the cool power of life itself. "
+            "He moves silently, like rivers and the arc of the sky."
         ),
+        "attributes": [
+            "🕯️ <strong>Offerings:</strong> white eggs, white foods, clear water",
+            "🐍 <strong>Domains:</strong> creation, purity, blessing, sky-serpent",
+            "🎨 <strong>Colors:</strong> white, light blue, silver",
+            "🌈 <strong>Symbols:</strong> serpents, arcs, rainbows",
+            "💧 <strong>Loa type:</strong> Rada / cool current",
+        ],
     },
     {
         "name": "Bossou",
         "image_key": "LWA_BOSSOU_URL",
         "description": (
-            "Bossou is a spirit of strength, stability, and endurance, often linked to a bull. "
-            "He symbolizes resilience and grounded energy."
+            "Bossou is often associated with the bull and with resilient, grounded strength. "
+            "He carries the energy of endurance, stubborn will, and rooted power."
         ),
+        "attributes": [
+            "🕯️ <strong>Offerings:</strong> strong liquor, corn, meat",
+            "🐂 <strong>Domains:</strong> strength, endurance, protection",
+            "🎨 <strong>Colors:</strong> red, brown, dark earth tones",
+            "🛡️ <strong>Symbols:</strong> bull horns, earth, hooves",
+        ],
     },
     {
         "name": "Ti Jan Dantò",
         "image_key": "LWA_TI_JAN_DANTO_URL",
         "description": (
-            "Ti Jan Dantò represents youth, passion, vitality, and determination. "
-            "He expresses the bold courage needed to pursue one’s goals and desires."
+            "Ti Jan Dantò expresses youthful fire, impulsive courage, and the daring of young warriors. "
+            "He moves fast and burns hot, like a spark leaping from the flame of Dantò."
         ),
+        "attributes": [
+            "🕯️ <strong>Offerings:</strong> rum, spicy foods, roasted meats",
+            "🔥 <strong>Domains:</strong> youthful courage, quick action, boldness",
+            "🎨 <strong>Colors:</strong> red, orange, flame-like shades",
+            "⚡ <strong>Symbols:</strong> fire, blades, fast movement",
+        ],
     },
     {
         "name": "Maman Brigitte",
         "image_key": "LWA_MAMAN_BRIGITTE_URL",
         "description": (
-            "Maman Brigitte is linked to graveyards, life, and death. "
-            "With striking presence, she is a powerful yet compassionate guardian of the deceased."
+            "Maman Brigitte stands with the dead, particularly in the cemetery, and brings fierce protection and sharp humor. "
+            "She is a strong guardian of graves and crossed roads of the dead."
         ),
+        "attributes": [
+            "🕯️ <strong>Offerings:</strong> rum with hot pepper, dark beer, bread",
+            "💀 <strong>Domains:</strong> graves, death, justice for the dead",
+            "🎨 <strong>Colors:</strong> black, purple, sometimes green",
+            "⛪ <strong>Symbols:</strong> crosses, headstones, graveyard gates",
+        ],
     },
     {
         "name": "Kouzen Azaka",
         "image_key": "LWA_KOUZEN_AZAKA_URL",
         "description": (
-            "Kouzen Azaka represents agriculture, rural life, and dedication. "
-            "He honors hard work, productivity, and prosperity earned through steady effort."
+            "Kouzen Azaka is a peasant farmer spirit, guardian of fields, seeds, and hard honest work. "
+            "He carries the heart of rural life and the dignity of labor."
         ),
+        "attributes": [
+            "🕯️ <strong>Offerings:</strong> corn, beans, bread, simple country foods",
+            "🌾 <strong>Domains:</strong> agriculture, harvest, rural life",
+            "🎨 <strong>Colors:</strong> blue, straw-yellow, earthy tones",
+            "👒 <strong>Symbols:</strong> straw hat, sack, tools of the field",
+        ],
     },
     {
         "name": "Marasa Dosou",
         "image_key": "LWA_MARASA_DOSOU_URL",
         "description": (
-            "Marasa Dosou belongs to the divine twins in Vodou, symbolizing balance and harmony between opposites. "
-            "They stand between spiritual and physical worlds, holding both at once."
+            "The Marasa are sacred twins, holding paradox and balance. "
+            "They stand for mystery, duality, and the way opposites can both be true."
         ),
+        "attributes": [
+            "🕯️ <strong>Offerings:</strong> milk, sweets, paired foods",
+            "⚖️ <strong>Domains:</strong> duality, balance, mystery of twins",
+            "🎨 <strong>Colors:</strong> white with paired colors, often pink/blue",
+            "👥 <strong>Symbols:</strong> twins, doubled objects, mirrored items",
+        ],
     },
     {
         "name": "Kalfu",
         "image_key": "LWA_KALFU_URL",
         "description": (
-            "Kalfu is a spirit of the night, crossroads, and transformation. "
-            "His commanding presence at dark crossroads reflects his role in navigating chaos and transitions."
+            "Kalfu is the spirit of the night crossroads and difficult choices. "
+            "He holds the power of openings that lead into shadow and risk."
         ),
+        "attributes": [
+            "🕯️ <strong>Offerings:</strong> rum, gunpowder (symbolically), dark foods",
+            "🌒 <strong>Domains:</strong> night crossroads, danger, paths of risk",
+            "🎨 <strong>Colors:</strong> red, black, deep blue",
+            "🧿 <strong>Symbols:</strong> dark crossroads, stars, iron keys",
+        ],
     },
     {
         "name": "Damballa",
         "image_key": "LWA_DAMBALLA_URL",
         "description": (
-            "Damballa is a serpent spirit of wisdom, purity, and creation. "
-            "A serene, majestic lwa whose presence carries the breath of life and deep mystery."
+            "Damballa is a serpent lwa of pure life-force, often approached with great respect and silence. "
+            "He embodies wisdom, serenity, and the breath of creation."
         ),
+        "attributes": [
+            "🕯️ <strong>Offerings:</strong> white eggs, milk, white foods",
+            "🐍 <strong>Domains:</strong> wisdom, purity, life-force, sky-serpent",
+            "🎨 <strong>Colors:</strong> white, silver, pale blue",
+            "💧 <strong>Symbols:</strong> serpents, coils, flowing lines",
+        ],
     },
     {
         "name": "Simbi",
         "image_key": "LWA_SIMBI_URL",
         "description": (
-            "Simbi is a spirit of water, magic, and communication, often linked with rivers and streams. "
-            "He embodies spiritual insight, adaptability, and fluid paths of knowledge."
+            "Simbi is a water and magic spirit, associated with rivers, streams, and communication. "
+            "He carries messages in the currents and in the hidden flow of things."
         ),
+        "attributes": [
+            "🕯️ <strong>Offerings:</strong> clear water, light-colored drinks, river stones",
+            "💧 <strong>Domains:</strong> water, magic, communication, divination",
+            "🎨 <strong>Colors:</strong> blue, green, aqua",
+            "🌊 <strong>Symbols:</strong> waves, rivers, serpentine currents",
+        ],
     },
     {
         "name": "Klemezine",
         "image_key": "LWA_KLEMEZINE_URL",
         "description": (
-            "Klemezine is a protective spirit, radiating a tranquil yet formidable aura. "
-            "He embodies the essence of spiritual safeguarding and boundary-keeping."
+            "Klemezine is linked with spiritual protection and quiet authority. "
+            "His presence is steady, warding off harm and maintaining spiritual order."
         ),
+        "attributes": [
+            "🕯️ <strong>Offerings:</strong> clean water, simple foods, white candles",
+            "🛡️ <strong>Domains:</strong> protection, spiritual boundaries, clarity",
+            "🎨 <strong>Colors:</strong> white, light blue, soft gold",
+            "🔒 <strong>Symbols:</strong> shields, circles, guarded gates",
+        ],
     },
     {
         "name": "Ayizan Velekete",
         "image_key": "LWA_AYIZAN_VELEKETE_URL",
         "description": (
-            "Ayizan Velekete is linked to initiation and markets, representing prosperity, spiritual authority, "
-            "and personal growth. Her nurturing energy guides those seeking higher paths."
+            "Ayizan Velekete is associated with initiation, marketplaces, and sacred knowledge. "
+            "She guides spiritual growth and the ethics of exchange and responsibility."
         ),
+        "attributes": [
+            "🕯️ <strong>Offerings:</strong> palm wine, grains, market foods",
+            "🧺 <strong>Domains:</strong> initiation, marketplaces, spiritual law",
+            "🎨 <strong>Colors:</strong> white, gold, green",
+            "📜 <strong>Symbols:</strong> veils, palm fronds, market baskets",
+        ],
     },
     {
         "name": "Gran Bwa",
         "image_key": "LWA_GRAN_BWA_URL",
         "description": (
-            "Gran Bwa is the spirit of the forest, nature, and deep wisdom. "
-            "As guardian of the wilderness, he protects its beauty and guides those who seek to understand it."
+            "Gran Bwa is the spirit of the deep forest and wild places. "
+            "He holds the secrets of herbs, roots, and the untamed side of nature."
         ),
+        "attributes": [
+            "🕯️ <strong>Offerings:</strong> fruits, roots, rum, forest offerings",
+            "🌳 <strong>Domains:</strong> wilderness, herbs, hidden paths",
+            "🎨 <strong>Colors:</strong> green, brown, forest tones",
+            "🍃 <strong>Symbols:</strong> trees, roots, dense leaves",
+        ],
     },
     {
         "name": "Hogou Ferraille",
         "image_key": "LWA_HOGOU_FERRAILLE_URL",
         "description": (
-            "Hogou Ferraille is a warrior expression of Ogoun, linked to protection, leadership, and strength in battle. "
-            "Armored and resolute, he stands as a fierce protector."
+            "Hogou Ferraille is a metal and warrior aspect of Ogoun, clad in armor and bearing weapons. "
+            "He stands for protection, militant strength, and sharp resolve."
         ),
+        "attributes": [
+            "🕯️ <strong>Offerings:</strong> rum, red foods, metal objects",
+            "⚙️ <strong>Domains:</strong> metal, armor, militant defense",
+            "🎨 <strong>Colors:</strong> red, steel-grey, black",
+            "🛡️ <strong>Symbols:</strong> armor, swords, shields",
+        ],
     },
     {
         "name": "Erzulie Freda",
         "image_key": "LWA_ERZULIE_FREDA_URL",
         "description": (
-            "Erzulie Freda embodies love, beauty, and luxury. "
-            "She moves in matters of the heart, femininity, and refined desire."
+            "Erzulie Freda embodies romantic love, beauty, and refined desire. "
+            "She rules perfumes, silks, sweet things, and the pains and joys of the heart."
         ),
+        "attributes": [
+            "🕯️ <strong>Offerings:</strong> perfumes, sweets, champagne, pink flowers",
+            "💗 <strong>Domains:</strong> love, beauty, luxury, emotional longing",
+            "🎨 <strong>Colors:</strong> pink, white, gold",
+            "💍 <strong>Symbols:</strong> hearts, mirrors, fine jewelry",
+        ],
     },
     {
         "name": "Brav Gede",
         "image_key": "LWA_BRAV_GEDE_URL",
         "description": (
-            "Brav Gede is a Gede spirit of life and death, fertility, and humor. "
-            "Playful and sharp, he holds the duality of joy and mortality together."
+            "Brav Gede is a lively member of the Gede family, standing between life, death, and fertility. "
+            "He laughs at fear and brings raw, honest energy wherever he goes."
         ),
+        "attributes": [
+            "🕯️ <strong>Offerings:</strong> rum, hot peppers, cigarettes, sweets",
+            "💀 <strong>Domains:</strong> death, fertility, humor, truth-telling",
+            "🎨 <strong>Colors:</strong> black, purple, white",
+            "🎭 <strong>Symbols:</strong> sunglasses, skulls, canes, phallic jokes",
+        ],
     },
 ]
+
 
 def media_image(key: str, caption: str = "", width=None):
     """
