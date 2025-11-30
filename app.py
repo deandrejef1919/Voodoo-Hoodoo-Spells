@@ -202,6 +202,7 @@ LOA_GALLERY_DATA = [
             "🕯️ Offerings: tobacco, coffee, rum, sugar cane, roasted corn",
             "🔑 Domains: crossroads, guidance, language, access, destiny",
             "📅 Feast Day: June 13",
+            "📆 Day of the week (trad.): Monday",
             "🎨 Colors: red, black, yellow, brown",
             "⛪ Syncretized Saint: St. Peter",
             "🐕 Sacred Animals: dogs, roosters",
@@ -221,6 +222,7 @@ LOA_GALLERY_DATA = [
             "🕯️ Offerings: rum, cigars, grilled corn, peanuts, black coffee",
             "💀 Domains: death, resurrection, fertility, ancestor communication",
             "📅 Feast Day: November 2 (Fête des Morts)",
+            "📆 Day of the week (trad.): Saturday",
             "⛪ Syncretized Saint: Saint Martin de Porres",
             "🎨 Colors: black, purple, white",
             "⚰️ Symbols: top hat, skull, cross, sunglasses",
@@ -240,6 +242,7 @@ LOA_GALLERY_DATA = [
             "🕯️ Offerings: rum, raw meat, red beans, iron tools, cigars",
             "⚔️ Domains: war, metal, blood, military action, political force",
             "📅 Feast Day: July 25 (varies)",
+            "📆 Day of the week (trad.): Tuesday",
             "⛪ Syncretized Saint: St. James the Greater",
             "🎨 Colors: red, blue",
             "🧲 Sacred Metals: iron, steel",
@@ -257,6 +260,7 @@ LOA_GALLERY_DATA = [
         "attributes": [
             "🕯️ Offerings: black coffee, blue candles, rum, pork, dark chocolate",
             "🔥 Domains: protection, vengeance, motherhood, independence",
+            "📆 Day of the week (trad.): Tuesday or Saturday (varies by house)",
             "⛪ Syncretized Saint: Mater Dolorosa",
             "🎨 Colors: dark blue, red, gold",
             "🐗 Sacred Animals: pigs, boars",
@@ -274,6 +278,7 @@ LOA_GALLERY_DATA = [
         "attributes": [
             "🕯️ Offerings: white eggs, rice, cool water, flour, milk",
             "🐍 Domains: creation, purity, cosmic blessing",
+            "📆 Day of the week (trad.): Thursday",
             "⛪ Syncretized Saint: St. Patrick",
             "🎨 Colors: white, silver",
             "🧊 Caution: No alcohol, no profanity, no spicy foods",
@@ -291,6 +296,7 @@ LOA_GALLERY_DATA = [
         "attributes": [
             "🕯️ Offerings: raw meat, rum, cigars, yams",
             "🐂 Domains: strength, virility, ground power",
+            "📆 Day of the week (trad.): Thursday",
             "🎨 Colors: red, black",
             "⚠️ Caution: Very intense — should be handled by experienced priests",
             "🔥 Classification: Nago / Petro",
@@ -305,6 +311,7 @@ LOA_GALLERY_DATA = [
         "attributes": [
             "🕯️ Offerings: rum, red fruit, candied ginger",
             "🔥 Domains: youth, passion, fearless action",
+            "📆 Day of the week (trad.): Saturday",
             "🎨 Colors: red, gold",
             "⚠️ Caution: Impulsive — must be guided with discipline",
             "🔥 Classification: Petro",
@@ -319,6 +326,7 @@ LOA_GALLERY_DATA = [
         "attributes": [
             "🕯️ Offerings: rum with hot pepper, candles, black bread",
             "💀 Domains: graves, justice, death, past lives",
+            "📆 Day of the week (trad.): Saturday",
             "⛪ Syncretized Saint: St. Brigid / Brigid of Kildare",
             "🎨 Colors: purple, black, white",
             "🐓 Sacred Animals: black hen",
@@ -334,6 +342,7 @@ LOA_GALLERY_DATA = [
         "attributes": [
             "🕯️ Offerings: sugar cane, bread, beans, corn meal, fresh fruit",
             "🌾 Domains: agriculture, rural life, diligence",
+            "📆 Day of the week (trad.): Thursday",
             "⛪ Syncretized Saint: St. Isidore the Farmer",
             "🎨 Colors: denim blue, straw brown",
             "🔥 Classification: Rada",
@@ -348,6 +357,7 @@ LOA_GALLERY_DATA = [
         "attributes": [
             "🕯️ Offerings: candies, milk, white cakes, coconut, popcorn",
             "👥 Domains: twins, childhood, cosmic balance, innocence",
+            "📆 Day of the week (trad.): Sunday",
             "🎨 Colors: white, light blue, pink",
             "⛪ Syncretized Saints: Saints Cosmas and Damian",
             "🐓 Sacred Animals: doves",
@@ -365,6 +375,7 @@ LOA_GALLERY_DATA = [
         "attributes": [
             "🕯️ Offerings: dark rum, gunpowder, spicy food, black candles",
             "🌒 Domains: night magic, crossroads, destiny manipulation",
+            "📆 Day of the week (trad.): Saturday (night works)",
             "🎨 Colors: black, red",
             "🗝️ Symbols: inverted crosses, shadowed crossroads",
             "⚠️ Caution: Do NOT invoke without Legba’s permission",
@@ -380,6 +391,7 @@ LOA_GALLERY_DATA = [
         "attributes": [
             "🕯️ Offerings: white eggs, filtered water, rice, coconut milk",
             "🐍 Domains: creation, peace, purity, celestial order",
+            "📆 Day of the week (trad.): Thursday",
             "🎨 Colors: white, silver, pale blue",
             "⛪ Syncretized Saint: St. Patrick",
             "⚠️ Caution: No alcohol or profanity",
@@ -395,6 +407,7 @@ LOA_GALLERY_DATA = [
         "attributes": [
             "🕯️ Offerings: rum, fresh water, anise, fish",
             "💧 Domains: water, magic, channeling, spiritual transmission",
+            "📆 Day of the week (trad.): Wednesday",
             "🎨 Colors: green, blue, white",
             "🌊 Sacred Places: rivers, springs, wells",
             "🔥 Classification: Rada / Kongo",
@@ -409,6 +422,7 @@ LOA_GALLERY_DATA = [
         "attributes": [
             "🕯️ Offerings: white rum, silver jewelry, incense",
             "🛡️ Domains: protection, clarity, defensive magic",
+            "📆 Day of the week (trad.): Wednesday",
             "🎨 Colors: white, silver, grey",
             "🌿 Plants: sage, palm leaf",
             "🔥 Classification: Rada / Kongo",
@@ -423,6 +437,7 @@ LOA_GALLERY_DATA = [
         "attributes": [
             "🕯️ Offerings: cassava, breadfruit, palm wine, corn",
             "🌿 Domains: priesthood, social order, commerce, knowledge",
+            "📆 Day of the week (trad.): Friday",
             "🎨 Colors: gold, yellow, green",
             "🌿 Sacred Plants: palm frond",
             "⛪ Syncretized Saint: St. Clare",
@@ -438,6 +453,7 @@ LOA_GALLERY_DATA = [
         "attributes": [
             "🕯️ Offerings: tobacco, honey, herbs, fresh fruit",
             "🌳 Domains: nature, wilderness, secrets of plants",
+            "📆 Day of the week (trad.): Thursday",
             "🎨 Colors: green, brown",
             "🌿 Sacred Plants: vetiver grass",
             "🔥 Classification: Kongo",
@@ -452,6 +468,7 @@ LOA_GALLERY_DATA = [
         "attributes": [
             "🕯️ Offerings: iron nails, rum, whiskey, blood sausage",
             "🛡️ Domains: warfare, iron, defense, righteous conflict",
+            "📆 Day of the week (trad.): Tuesday",
             "🎨 Colors: red, metallic steel",
             "⛪ Syncretized Saint: St. George",
             "🔥 Classification: Nago / Petro",
@@ -466,6 +483,7 @@ LOA_GALLERY_DATA = [
         "attributes": [
             "🕯️ Offerings: champagne, perfumes, sweets, pink flowers",
             "💗 Domains: romance, luxury, femininity, emotional longing",
+            "📆 Day of the week (trad.): Friday",
             "🎨 Colors: pink, gold, white",
             "⛪ Syncretized Saint: Our Lady of Sorrows",
             "🔥 Classification: Rada",
@@ -480,6 +498,7 @@ LOA_GALLERY_DATA = [
         "attributes": [
             "🕯️ Offerings: rum, peanuts, popcorn, cigars",
             "😈 Domains: death, sexuality, laughter, truth-telling",
+            "📆 Day of the week (trad.): Saturday",
             "🎨 Colors: black, purple, white",
             "💀 Symbols: skull, cross of the cemetery",
             "🔥 Classification: Gede",
