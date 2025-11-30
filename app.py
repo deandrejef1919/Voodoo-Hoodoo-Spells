@@ -183,6 +183,165 @@ st.markdown(APP_CSS, unsafe_allow_html=True)
 # =========================
 # HELPERS
 # =========================
+# =========================
+# LWA / LOA GALLERY DATA
+# =========================
+
+LOA_GALLERY_DATA = [
+    {
+        "name": "Papa Legba",
+        "image_key": "LWA_PAPA_LEGBA_URL",
+        "description": (
+            "Papa Legba is the gatekeeper of the Vodou spiritual realm, standing at the crossroads. "
+            "He is the wise elder who facilitates communication between the human and spirit worlds."
+        ),
+    },
+    {
+        "name": "Baron Samedi",
+        "image_key": "LWA_BARON_SAMEDI_URL",
+        "description": (
+            "Baron Samedi is the Vodou spirit associated with death and the future. "
+            "His unique appearance and playful yet unsettling demeanor mark him as guardian of the deceased "
+            "and master of the transformations between life and death."
+        ),
+    },
+    {
+        "name": "Ogoun Badagri",
+        "image_key": "LWA_OGOUN_BADAGRI_URL",
+        "description": (
+            "Ogoun Badagri is a powerful warrior spirit of strength and valor. "
+            "With a fierce presence, he wields weapons that symbolize leadership, warfare, and metalcraft."
+        ),
+    },
+    {
+        "name": "Erzule Dantor",
+        "image_key": "LWA_ERZULE_DANTOR_URL",
+        "description": (
+            "Erzule Dantor is a fierce protector of women and children in Vodou. "
+            "She embodies strength, resilience, and the fire that guards family and independence."
+        ),
+    },
+    {
+        "name": "Dambala Wedo",
+        "image_key": "LWA_DAMBALA_WEDO_URL",
+        "description": (
+            "Dambala Wedo, often shown as twin serpents and a rainbow, embodies the sacred link between "
+            "heaven and earth. This lwa carries the essence of balance, harmony, and sacred life-force."
+        ),
+    },
+    {
+        "name": "Bossou",
+        "image_key": "LWA_BOSSOU_URL",
+        "description": (
+            "Bossou is a spirit of strength, stability, and endurance, often linked to a bull. "
+            "He symbolizes resilience and grounded energy."
+        ),
+    },
+    {
+        "name": "Ti Jan Dantò",
+        "image_key": "LWA_TI_JAN_DANTO_URL",
+        "description": (
+            "Ti Jan Dantò represents youth, passion, vitality, and determination. "
+            "He expresses the bold courage needed to pursue one’s goals and desires."
+        ),
+    },
+    {
+        "name": "Maman Brigitte",
+        "image_key": "LWA_MAMAN_BRIGITTE_URL",
+        "description": (
+            "Maman Brigitte is linked to graveyards, life, and death. "
+            "With striking presence, she is a powerful yet compassionate guardian of the deceased."
+        ),
+    },
+    {
+        "name": "Kouzen Azaka",
+        "image_key": "LWA_KOUZEN_AZAKA_URL",
+        "description": (
+            "Kouzen Azaka represents agriculture, rural life, and dedication. "
+            "He honors hard work, productivity, and prosperity earned through steady effort."
+        ),
+    },
+    {
+        "name": "Marasa Dosou",
+        "image_key": "LWA_MARASA_DOSOU_URL",
+        "description": (
+            "Marasa Dosou belongs to the divine twins in Vodou, symbolizing balance and harmony between opposites. "
+            "They stand between spiritual and physical worlds, holding both at once."
+        ),
+    },
+    {
+        "name": "Kalfu",
+        "image_key": "LWA_KALFU_URL",
+        "description": (
+            "Kalfu is a spirit of the night, crossroads, and transformation. "
+            "His commanding presence at dark crossroads reflects his role in navigating chaos and transitions."
+        ),
+    },
+    {
+        "name": "Damballa",
+        "image_key": "LWA_DAMBALLA_URL",
+        "description": (
+            "Damballa is a serpent spirit of wisdom, purity, and creation. "
+            "A serene, majestic lwa whose presence carries the breath of life and deep mystery."
+        ),
+    },
+    {
+        "name": "Simbi",
+        "image_key": "LWA_SIMBI_URL",
+        "description": (
+            "Simbi is a spirit of water, magic, and communication, often linked with rivers and streams. "
+            "He embodies spiritual insight, adaptability, and fluid paths of knowledge."
+        ),
+    },
+    {
+        "name": "Klemezine",
+        "image_key": "LWA_KLEMEZINE_URL",
+        "description": (
+            "Klemezine is a protective spirit, radiating a tranquil yet formidable aura. "
+            "He embodies the essence of spiritual safeguarding and boundary-keeping."
+        ),
+    },
+    {
+        "name": "Ayizan Velekete",
+        "image_key": "LWA_AYIZAN_VELEKETE_URL",
+        "description": (
+            "Ayizan Velekete is linked to initiation and markets, representing prosperity, spiritual authority, "
+            "and personal growth. Her nurturing energy guides those seeking higher paths."
+        ),
+    },
+    {
+        "name": "Gran Bwa",
+        "image_key": "LWA_GRAN_BWA_URL",
+        "description": (
+            "Gran Bwa is the spirit of the forest, nature, and deep wisdom. "
+            "As guardian of the wilderness, he protects its beauty and guides those who seek to understand it."
+        ),
+    },
+    {
+        "name": "Hogou Ferraille",
+        "image_key": "LWA_HOGOU_FERRAILLE_URL",
+        "description": (
+            "Hogou Ferraille is a warrior expression of Ogoun, linked to protection, leadership, and strength in battle. "
+            "Armored and resolute, he stands as a fierce protector."
+        ),
+    },
+    {
+        "name": "Erzulie Freda",
+        "image_key": "LWA_ERZULIE_FREDA_URL",
+        "description": (
+            "Erzulie Freda embodies love, beauty, and luxury. "
+            "She moves in matters of the heart, femininity, and refined desire."
+        ),
+    },
+    {
+        "name": "Brav Gede",
+        "image_key": "LWA_BRAV_GEDE_URL",
+        "description": (
+            "Brav Gede is a Gede spirit of life and death, fertility, and humor. "
+            "Playful and sharp, he holds the duality of joy and mortality together."
+        ),
+    },
+]
 
 def media_image(key: str, caption: str = "", width=None):
     """
@@ -383,165 +542,7 @@ def page_vodun():
     media_video("VODUN_VIDEO_URL")
 
     render_footer()
-# =========================
-# LWA / LOA GALLERY DATA
-# =========================
 
-LOA_GALLERY_DATA = [
-    {
-        "name": "Papa Legba",
-        "image_key": "LWA_PAPA_LEGBA_URL",
-        "description": (
-            "Papa Legba is the gatekeeper of the Vodou spiritual realm, standing at the crossroads. "
-            "He is the wise elder who facilitates communication between the human and spirit worlds."
-        ),
-    },
-    {
-        "name": "Baron Samedi",
-        "image_key": "LWA_BARON_SAMEDI_URL",
-        "description": (
-            "Baron Samedi is the Vodou spirit associated with death and the future. "
-            "His unique appearance and playful yet unsettling demeanor mark him as guardian of the deceased "
-            "and master of the transformations between life and death."
-        ),
-    },
-    {
-        "name": "Ogoun Badagri",
-        "image_key": "LWA_OGOUN_BADAGRI_URL",
-        "description": (
-            "Ogoun Badagri is a powerful warrior spirit of strength and valor. "
-            "With a fierce presence, he wields weapons that symbolize leadership, warfare, and metalcraft."
-        ),
-    },
-    {
-        "name": "Erzule Dantor",
-        "image_key": "LWA_ERZULE_DANTOR_URL",
-        "description": (
-            "Erzule Dantor is a fierce protector of women and children in Vodou. "
-            "She embodies strength, resilience, and the fire that guards family and independence."
-        ),
-    },
-    {
-        "name": "Dambala Wedo",
-        "image_key": "LWA_DAMBALA_WEDO_URL",
-        "description": (
-            "Dambala Wedo, often shown as twin serpents and a rainbow, embodies the sacred link between "
-            "heaven and earth. This lwa carries the essence of balance, harmony, and sacred life-force."
-        ),
-    },
-    {
-        "name": "Bossou",
-        "image_key": "LWA_BOSSOU_URL",
-        "description": (
-            "Bossou is a spirit of strength, stability, and endurance, often linked to a bull. "
-            "He symbolizes resilience and grounded energy."
-        ),
-    },
-    {
-        "name": "Ti Jan Dantò",
-        "image_key": "LWA_TI_JAN_DANTO_URL",
-        "description": (
-            "Ti Jan Dantò represents youth, passion, vitality, and determination. "
-            "He expresses the bold courage needed to pursue one’s goals and desires."
-        ),
-    },
-    {
-        "name": "Maman Brigitte",
-        "image_key": "LWA_MAMAN_BRIGITTE_URL",
-        "description": (
-            "Maman Brigitte is linked to graveyards, life, and death. "
-            "With striking presence, she is a powerful yet compassionate guardian of the deceased."
-        ),
-    },
-    {
-        "name": "Kouzen Azaka",
-        "image_key": "LWA_KOUZEN_AZAKA_URL",
-        "description": (
-            "Kouzen Azaka represents agriculture, rural life, and dedication. "
-            "He honors hard work, productivity, and prosperity earned through steady effort."
-        ),
-    },
-    {
-        "name": "Marasa Dosou",
-        "image_key": "LWA_MARASA_DOSOU_URL",
-        "description": (
-            "Marasa Dosou belongs to the divine twins in Vodou, symbolizing balance and harmony between opposites. "
-            "They stand between spiritual and physical worlds, holding both at once."
-        ),
-    },
-    {
-        "name": "Kalfu",
-        "image_key": "LWA_KALFU_URL",
-        "description": (
-            "Kalfu is a spirit of the night, crossroads, and transformation. "
-            "His commanding presence at dark crossroads reflects his role in navigating chaos and transitions."
-        ),
-    },
-    {
-        "name": "Damballa",
-        "image_key": "LWA_DAMBALLA_URL",
-        "description": (
-            "Damballa is a serpent spirit of wisdom, purity, and creation. "
-            "A serene, majestic lwa whose presence carries the breath of life and deep mystery."
-        ),
-    },
-    {
-        "name": "Simbi",
-        "image_key": "LWA_SIMBI_URL",
-        "description": (
-            "Simbi is a spirit of water, magic, and communication, often linked with rivers and streams. "
-            "He embodies spiritual insight, adaptability, and fluid paths of knowledge."
-        ),
-    },
-    {
-        "name": "Klemezine",
-        "image_key": "LWA_KLEMEZINE_URL",
-        "description": (
-            "Klemezine is a protective spirit, radiating a tranquil yet formidable aura. "
-            "He embodies the essence of spiritual safeguarding and boundary-keeping."
-        ),
-    },
-    {
-        "name": "Ayizan Velekete",
-        "image_key": "LWA_AYIZAN_VELEKETE_URL",
-        "description": (
-            "Ayizan Velekete is linked to initiation and markets, representing prosperity, spiritual authority, "
-            "and personal growth. Her nurturing energy guides those seeking higher paths."
-        ),
-    },
-    {
-        "name": "Gran Bwa",
-        "image_key": "LWA_GRAN_BWA_URL",
-        "description": (
-            "Gran Bwa is the spirit of the forest, nature, and deep wisdom. "
-            "As guardian of the wilderness, he protects its beauty and guides those who seek to understand it."
-        ),
-    },
-    {
-        "name": "Hogou Ferraille",
-        "image_key": "LWA_HOGOU_FERRAILLE_URL",
-        "description": (
-            "Hogou Ferraille is a warrior expression of Ogoun, linked to protection, leadership, and strength in battle. "
-            "Armored and resolute, he stands as a fierce protector."
-        ),
-    },
-    {
-        "name": "Erzulie Freda",
-        "image_key": "LWA_ERZULIE_FREDA_URL",
-        "description": (
-            "Erzulie Freda embodies love, beauty, and luxury. "
-            "She moves in matters of the heart, femininity, and refined desire."
-        ),
-    },
-    {
-        "name": "Brav Gede",
-        "image_key": "LWA_BRAV_GEDE_URL",
-        "description": (
-            "Brav Gede is a Gede spirit of life and death, fertility, and humor. "
-            "Playful and sharp, he holds the duality of joy and mortality together."
-        ),
-    },
-]
 
 def page_lwa():
     render_header()
@@ -633,39 +634,27 @@ def page_lwa():
     # If you already have a single image here, keep this line:
     media_image("LOA_SYMBOL_MAP_URL", "Lwa symbols / map (if configured)")
 
-    # --- NEW: full Lwa / Loa gallery using your 16 images ---
-    st.markdown("### Lwa / Loa Veve & Icon Gallery")
+        # --- OPTIONAL: existing symbol/map image ---
+    st.markdown("---")
+    st.markdown("### Lwa / Loa Portraits with Descriptions")
 
-    gallery_keys = [
-        ("LWA_GALLERY_1_URL",  "Lwa image 1"),
-        ("LWA_GALLERY_2_URL",  "Lwa image 2"),
-        ("LWA_GALLERY_3_URL",  "Lwa image 3"),
-        ("LWA_GALLERY_4_URL",  "Lwa image 4"),
-        ("LWA_GALLERY_5_URL",  "Lwa image 5"),
-        ("LWA_GALLERY_6_URL",  "Lwa image 6"),
-        ("LWA_GALLERY_7_URL",  "Lwa image 7"),
-        ("LWA_GALLERY_8_URL",  "Lwa image 8"),
-        ("LWA_GALLERY_9_URL",  "Lwa image 9"),
-        ("LWA_GALLERY_10_URL", "Lwa image 10"),
-        ("LWA_GALLERY_11_URL", "Lwa image 11"),
-        ("LWA_GALLERY_12_URL", "Lwa image 12"),
-        ("LWA_GALLERY_13_URL", "Lwa image 13"),
-        ("LWA_GALLERY_14_URL", "Lwa image 14"),
-        ("LWA_GALLERY_15_URL", "Lwa image 15"),
-        ("LWA_GALLERY_16_URL", "Lwa image 16"),
-        ("LWA_GALLERY_17_URL", "Lwa image 17"),
-        ("LWA_GALLERY_18_URL", "Lwa image 18"),
-        ("LWA_GALLERY_19_URL", "Lwa image 19"),
-    ]
+    for loa in LOA_GALLERY_DATA:
+        image_url = st.secrets.get(loa["image_key"], "")
+        # If you haven't set this image yet, skip it quietly
+        if not image_url:
+            continue
 
-    cols = st.columns(4)  # 4 images per row
+        st.markdown(f"#### {loa['name']}")
+        col_text, col_img = st.columns([2, 3])
 
-    for idx, (key, label) in enumerate(gallery_keys):
-        col = cols[idx % 4]
-        with col:
-            if st.secrets.get(key, ""):
-                media_image(key, caption=label)
-            # If key not set, we quietly skip it
+        with col_text:
+            st.markdown(loa["description"])
+
+        with col_img:
+            # Large image so the details are clear
+            media_image(loa["image_key"], caption=loa["name"], width=550)
+
+        st.markdown("---")
 
     render_footer()
 
