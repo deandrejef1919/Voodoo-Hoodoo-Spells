@@ -1120,7 +1120,6 @@ def page_lwa():
             """
         )
         media_image("BARON_SAMEDI_IMAGE_URL", "Baron Samedi / Gede imagery")
-        media_image("BARON_SAMEDI_VEVE_URL", "Veve of Baron Samedi / Gede")
         st.markdown("**Video**")
         media_video("BARON_SAMEDI_VIDEO_URL")
 
