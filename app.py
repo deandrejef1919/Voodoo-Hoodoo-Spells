@@ -612,8 +612,7 @@ def page_gallery():
 
     st.markdown(
         """
-        This gallery shows every media slot you’ve configured in your secrets file. It’s useful to check
-        which images are working and which links you may need to fix.
+        
         """
     )
 
