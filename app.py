@@ -605,7 +605,7 @@ HOODOO_SUPPLY_SHOPS = [
 ]
 
 # =========================
-# SUPPLICATION / OFFERING DATA (SAFE, NON-HARMFUL)
+# SUPPLICATION / OFFERING DATA (SAFE, NON-HARMFUL) – now includes all 19 lwa
 # =========================
 
 SUPPLICATION_DATA = {
@@ -640,6 +640,8 @@ May you be elevated, remembered, and at peace.
 Ayibobo.
 """,
     },
+
+    # 1) Papa Legba
     "Papa Legba": {
         "type": "Lwa",
         "offerings": [
@@ -672,7 +674,9 @@ Mèsi anpil, Papa Legba.
 Ayibobo.
 """,
     },
-    "Baron Samedi": {
+
+    # 2) Baron Semedi
+    "Baron Semedi": {
         "type": "Lwa",
         "offerings": [
             "A candle in purple, black, or white",
@@ -686,7 +690,7 @@ Ayibobo.
             "Avoid asking for harm; stay with healing, courage, and truthful clarity.",
         ],
         "sample_words": """
-Baron Samedi, guardian of the grave and lord of the boundary,
+Baron Semedi, guardian of the grave and lord of the boundary,
 I come with respect and clean intention.
 
 If you accept my light and this drink,
@@ -704,12 +708,172 @@ If it is not right to intervene, let me be at peace with that.
 Ayibobo, Baron.
 """,
     },
+
+    # 3) Ogoun Badagri
+    "Ogoun Badagri": {
+        "type": "Lwa",
+        "offerings": [
+            "Rum or strong liquor (if used in your house)",
+            "Red candles in safe holders",
+            "Iron tools or nails placed respectfully on a cloth",
+            "Red beans or spicy food (according to house custom)",
+        ],
+        "guidelines": [
+            "Ogoun is about discipline and clear action, not chaos.",
+            "Be prepared to work: Ogoun can push for effort, not laziness.",
+            "Ask for strategy, courage, and endurance, not blind destruction.",
+        ],
+        "sample_words": """
+Ogoun Badagri,
+warrior of iron, revolution, and hard-won freedom,
+I salute you.
+
+If it is pleasing to you, receive this flame and this drink.
+Set my mind in order.
+Sharpen my courage.
+Give me a spine that does not bend to injustice.
+
+Show me when to fight,
+when to speak,
+and when to walk away so I can live to fight another day.
+
+Keep my temper from destroying what I love,
+and turn my strength toward what is right.
+Ayibobo, Ogoun.
+""",
+    },
+
+    # 4) Erzule Dantor
+    "Erzule Dantor": {
+        "type": "Lwa",
+        "offerings": [
+            "Black coffee",
+            "Blue or red candles, safely tended",
+            "Pork dishes or dark chocolate (where culturally appropriate)",
+        ],
+        "guidelines": [
+            "Dantor is fierce and protective. Come with honesty about pain.",
+            "Focus on protection, boundaries, and courage — not revenge fantasies.",
+            "Remember that justice can also mean walking away and healing.",
+        ],
+        "sample_words": """
+Erzule Dantor,
+scarred mother, protector of women and children,
+I come to you with the truth of my wounds.
+
+If it is right for you to accept this coffee and light,
+stand over me as a shield.
+Cut the cords that bind me to abuse,
+give me courage to say no,
+and help me defend those who cannot defend themselves.
+
+Guide my anger so it becomes a sword of justice
+and not a fire that burns my own house down.
+
+May your strength sit in my bones.
+Ayibobo, Ezili Dantor.
+""",
+    },
+
+    # 5) Damballa Wedo
+    "Damballa Wedo": {
+        "type": "Lwa",
+        "offerings": [
+            "White eggs on a white cloth",
+            "Cool, clean water in a clear glass",
+            "Plain white rice or milk",
+        ],
+        "guidelines": [
+            "Keep the altar and offerings very clean and simple.",
+            "Avoid alcohol, spicy foods, and loud arguments near his space.",
+            "Approach in silence or soft speech, with humility and calm.",
+        ],
+        "sample_words": """
+Damballa Wedo,
+serpent of the heavens and breath of creation,
+I come quietly and with respect.
+
+If it is pleasing to you, accept this water, this egg, this white food.
+Cool my mind where it is overheated.
+Bring peace where there is confusion.
+Wrap your coils of protection gently around my life.
+
+Teach me to move with purity and softness,
+without cowardice,
+and to remember that I am part of something vast and sacred.
+
+Ayibobo, Damballa Wedo.
+""",
+    },
+
+    # 6) Bossou
+    "Bossou": {
+        "type": "Lwa",
+        "offerings": [
+            "Rum or strong liquor (as permitted)",
+            "Yams or earthy foods",
+            "Cigars or tobacco, if your lineage uses them",
+        ],
+        "guidelines": [
+            "Bossou is intense and usually worked by experienced priests.",
+            "If you are a beginner, keep petitions simple: strength, endurance, courage.",
+            "Do not ask for violent outcomes; ask for the strength to stand your ground.",
+        ],
+        "sample_words": """
+Bossou,
+bull of power and unstoppable ground-force,
+I speak to you with respect and caution.
+
+If you accept this light and this offering,
+lend me enough strength to carry what is mine to carry,
+and the courage to refuse what is not.
+
+Let my feet stand firm in the face of pressure,
+but keep me from charging blindly into harm.
+
+May your grounded power live in my spine,
+not in reckless rage.
+Ayibobo, Bossou.
+""",
+    },
+
+    # 7) Ti Jan Dantor
+    "Ti Jan Dantor": {
+        "type": "Lwa",
+        "offerings": [
+            "Rum, sometimes with a little pepper (if your house allows)",
+            "Red fruit or candy",
+            "Bright red or gold candles",
+        ],
+        "guidelines": [
+            "Ti Jan carries fiery, youthful energy — ask for courage with responsibility.",
+            "Good for motivation, but you must still act with wisdom.",
+            "Avoid asking for chaotic excitement; focus on purposeful movement.",
+        ],
+        "sample_words": """
+Ti Jan Dantor,
+young fire and fearless heart,
+I call you with respect.
+
+If you accept these offerings,
+wake up the energy in my bones.
+Help me shake off laziness and fear.
+Push me toward the steps I already know I must take.
+
+Do not let me rush into foolish danger.
+Guide my passion into brave, steady action.
+
+Ayibobo, Ti Jan.
+""",
+    },
+
+    # 8) Maman Brigitte
     "Maman Brigitte": {
         "type": "Lwa",
         "offerings": [
             "Rum with hot pepper (if appropriate to your house)",
             "Purple or black candles in safe holders",
-            "Bread or dark bread, sometimes at a grave (if permitted, never trespassing)",
+            "Bread or dark bread",
         ],
         "guidelines": [
             "Maman Brigitte loves justice and truth. Speak honestly.",
@@ -717,7 +881,8 @@ Ayibobo, Baron.
             "Offer prayers for souls who are forgotten or unattended.",
         ],
         "sample_words": """
-Maman Brigitte, strong lady of the graves and fire-tongued protector,
+Maman Brigitte,
+strong lady of the graves and fire-tongued protector,
 I call you with honor in my heart.
 
 If it is your will, receive this rum and light.
@@ -733,6 +898,254 @@ leaving courage and clear sight.
 Ayibobo, Maman Brigitte.
 """,
     },
+
+    # 9) Kouzen Azaka
+    "Kouzen Azaka": {
+        "type": "Lwa",
+        "offerings": [
+            "Cornmeal, beans, bread, or simple farm foods",
+            "Sugar cane or seasonal fruit",
+            "A straw hat or small piece of denim cloth",
+        ],
+        "guidelines": [
+            "Treat Kouzen like an honest country cousin: direct, respectful, not fancy.",
+            "Good for steady work, food on the table, and grounded common sense.",
+            "Thank him for small daily blessings, not only emergencies.",
+        ],
+        "sample_words": """
+Kouzen Azaka,
+cousin of the fields and honest labor,
+I greet you.
+
+If it pleases you, accept this simple food and this light.
+Bless my work, my pantry, and the roof over my head.
+Teach me to value honest effort and simple joy.
+
+Help me plant good seeds — in the earth, in my habits, in my relationships —
+and guard me from greed and shortcuts that poison the soil of my life.
+
+Ayibobo, Kouzen.
+""",
+    },
+
+    # 10) Marasa Dosou
+    "Marasa Dosou": {
+        "type": "Lwa",
+        "offerings": [
+            "Two cups of milk or sweet drink",
+            "Two small cakes or cookies",
+            "Candy and popcorn shared equally",
+        ],
+        "guidelines": [
+            "Everything is given in balance — always in pairs.",
+            "You can also pray for all children, especially those in danger.",
+            "Approach with a playful, respectful heart; no cruelty or sarcasm.",
+        ],
+        "sample_words": """
+Marasa, sacred twins,
+mystery of two-in-one and one-in-two,
+I honor you both.
+
+If these sweets and this milk please you,
+bring balance where there is conflict in my life.
+Heal the child within me who still carries wounds,
+and bless the children around me with protection and joy.
+
+Teach me to hold opposites gently:
+softness and strength, grief and laughter,
+so I can walk with a more whole heart.
+
+Ayibobo, Marasa.
+""",
+    },
+
+    # 11) Kalfu
+    "Kalfu": {
+        "type": "Lwa",
+        "offerings": [
+            "Dark rum (if appropriate to your lineage)",
+            "Black or red candles",
+            "Very small, carefully measured offerings of spicy food",
+        ],
+        "guidelines": [
+            "Kalfu governs the night crossroads and dangerous roads.",
+            "Do not approach without strong house guidance or Legba’s blessing.",
+            "If you are a beginner, keep petition extremely simple: protection from harmful paths.",
+        ],
+        "sample_words": """
+Kalfu,
+keeper of the crossroads of night and hidden ways,
+I call your name with caution and respect.
+
+If it is right for you to hear me,
+close the roads that lead to my destruction,
+to addiction, to violence, to betrayal.
+
+Open instead only those narrow paths
+where my spirit can grow stronger and more honest,
+even when they are difficult.
+
+If this request is not appropriate, let it fall away harmlessly.
+Ayibobo, Kalfu.
+""",
+    },
+
+    # 12) Damballa (second gallery aspect)
+    "Damballa": {
+        "type": "Lwa",
+        "offerings": [
+            "White cloth on a clean surface",
+            "Eggs, rice, and clear water",
+            "Soft, gentle prayers rather than long speeches",
+        ],
+        "guidelines": [
+            "Approach with humility, no shouting or vulgarity.",
+            "Ask for purification, healing, and blessing, not petty victories.",
+            "Keep the space calm: no loud music, no arguments.",
+        ],
+        "sample_words": """
+Damballa,
+ancient serpent of sky and water,
+I come in quiet.
+
+If you accept these simple white offerings,
+wash my spirit of bitterness and heavy thoughts.
+Bring balance to my nerves, my sleep, my dreams.
+
+Help me move more gently,
+while still standing firm in my dignity.
+
+May your calm coil around my life in blessing.
+Ayibobo, Damballa.
+""",
+    },
+
+    # 13) Simbi
+    "Simbi": {
+        "type": "Lwa",
+        "offerings": [
+            "Fresh water in a clear glass",
+            "Rum or anise-flavored drink (if used in your house)",
+            "Small fish-shaped charms or shells",
+        ],
+        "guidelines": [
+            "Simbi is linked with magic, communication, and flowing intelligence.",
+            "You can ask for help with divination, study, and spiritual clarity.",
+            "Spend time near running water if possible, in prayer.",
+        ],
+        "sample_words": """
+Simbi,
+spirit of clear streams and secret messages,
+I call to you.
+
+If this water and this light are pleasing to you,
+carry my prayers cleanly to where they must go.
+Help me sort true insight from confusion,
+and honest vision from fantasy.
+
+Guide my dreams, my intuition, and my study,
+so that I may serve with wisdom and not illusion.
+
+Ayibobo, Simbi.
+""",
+    },
+
+    # 14) Klemezine
+    "Klemezine": {
+        "type": "Lwa",
+        "offerings": [
+            "White candles",
+            "A small bowl of clean salt",
+            "Light incense such as frankincense or myrrh",
+        ],
+        "guidelines": [
+            "Klemezine is about psychic and spiritual protection.",
+            "You may ask for clearing of negative influences and calm of the mind.",
+            "Keep work focused on protection, not counter-attack.",
+        ],
+        "sample_words": """
+Klemezine,
+guardian of thresholds and quiet protector,
+I ask your presence with respect.
+
+If you accept this salt, this light, and this smoke,
+sweep away what clings to me that does not belong:
+envy, confusion, spiritual debris.
+
+Wrap my home and my mind in clear boundaries.
+Let only what is good and right pass through my doors.
+
+Teach me to keep my own thoughts clean,
+so that I do not become my own worst enemy.
+
+Ayibobo, Klemezine.
+""",
+    },
+
+    # 15) Ayizan Velekete
+    "Ayizan Velekete": {
+        "type": "Lwa",
+        "offerings": [
+            "Palm wine or light, clean drink",
+            "Corn, cassava, or other staple foods",
+            "Palm fronds or clean green leaves",
+        ],
+        "guidelines": [
+            "Ayizan is patron of priesthood, markets, and social order.",
+            "Ask for ethical grounding, clean leadership, and clarity in business.",
+            "Avoid asking for ‘success at any cost’ — focus on right relationship.",
+        ],
+        "sample_words": """
+Ayizan Velekete,
+mother of markets and guardian of sacred paths,
+I greet you with respect.
+
+If these offerings please you,
+straighten the crooked places in my life:
+in my dealings, my money, my promises.
+
+Help me walk with integrity in my spiritual work
+and in my daily responsibilities.
+
+Let my hands be honest
+and my word be strong enough to stand on.
+
+Ayibobo, Ayizan.
+""",
+    },
+
+    # 16) Gran Bwa
+    "Gran Bwa": {
+        "type": "Lwa",
+        "offerings": [
+            "Tobacco, honey, or good rum (if appropriate to your lineage)",
+            "Fresh fruit",
+            "Leaves or herbs gathered respectfully (never stripping plants bare)",
+        ],
+        "guidelines": [
+            "Gran Bwa is forest depth: approach slowly and humbly.",
+            "Spend time in nature, not only at the altar.",
+            "Ask for help understanding which plants and paths are right for you.",
+        ],
+        "sample_words": """
+Gran Bwa,
+master of the deep woods and green mysteries,
+I come to you in humility.
+
+If this light and these offerings please you,
+open my eyes to the wisdom of the living earth.
+Help me respect the plants and places I enter,
+and only take what I truly need.
+
+Root me in strength and patience,
+and help my spirit grow like a tree:
+deep-rooted, flexible, and hard to uproot.
+
+Ayibobo, Gran Bwa.
+""",
+    },
+
+    # 17) Erzulie Freda
     "Erzulie Freda": {
         "type": "Lwa",
         "offerings": [
@@ -766,93 +1179,68 @@ then let your blessing fall as peace and self-love.
 Mèsi, Ezili Freda. Ayibobo.
 """,
     },
-    "Erzulie Dantò": {
+
+    # 18) Hogou Ferralle
+    "Hogou Ferralle": {
         "type": "Lwa",
         "offerings": [
-            "Black coffee, strong and sometimes unsweetened",
-            "Blue or red candles, safely tended",
-            "Pork dishes or dark chocolate (where culturally appropriate)",
+            "Iron nails or small iron tools on a clean cloth",
+            "Red candles",
+            "Whiskey or rum (if allowed by your house)",
         ],
         "guidelines": [
-            "Dantò is fierce and protective. Come with honesty about pain.",
-            "Focus on protection, boundaries, and courage — not revenge fantasies.",
-            "Remember that justice can also mean walking away and healing.",
+            "Ferralle is a very martial, armored force — work carefully.",
+            "Ask for defense, discipline, and clear battle lines.",
+            "Avoid blood-thirsty petitions; stay with righteous protection.",
         ],
         "sample_words": """
-Erzulie Dantò,
-scarred mother, protector of women and children,
-I come to you with the truth of my wounds.
-
-If it is right for you to accept this coffee and light,
-stand over me as a shield.
-Cut the cords that bind me to abuse,
-give me courage to say no,
-and help me defend those who cannot defend themselves.
-
-Guide my anger so it becomes a sword of justice
-and not a fire that burns my own house down.
-
-May your strength sit in my bones.
-Ayibobo, Ezili Dantò.
-""",
-    },
-    "Ogou": {
-        "type": "Lwa",
-        "offerings": [
-            "Rum or strong liquor (if used in your house)",
-            "Red candles in safe holders",
-            "Iron tools placed respectfully near the altar (not random sharp clutter)",
-        ],
-        "guidelines": [
-            "Ogou is about discipline and clear action, not chaos.",
-            "Be prepared to work: Ogou can push for effort, not laziness.",
-            "Ask for strategy, courage, and endurance.",
-        ],
-        "sample_words": """
-Ogou,
-warrior of iron and disciplined fire,
+Hogou Ferralle,
+armored one of iron and unbending will,
 I salute you.
 
-If it is pleasing to you, accept this drink, this flame, and these tools.
-Sharpen my mind and my will.
-Cut away laziness, confusion, and cowardice.
+If you accept these offerings,
+guard my life and my home from attack.
+Help me know when to stand and when to step aside.
 
-Teach me how to plan, how to work, and how to stand firm
-without becoming cruel or reckless.
+Teach me the discipline of a true warrior:
+to protect without cruelty
+and to fight only when necessary.
 
-Where I must fight for my life, work, or dignity,
-let me do it with clarity and honor.
-
-Ayibobo, Ogou.
+Let my strength serve justice, not ego.
+Ayibobo, Ferralle.
 """,
     },
-    "Gran Bwa": {
+
+    # 19) Brav Gede
+    "Brav Gede": {
         "type": "Lwa",
         "offerings": [
-            "Tobacco, honey, or good rum (if appropriate to your lineage)",
-            "Fresh fruit",
-            "Leaves or herbs gathered respectfully (never stripping plants bare)",
+            "Rum, sometimes with hot pepper",
+            "Peanuts, popcorn, or roasted corn",
+            "Cigars or tobacco (if you use them ritually)",
         ],
         "guidelines": [
-            "Gran Bwa is forest depth: approach slowly and humbly.",
-            "Spend time in nature, not only at the altar.",
-            "Ask for help understanding which plants and paths are right for you.",
+            "Brav Gede uses humor and shock but still demands respect.",
+            "Good for breaking denial, facing hard truths, and making peace with mortality.",
+            "Keep petitions focused on healing, not humiliation of others.",
         ],
         "sample_words": """
-Gran Bwa,
-master of the deep woods and green mysteries,
-I come to you in humility.
+Brav Gede,
+who laughs at death and speaks the truth with a joke,
+I call you with respect.
 
-If this light and these offerings please you,
-open my eyes to the wisdom of the living earth.
-Help me respect the plants and places I enter,
-and only take what I truly need.
+If this drink and this food please you,
+help me face the truths I keep running from.
+Let laughter loosen my fear without making me cruel.
 
-Root me in strength and patience,
-and help my spirit grow like a tree:
-deep-rooted, flexible, and hard to uproot.
+Teach me to remember that life is short,
+so I do not waste it on pettiness and lies.
 
-Ayibobo, Gran Bwa.
+Stand at the edge of my path,
+keeping away what would drag me into despair,
+and walking with me when I must cross difficult thresholds.
+
+Ayibobo, Brav Gede.
 """,
     },
 }
@@ -1044,15 +1432,11 @@ def page_vodun():
         st.markdown("**Ancestral art / sculpture**")
         media_image("VODUN_ANCESTRAL_ART_IMAGE_URL", "Ancestral or ritual art in Vodun")
 
-    # 👉 First video (original)
     st.markdown("### Video – Vodun in West Africa")
     media_video("VODUN_VIDEO_URL")
 
-    # 👉 Second video (new one you added in secrets)
-    st.markdown("### Additional Vodun Video")
-    media_video("VODUN_VIDEO_2_URL")
-
     render_footer()
+
 
 def page_lwa():
     render_header()
@@ -1317,7 +1701,7 @@ def page_supplications():
         Use this page to:
         - Understand common *offerings* associated with each spirit.  
         - Get a feel for the *tone* of respectful supplication.  
-        - Focus your work on **healing, protection, courage, clarity, and right order**, not on harm.
+        - Focus your work on **healing, protection, justice, clarity, and right order**, not on harm.
         """
     )
 
