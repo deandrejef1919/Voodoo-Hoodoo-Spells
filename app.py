@@ -301,59 +301,92 @@ div.stButton > button:hover {
     color: #e0f2f1;
 }
 
-/* Supplications & Offerings gold glow styling */
-.stSelectbox label,
-.stSelectbox label p,
-.stTextArea label,
-.stTextArea label p {
+/* Supplications & Offerings gold styling */
+div[data-testid="stSelectbox"] label,
+div[data-testid="stSelectbox"] label p,
+div[data-testid="stTextArea"] label,
+div[data-testid="stTextArea"] label p {
     color: #fff7ec !important;
     font-family: "Times New Roman", Times, serif !important;
     font-weight: 700 !important;
 }
 
-.stSelectbox div[data-baseweb="select"] > div {
-    background: radial-gradient(circle at top, #5a4300 0%, #241b00 65%, #120d00 100%) !important;
-    border: 2px solid rgba(255,215,0,0.9) !important;
-    box-shadow: 0 0 10px rgba(255,215,0,.7), 0 0 24px rgba(255,193,7,.45) !important;
-    animation: offering-gold-pulse 3.2s ease-in-out infinite;
+/* Spirit selector: target Streamlit's actual BaseWeb control */
+div[data-testid="stSelectbox"] div[data-baseweb="select"] > div {
+    background: linear-gradient(135deg, #3b2a05 0%, #5a4300 48%, #2a1d03 100%) !important;
+    border: 2px solid #d4af37 !important;
+    border-radius: 14px !important;
+    box-shadow: 0 0 8px rgba(212,175,55,.65), 0 0 18px rgba(212,175,55,.35) !important;
+    animation: offering-gold-pulse 3.8s ease-in-out infinite !important;
 }
 
-.stSelectbox div[data-baseweb="select"] span {
+div[data-testid="stSelectbox"] div[data-baseweb="select"] span,
+div[data-testid="stSelectbox"] div[data-baseweb="select"] input {
     color: #fff7ec !important;
-}
-
-.stTextArea textarea {
-    color: #fff7ec !important;
-    background: radial-gradient(circle at top, #2b2100 0%, #100d00 75%, #050505 100%) !important;
-    border: 2px solid rgba(255,215,0,.9) !important;
-    box-shadow: 0 0 10px rgba(255,215,0,.65), 0 0 24px rgba(255,193,7,.45) !important;
-    animation: offering-gold-pulse 3.2s ease-in-out infinite;
     font-family: "Times New Roman", Times, serif !important;
+    font-weight: 700 !important;
 }
 
-.stTextArea textarea::-webkit-scrollbar {
+div[data-baseweb="popover"] ul {
+    background: #241b00 !important;
+    border: 1px solid #d4af37 !important;
+}
+
+div[data-baseweb="popover"] li {
+    color: #fff7ec !important;
+    background: #241b00 !important;
+}
+
+div[data-baseweb="popover"] li:hover {
+    background: #5a4300 !important;
+    color: #ffffff !important;
+}
+
+/* Supplication box: rounded, warm dark panel with a separate gold glow */
+div[data-testid="stTextArea"] > div {
+    border-radius: 18px !important;
+    padding: 4px !important;
+    background: radial-gradient(circle at top, #3a2a05 0%, #120d00 70%, #050505 100%) !important;
+    box-shadow: 0 0 8px rgba(212,175,55,.55), 0 0 20px rgba(212,175,55,.30) !important;
+    animation: offering-gold-pulse 3.8s ease-in-out infinite !important;
+}
+
+div[data-testid="stTextArea"] textarea {
+    color: #fff7ec !important;
+    background: #100d08 !important;
+    border: 2px solid #d4af37 !important;
+    border-radius: 14px !important;
+    font-family: "Times New Roman", Times, serif !important;
+    line-height: 1.6 !important;
+}
+
+/* Make the textarea scrollbar visible */
+div[data-testid="stTextArea"] textarea::-webkit-scrollbar {
     width: 12px;
 }
 
-.stTextArea textarea::-webkit-scrollbar-track {
-    background: #241b00;
+div[data-testid="stTextArea"] textarea::-webkit-scrollbar-track {
+    background: #2b2100 !important;
+    border-radius: 10px;
 }
 
-.stTextArea textarea::-webkit-scrollbar-thumb {
-    background: #d4af37;
+div[data-testid="stTextArea"] textarea::-webkit-scrollbar-thumb {
+    background: #d4af37 !important;
     border-radius: 10px;
-    border: 2px solid #100d00;
+    border: 2px solid #100d08;
 }
 
 @keyframes offering-gold-pulse {
-    0% {
-        box-shadow: 0 0 6px rgba(255,215,0,.45), 0 0 12px rgba(255,193,7,.25);
+    0%, 100% {
+        box-shadow:
+            0 0 5px rgba(212,175,55,.35),
+            0 0 12px rgba(212,175,55,.18);
     }
     50% {
-        box-shadow: 0 0 18px rgba(255,215,0,.95), 0 0 32px rgba(255,193,7,.65);
-    }
-    100% {
-        box-shadow: 0 0 6px rgba(255,215,0,.45), 0 0 12px rgba(255,193,7,.25);
+        box-shadow:
+            0 0 16px rgba(255,215,0,.95),
+            0 0 34px rgba(255,193,7,.70),
+            0 0 48px rgba(212,175,55,.35);
     }
 }
 
