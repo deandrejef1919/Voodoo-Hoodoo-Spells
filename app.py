@@ -1,4 +1,6 @@
 import streamlit as st
+from pathlib import Path
+import requests
 
 # =========================
 # BASIC CONFIG
@@ -1249,27 +1251,56 @@ Ayibobo, Brav Gede.
 # HELPERS
 # =========================
 
+IMAGE_DIR = Path(__file__).resolve().parent / "images"
+
+
 def media_image(key: str, caption: str = "", width=None):
-    url = st.secrets.get(key, "")
-    if not url:
+    """Reliable image loader for local files and remote URLs."""
+
+    source = st.secrets.get(key, "")
+
+    if not source:
         st.info(f"[{key}] image not configured.")
         return
 
-    if url.startswith("images/") or url.startswith("./images/"):
-        try:
-            st.image(url, caption=caption or None, use_column_width=(width is None), width=width)
-        except Exception as e:
-            st.error(f"[{key}] local image error: {e}")
+    # Local repository images
+    if source.startswith("images/") or source.startswith("./images/"):
+        filename = source.replace("./images/", "").replace("images/", "")
+        image_path = IMAGE_DIR / filename
+
+        if not image_path.exists():
+            st.error(f"[{key}] missing local image: {image_path}")
+            return
+
+        st.image(image_path, caption=caption or None, width=width)
         return
 
-    if url.startswith("http://") or url.startswith("https://"):
+    # Remote images
+    if source.startswith(("http://", "https://")):
         try:
-            st.image(url, caption=caption or None, use_column_width=(width is None), width=width)
+            response = requests.get(
+                source,
+                timeout=10,
+                headers={"User-Agent": "Mozilla/5.0"}
+            )
+
+            if response.status_code != 200:
+                st.error(f"[{key}] URL failed ({response.status_code}): {source}")
+                return
+
+            content_type = response.headers.get("content-type", "")
+            if not content_type.startswith("image"):
+                st.error(f"[{key}] URL is not an image ({content_type}): {source}")
+                return
+
+            st.image(source, caption=caption or None, width=width)
+            return
+
         except Exception as e:
             st.error(f"[{key}] remote image error: {e}")
-        return
+            return
 
-    st.warning(f"[{key}] value does not look like a path or URL: {url}")
+    st.warning(f"[{key}] invalid image source: {source}")
 
 
 def media_video(key: str):
@@ -2102,20 +2133,7 @@ def main():
             unsafe_allow_html=True,
         )
 
-        mojo_bag_url = st.secrets.get("MOJO_BAG_IMAGE_URL", "")
-        if mojo_bag_url:
-            st.markdown(
-                f"""
-                <div class="mojo-bag-glow mojo-bag-container" style="margin-top: 0.85rem; text-align:center;">
-                    <img src="{mojo_bag_url}" alt="Mojo Bag"
-                         style="width:70%; max-width:140px;" />
-                    <div style="margin-top:0.35rem; font-size:0.9rem; opacity:0.9; font-family:'Times New Roman';">
-                        Mojo Bag
-                    </div>
-                </div>
-                """,
-                unsafe_allow_html=True,
-            )
+        media_image("MOJO_BAG_IMAGE_URL", "Mojo Bag")
 
     if choice == "Home":
         page_home()
