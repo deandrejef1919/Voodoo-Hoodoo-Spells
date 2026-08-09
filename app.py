@@ -62,7 +62,69 @@ section[data-testid="stSidebar"] {
     background: radial-gradient(circle at top, #310000 0%, #050505 55%, #000 100%);
     border-right: 1px solid rgba(76,175,80,0.65);
 }
+
+/* Sidebar navigation readability */
+section[data-testid="stSidebar"] [data-testid="stRadio"] label,
+section[data-testid="stSidebar"] [data-testid="stRadio"] label p,
+section[data-testid="stSidebar"] [data-testid="stRadio"] label span {
+    color: #fff7ec !important;
+    font-family: "Times New Roman", Times, serif !important;
+    font-size: 16px !important;
+    font-weight: 700 !important;
+    opacity: 1 !important;
+}
+
+section[data-testid="stSidebar"] [data-testid="stRadio"] > label {
+    color: #f4efe6 !important;
+    font-weight: 700 !important;
+}
+
+section[data-testid="stSidebar"] [data-testid="stRadio"] label:hover p {
+    color: #ffffff !important;
+}
+
+section[data-testid="stSidebar"] [data-testid="stRadio"] [role="radiogroup"] {
+    gap: 0.15rem !important;
+}
+
+/* Dropdown and selectbox readability */
+.stSelectbox label,
+.stSelectbox label p {
+    color: #fff7ec !important;
+    font-family: "Times New Roman", Times, serif !important;
+    font-weight: 700 !important;
+}
+
+div[data-baseweb="select"] > div {
+    background-color: #090808 !important;
+    border-color: rgba(244,67,54,0.75) !important;
+}
+
+div[data-baseweb="select"] span {
+    color: #fff7ec !important;
+    font-family: "Times New Roman", Times, serif !important;
+}
+
+ul[role="listbox"] {
+    background-color: #090808 !important;
+}
+
+li[role="option"] {
+    color: #fff7ec !important;
+    background-color: #090808 !important;
+    font-family: "Times New Roman", Times, serif !important;
+}
+
+li[role="option"]:hover {
+    background-color: #310000 !important;
+    color: #ffffff !important;
+}
+/* Make sidebar title unmistakably readable */
 .sidebar-logo {
+    color: #fff7ec !important;
+    text-shadow:
+        0 0 6px rgba(244,67,54,0.95),
+        0 0 12px rgba(0,0,0,1);
     text-align:center;
     font-size: 1rem;
     font-weight: 700;
@@ -1734,6 +1796,21 @@ def page_supplications():
 
     with col2:
         st.markdown("#### Sample Supplication (you can adapt this)")
+        st.markdown(
+            """
+            <style>
+            textarea {
+                color: #f4efe6 !important;
+                background-color: #090808 !important;
+                font-family: "Times New Roman", Times, serif !important;
+                font-size: 16px !important;
+                line-height: 1.6 !important;
+            }
+            </style>
+            """,
+            unsafe_allow_html=True,
+        )
+
         st.text_area(
             "Example words you might say quietly at your altar:",
             value=data["sample_words"].strip(),
