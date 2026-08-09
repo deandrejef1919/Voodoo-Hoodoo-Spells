@@ -1251,25 +1251,19 @@ Ayibobo, Brav Gede.
 
 def media_image(key: str, caption: str = "", width=None):
     url = st.secrets.get(key, "")
+
     if not url:
         st.info(f"[{key}] image not configured.")
         return
 
-    if url.startswith("images/") or url.startswith("./images/"):
-        try:
-            st.image(url, caption=caption or None, use_column_width=(width is None), width=width)
-        except Exception as e:
-            st.error(f"[{key}] local image error: {e}")
-        return
-
-    if url.startswith("http://") or url.startswith("https://"):
-        try:
-            st.image(url, caption=caption or None, use_column_width=(width is None), width=width)
-        except Exception as e:
-            st.error(f"[{key}] remote image error: {e}")
-        return
-
-    st.warning(f"[{key}] value does not look like a path or URL: {url}")
+    try:
+        st.image(
+            url,
+            caption=caption or None,
+            use_container_width=True
+        )
+    except Exception as e:
+        st.error(f"[{key}] image error: {e}")
 
 
 def media_video(key: str):
