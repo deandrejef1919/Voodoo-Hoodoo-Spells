@@ -300,6 +300,63 @@ div.stButton > button:hover {
     border: 1px solid rgba(76,175,80,0.9);
     color: #e0f2f1;
 }
+
+/* Supplications & Offerings gold glow styling */
+.stSelectbox label,
+.stSelectbox label p,
+.stTextArea label,
+.stTextArea label p {
+    color: #fff7ec !important;
+    font-family: "Times New Roman", Times, serif !important;
+    font-weight: 700 !important;
+}
+
+.stSelectbox div[data-baseweb="select"] > div {
+    background: radial-gradient(circle at top, #5a4300 0%, #241b00 65%, #120d00 100%) !important;
+    border: 2px solid rgba(255,215,0,0.9) !important;
+    box-shadow: 0 0 10px rgba(255,215,0,.7), 0 0 24px rgba(255,193,7,.45) !important;
+    animation: offering-gold-pulse 3.2s ease-in-out infinite;
+}
+
+.stSelectbox div[data-baseweb="select"] span {
+    color: #fff7ec !important;
+}
+
+.stTextArea textarea {
+    color: #fff7ec !important;
+    background: radial-gradient(circle at top, #2b2100 0%, #100d00 75%, #050505 100%) !important;
+    border: 2px solid rgba(255,215,0,.9) !important;
+    box-shadow: 0 0 10px rgba(255,215,0,.65), 0 0 24px rgba(255,193,7,.45) !important;
+    animation: offering-gold-pulse 3.2s ease-in-out infinite;
+    font-family: "Times New Roman", Times, serif !important;
+}
+
+.stTextArea textarea::-webkit-scrollbar {
+    width: 12px;
+}
+
+.stTextArea textarea::-webkit-scrollbar-track {
+    background: #241b00;
+}
+
+.stTextArea textarea::-webkit-scrollbar-thumb {
+    background: #d4af37;
+    border-radius: 10px;
+    border: 2px solid #100d00;
+}
+
+@keyframes offering-gold-pulse {
+    0% {
+        box-shadow: 0 0 6px rgba(255,215,0,.45), 0 0 12px rgba(255,193,7,.25);
+    }
+    50% {
+        box-shadow: 0 0 18px rgba(255,215,0,.95), 0 0 32px rgba(255,193,7,.65);
+    }
+    100% {
+        box-shadow: 0 0 6px rgba(255,215,0,.45), 0 0 12px rgba(255,193,7,.25);
+    }
+}
+
 </style>
 """
 st.markdown(APP_CSS, unsafe_allow_html=True)
