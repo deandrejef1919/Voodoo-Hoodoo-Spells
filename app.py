@@ -14,6 +14,8 @@ st.set_page_config(
 # CSS THEME (Times New Roman, red/black/green, Zulu shield buttons)
 # =========================
 
+NANA_BULUKU_IMAGE_URL = "https://images.nightcafe.studio/ik-seo/jobs/oGtwvcZvvQ84lhtwP4Zd/oGtwvcZvvQ84lhtwP4Zd--1--ixbrp/nana-buluku-2.jpg?tr=w-1600,c-at_max"
+
 APP_CSS = """
 <style>
 body, .stApp {
